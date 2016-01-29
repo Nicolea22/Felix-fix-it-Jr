@@ -115,7 +115,8 @@ public class Building extends Entity{
 	}
 
 	
-	public String getName(){
+	public String getName() {
+		System.out.println("hola");
 		return "Building";
 	}
 
