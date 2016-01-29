@@ -1,4 +1,8 @@
 ACA MASAJE ENCRIPTADO
 K4K3333R
 Markoti somo 3
+<<<<<<< HEAD
 asdasd
+=======
+somo 4
+>>>>>>> 3e25a2bc02806dfeb7e69e232f15783dca08c4b0
