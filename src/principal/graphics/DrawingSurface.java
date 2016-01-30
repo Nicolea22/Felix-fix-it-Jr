@@ -66,7 +66,8 @@ public class DrawingSurface extends Canvas {
 		
 		gs.draw(g);
 		
-		g.translate(0, cam.getY());
+		g.translate(0, -cam.getY());
+		
 		HUD.getHud().draw(g);
 		
 		// esta linea evita el screen tearing, es decir, que no se vean multiples frames a la vez coordinando los refresh rates del monitor
