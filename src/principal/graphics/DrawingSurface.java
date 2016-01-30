@@ -39,7 +39,7 @@ public class DrawingSurface extends Canvas {
 	
 	public void tick() {
 		inputKeys.tick();
-		if (Building.getBuilding().changeSector()){
+		if (Building.getBuilding().isChangingSector()) {
 			if (cam.getY() < 237) {
 				cam.tick();
 				return;
@@ -63,11 +63,9 @@ public class DrawingSurface extends Canvas {
 		clean(g);
 		
 		g.translate(0, cam.getY());
-		
 		gs.draw(g);
 		
 		g.translate(0, -cam.getY());
-		
 		HUD.getHud().draw(g);
 		
 		// esta linea evita el screen tearing, es decir, que no se vean multiples frames a la vez coordinando los refresh rates del monitor

@@ -5,11 +5,13 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import principal.Constant;
+import principal.entities.Building;
 import principal.entities.windows.Window;
 
 public abstract class Sector {
 	
-	protected final static int POS_X = Constant.WIDTH/2 - 315/2;
+	protected final static int POS_X = Building.POS_X;
+	protected final static int POS_Y = Building.POS_Y;
 	
 	protected final int COL = 5;
 	protected final int ROW = 3;
@@ -28,6 +30,7 @@ public abstract class Sector {
 	public abstract boolean  hasNicelanders();
 	public abstract boolean  hasObstacles();
 	
+	public abstract Rectangle getTopBounds();
 	public abstract Rectangle getBotBounds();
 	
 	public Window[] getWindows() {
@@ -42,5 +45,6 @@ public abstract class Sector {
 		return brokenWindows.size() <= 0;
 	}
 
+	
 	
 }

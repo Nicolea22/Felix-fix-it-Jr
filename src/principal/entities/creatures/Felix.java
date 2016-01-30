@@ -73,7 +73,7 @@ public class Felix extends Creature {
 		setY(getY() + getDy());
 			    
 		checkButtons();
-					
+		
 		collision(creat);
 		
 	}
@@ -151,20 +151,25 @@ public class Felix extends Creature {
 	}
 
 	private void buildingCollision() {
+		Building b = Building.getBuilding();
 		
-		if (getLeftBounds().intersects(Building.getBuilding().getLeftBounds())){
+		if (getLeftBounds().intersects(b.getLeftBounds())){
 			setX(Building.getBuilding().getX() + 17);
 		}
 			
-		if (getRightBounds().intersects(Building.getBuilding().getRightBounds())){
-			setX(Building.getBuilding().getX() + 261);
+		if (getRightBounds().intersects(b.getRightBounds())){
+			setX(b.getX() + 261);
 		}
 		
 		
-		if (getBotBounds().intersects(Building.getBuilding().getBotBounds())){
+		if (getBotBounds().intersects(b.getBotBounds()) && b.isChangingSector()){
 			onGround = true;
 		}else 
 			onGround = false;
+		
+		if (getBotBounds().intersects(Building.getBuilding().getTopBounds())) {
+			Building.getBuilding().changeSector();
+		}
 		
 	}
 

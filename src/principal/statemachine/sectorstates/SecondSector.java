@@ -2,8 +2,6 @@ package principal.statemachine.sectorstates;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
-import principal.Constant;
 import principal.entities.windows.DoubleDoor;
 import principal.entities.windows.TwoPanels;
 import principal.entities.windows.Window;
@@ -67,7 +65,13 @@ public class SecondSector extends Sector{
 
 	@Override
 	public Rectangle getBotBounds(){
-		return new Rectangle(261 + 18, 314 + 779, 278, 6);
+//		return new Rectangle(261 + 18, 314 + 779, 278, 6);
+		return new Rectangle(POS_X + 18, POS_Y + 778, 278, 6);
+	}
+
+	@Override
+	public Rectangle getTopBounds() {
+		return new Rectangle();
 	}
 
 

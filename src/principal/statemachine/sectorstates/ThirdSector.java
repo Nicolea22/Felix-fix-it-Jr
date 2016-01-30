@@ -43,6 +43,12 @@ public class ThirdSector extends Sector{
 		return new Rectangle();
 	}
 
+
+	@Override
+	public Rectangle getTopBounds() {
+		return new Rectangle();
+	}
+
 	
 
 }

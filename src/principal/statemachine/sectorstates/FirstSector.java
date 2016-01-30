@@ -8,9 +8,6 @@ import principal.entities.windows.*;
 
 public class FirstSector extends Sector {
 
-	
-	
-	
 	public FirstSector(){
 		super();
 		windows = new Window[15];
@@ -110,6 +107,10 @@ public class FirstSector extends Sector {
 		return new Rectangle(POS_X + 18, Constant.HEIGHT - 44, 278, 6);
 	}
 
-
+	@Override
+	public Rectangle getTopBounds() {
+		return new Rectangle(POS_X + 18, POS_Y + 778, 278, 6);
+	}
+	
 	
 }

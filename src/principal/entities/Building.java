@@ -24,7 +24,8 @@ public class Building extends Entity{
 	private Sprite sprite; 
 	
 	private Sector[] sectors;
-	private int actualState;
+	private Sector actualSector;
+	private Sector nextSector;
 	
 	private boolean changingSector;
 
@@ -33,7 +34,7 @@ public class Building extends Entity{
 		sprite = new Sprite(ResourceLoader.getLoader().loadImage("images/building/0.png"));
 		changingSector = false;
 		initSectors();
-		actualState = 0;
+		initActualSectors();
 	}
 	
 	
@@ -45,6 +46,11 @@ public class Building extends Entity{
  	}
 	
 	
+	private void initActualSectors() {
+		actualSector = sectors[0];
+		nextSector = sectors[1];
+	}
+	
 	public static Building getBuilding() {
 		return building;
 	}
@@ -52,8 +58,8 @@ public class Building extends Entity{
 	
 	@Override
 	public void tick(ArrayList<Creature> creat) {
-		sectors[actualState].tick();
-		if (changeSector() && actualState < 2) actualState++;
+		actualSector.tick();
+//		if (changeSector() && actualState < 1) actualState++;
 	}
 	
 	
@@ -64,26 +70,30 @@ public class Building extends Entity{
 //		g.draw(getLeftBounds());
 //		g.draw(getRightBounds());
 		g.draw(getBotBounds());
+		g.draw(getTopBounds());
 		
-	 
 		sectors[0].draw(g);
-		
-		sectors[1].draw(g);
-		 
+		sectors[1].draw(g); 
 		sectors[2].draw(g);
 	}
-	/*eltercersectornoestaecho*/
+	/* el tercer sector no esta hecho = index 2 */
 	
 	
-	public boolean changeSector() {
-		return sectors[actualState].changeSector();
+	public void changeSector() {
+		if (actualSector instanceof FirstSector) {
+			actualSector = sectors[1];
+			nextSector = sectors[2];
+		}else
+			if (actualSector instanceof SecondSector) {
+				actualSector = sectors[2];
+				nextSector = sectors[3];
+			}
+		
 	}
 	
 	
-	
-
 	public Window[] getWindows() {
-		return sectors[actualState].getWindows();
+		return actualSector.getWindows();
 	}
 	
 	
@@ -94,7 +104,7 @@ public class Building extends Entity{
 
 	@Override
 	public Rectangle getTopBounds() {
-		return null;
+		return nextSector.getBotBounds();
 	}
 
 	
@@ -103,24 +113,26 @@ public class Building extends Entity{
 		return new Rectangle(POS_X + 16, POS_Y, 3, 1000);
 	}
 
+	
 	@Override
 	public Rectangle getRightBounds() {
 		return new Rectangle(POS_X + 295, POS_Y, 3, 1000);
 	}
 
+	
 	@Override
 	public Rectangle getBotBounds() {
-		return sectors[actualState].getBotBounds();
+		return actualSector.getBotBounds();
 	}
 
 	
 	public String getName() {
-		System.out.println("hola");
 		return "Building";
 	}
 
+	
 	public boolean isChangingSector() {
-		return changingSector;
+		return actualSector.changeSector();
 	}
 	
 	
