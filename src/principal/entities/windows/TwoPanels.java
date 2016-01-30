@@ -37,10 +37,12 @@ public class TwoPanels extends Window{
 
 	
 	private void initWindows() {
-		strokesRequired = Random.value(0, 4);
+//		strokesRequired = Random.value(0, 4);
+		strokesRequired = 1;
 		topGlassState = Random.value(1, 5);
 		botGlassState = Random.value(1, 5);
 	}
+	
 	
 	@Override
 	public void draw(Graphics2D g) {

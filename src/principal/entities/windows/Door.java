@@ -35,7 +35,8 @@ public class Door extends Window{
 	
 	
 	private void initWindows() {
-		strokesRequired = Random.value(0, 16);
+//		strokesRequired = Random.value(0, 16);
+		strokesRequired = 1;
 	}
 	
 	

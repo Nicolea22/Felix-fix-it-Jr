@@ -74,6 +74,7 @@ public class DrawingSurface extends Canvas {
 		
 		
 		g.dispose();
+		
 		// apunta a la siguiente imagen a mostrar que se encuentra en la cola
 		bufferStrat.show();
 	}

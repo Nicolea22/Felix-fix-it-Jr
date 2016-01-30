@@ -47,6 +47,7 @@ public class DoubleDoor extends Window{
 	
 	@Override
 	public void tick(ArrayList<Creature> objects) {	
+		
 	}
 
 	

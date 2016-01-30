@@ -37,7 +37,8 @@ public class Semicircular extends Window{
 	
 	
 	private void initState() {
-		strokesRequired = Random.value(0, 16);
+//		strokesRequired = Random.value(0, 16);
+		strokesRequired = 1;
 		if (strokesRequired >= 12) state = 4;
 		if (strokesRequired < 12 && strokesRequired >= 8) state = 3;
 		if (strokesRequired < 8 && strokesRequired >= 4) state = 2;
