@@ -66,8 +66,8 @@ public class SecondSector extends Sector{
 	}
 
 	@Override
-	public Rectangle getBotBounds() {
-		return new Rectangle(POS_X + 18, Constant.HEIGHT - 44, 278, 6);
+	public Rectangle getBotBounds(){
+		return new Rectangle(261 + 18, 314 + 779, 278, 6);
 	}
 
 

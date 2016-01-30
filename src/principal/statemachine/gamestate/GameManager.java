@@ -22,10 +22,6 @@ public class GameManager implements GameState {
 	
 	private Handler handler;
 	
-	private HUD hud;
-	
-	private Timer clock;
-	
 	private Felix felix;
 	private Ralph ralph;
 	
@@ -46,22 +42,17 @@ public class GameManager implements GameState {
 		cloud = new Cloud(0, 300, handler);
 		cloud1 = new Cloud(150, 200, handler);
 		
-		clock = new Timer(10, 10,System.currentTimeMillis());
-		
 		felix = new Felix(Constant.WIDTH/2 , Constant.HEIGHT - 90, handler);
 		ralph = new Ralph(300 ,227, handler);
 	
 		bush = new Sprite(ResourceLoader.getLoader().loadImage("images/bush.png"));
 		
-		hud = new HUD(felix);
-	}
+		}
 	
 	
 	@Override
 	public void tick() {	
 		handler.tick();
-		clock.tick();
-		hud.tick(felix);
 	}
 
 	
@@ -69,8 +60,6 @@ public class GameManager implements GameState {
 	public void draw(Graphics2D g) {
 		drawBushes(g);
 		handler.draw(g);
-		hud.draw(g);
-		clock.draw(g);
 	}
 
 	

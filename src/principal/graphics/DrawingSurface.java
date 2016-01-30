@@ -5,8 +5,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
+
 import principal.Camera;
 import principal.Constant;
+import principal.HUD;
 import principal.entities.Building;
 import principal.input.KeyBoard;
 import principal.statemachine.GameStatus;
@@ -63,6 +65,9 @@ public class DrawingSurface extends Canvas {
 		g.translate(0, cam.getY());
 		
 		gs.draw(g);
+		
+		g.translate(0, cam.getY());
+		HUD.getHud().draw(g);
 		
 		// esta linea evita el screen tearing, es decir, que no se vean multiples frames a la vez coordinando los refresh rates del monitor
 		// con 

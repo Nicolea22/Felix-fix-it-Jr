@@ -4,22 +4,43 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
+
+import principal.entities.ID;
 import principal.entities.creatures.Felix;
 import principal.util.ResourceLoader;
+import principal.util.Timer;
 
 public class HUD {
 
 	private Image lifeImage;
 	private int lifeAmount;
 	private Font font;
+	private Timer clock;
+	private Felix felix;
 	
-	public HUD(Felix felix) {
-		lifeAmount = felix.getLife();
+	private static HUD hud = new HUD();
+	
+	private HUD() {
+		initFelix();
+		clock = new Timer(10, 10,System.currentTimeMillis());
 		font = new Font("Bold", Font.BOLD, 15);
 		lifeImage = ResourceLoader.getLoader().loadImage("images/life.png");
 	}
 	
+	
+	private void initFelix(){
+		for (int i = 0; i < Handler.objects.size(); i++) {
+			if (Handler.objects.get(i).getID() == ID.Felix){
+				felix = (Felix)Handler.objects.get(i);
+			}
+		}
+	}
 
+	
+	public static HUD getHud(){
+		return hud;
+	}
+	
 	public void draw(Graphics2D g) {
 		
 		g.setFont(font);
@@ -42,6 +63,8 @@ public class HUD {
 		g.drawString("00000000000", 2, 25);
 		g.drawString("00000000000", 343, 25);
 
+		clock.draw(g);
+		
 		drawLife(g);
 	}
 	
@@ -53,8 +76,9 @@ public class HUD {
 		}
 	}
 	
-	public void tick(Felix felix) {
+	public void tick() {
 		lifeAmount = felix.getLife();
+		clock.tick();
 	}
 	
 }

@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import principal.Constant;
 import principal.entities.creatures.Creature;
 import principal.graphics.Sprite;
 import principal.util.Random;

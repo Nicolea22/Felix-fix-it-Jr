@@ -65,13 +65,12 @@ public class Building extends Entity{
 //		g.draw(getRightBounds());
 		g.draw(getBotBounds());
 		
-		if (sectors[actualState] instanceof FirstSector || sectors[actualState] instanceof SecondSector) 
-			sectors[0].draw(g);
+	 
+		sectors[0].draw(g);
 		
 		sectors[1].draw(g);
-		
-		if (sectors[actualState] instanceof ThirdSector) 
-			sectors[2].draw(g);
+		 
+		sectors[2].draw(g);
 	}
 	/*eltercersectornoestaecho*/
 	
