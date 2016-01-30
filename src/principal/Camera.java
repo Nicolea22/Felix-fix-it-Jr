@@ -12,6 +12,8 @@ public class Camera {
 	}
 	
 	
+	
+	
 	public void tick(){
 		position.setY(getY() + VEL);
 	}
