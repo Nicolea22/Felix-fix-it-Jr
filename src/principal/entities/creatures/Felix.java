@@ -16,8 +16,6 @@ import principal.statemachine.characterstates.felixstates.Fixing;
 import principal.statemachine.characterstates.felixstates.Moving;
 import principal.statemachine.characterstates.felixstates.Normal;
 
-
-
 public class Felix extends Creature {
 	
 	/*
