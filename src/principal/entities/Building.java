@@ -24,7 +24,7 @@ public class Building extends Entity{
 	private Sprite sprite; 
 	
 	private Sector[] sectors;
-	private int state;
+	private int actualState;
 	
 	private boolean changingSector;
 
@@ -33,7 +33,7 @@ public class Building extends Entity{
 		sprite = new Sprite(ResourceLoader.getLoader().loadImage("images/building/0.png"));
 		changingSector = false;
 		initSectors();
-		state = 0;
+		actualState = 0;
 	}
 	
 	
@@ -52,8 +52,8 @@ public class Building extends Entity{
 	
 	@Override
 	public void tick(ArrayList<Creature> creat) {
-		sectors[state].tick();
-		if (changeSector() && state < 3) state++;
+		sectors[actualState].tick();
+		if (changeSector() && actualState < 2) actualState++;
 	}
 	
 	
@@ -65,26 +65,26 @@ public class Building extends Entity{
 //		g.draw(getRightBounds());
 		g.draw(getBotBounds());
 		
-		if (sectors[state] instanceof FirstSector) 
+		if (sectors[actualState] instanceof FirstSector || sectors[actualState] instanceof SecondSector) 
 			sectors[0].draw(g);
 		
 		sectors[1].draw(g);
 		
-		if (sectors[state] instanceof ThirdSector) 
+		if (sectors[actualState] instanceof ThirdSector) 
 			sectors[2].draw(g);
 	}
-	
+	/*eltercersectornoestaecho*/
 	
 	
 	public boolean changeSector() {
-		return sectors[state].changeSector();
+		return sectors[actualState].changeSector();
 	}
 	
 	
 	
 
 	public Window[] getWindows() {
-		return sectors[state].getWindows();
+		return sectors[actualState].getWindows();
 	}
 	
 	
@@ -111,7 +111,7 @@ public class Building extends Entity{
 
 	@Override
 	public Rectangle getBotBounds() {
-		return sectors[state].getBotBounds();
+		return sectors[actualState].getBotBounds();
 	}
 
 	

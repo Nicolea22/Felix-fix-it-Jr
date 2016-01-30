@@ -112,7 +112,9 @@ public class Felix extends Creature {
 	}
 
 	private void windowCollision() {
+		
 		Window[] windows = Building.getBuilding().getWindows();
+		if(windows != null){
 		for (int i = 0; i < windows.length; i++) {
 			Window w = windows[i];
 			// 300 ms entre cada golpe de delay para coordinarlo con el arreglo
@@ -121,10 +123,13 @@ public class Felix extends Creature {
 				w.getFixed();
 			}
 			
+			if(w.getBotBounds() != null){
 			if (getBotBounds().intersects(w.getBotBounds())) {
 				onGround = true;
-			}	
-		}			
+			}
+			}
+		}
+		}
 	}
 
 	private void brickCollision(Creature c) {
@@ -154,7 +159,8 @@ public class Felix extends Creature {
 		if (getRightBounds().intersects(Building.getBuilding().getRightBounds())){
 			setX(Building.getBuilding().getX() + 261);
 		}
-			
+		
+		
 		if (getBotBounds().intersects(Building.getBuilding().getBotBounds())){
 			onGround = true;
 		}else 

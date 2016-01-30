@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import principal.Constant;
 import principal.entities.creatures.Creature;
 import principal.graphics.Sprite;
 import principal.util.Random;
@@ -74,7 +75,9 @@ public class DoubleDoor extends Window{
 
 	@Override
 	public Rectangle getBotBounds() {
-		return null;
+	
+		return new Rectangle((int)getX() ,(int)getY() + 49 ,40 ,5 );
+			
 	}
 
 	@Override
@@ -86,6 +89,7 @@ public class DoubleDoor extends Window{
 	public Rectangle getBounds() {
 		return new Rectangle((int)getX(), (int)getY(), width, height);
 	}
+	
 	
 	
 }
