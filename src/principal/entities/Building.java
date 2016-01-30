@@ -86,7 +86,7 @@ public class Building extends Entity{
 		}else
 			if (actualSector instanceof SecondSector) {
 				actualSector = sectors[2];
-				nextSector = sectors[3];
+				nextSector = sectors[2];
 			}
 		
 	}

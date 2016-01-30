@@ -42,7 +42,6 @@ public class DrawingSurface extends Canvas {
 		if (Building.getBuilding().isChangingSector()) {
 			if (cam.getY() < 237) {
 				cam.tick();
-				return;
 			}
 		}
 		HUD.getHud().tick();

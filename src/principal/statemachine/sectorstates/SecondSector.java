@@ -38,7 +38,10 @@ public class SecondSector extends Sector{
 
 	@Override
 	public void tick() {
-		
+		for (int i = 0; i < windows.length; i++) {
+			windows[i].tick(null);
+			
+		}
 	}
 	
 	@Override
