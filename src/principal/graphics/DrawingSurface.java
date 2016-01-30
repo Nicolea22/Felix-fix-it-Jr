@@ -39,12 +39,12 @@ public class DrawingSurface extends Canvas {
 	
 	public void tick() {
 		inputKeys.tick();
+		HUD.getHud().tick();
 		if (Building.getBuilding().isChangingSector()) {
 			if (cam.getY() < 237) {
 				cam.tick();
 			}
 		}
-		HUD.getHud().tick();
 	}
 		
 	
