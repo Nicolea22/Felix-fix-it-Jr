@@ -56,7 +56,7 @@ public class TwoPanels extends Window{
 		
 		g.setColor(Color.GREEN);
 		g.draw(getBounds());
-//		g.draw(getBotBounds());
+		g.draw(getBotBounds());
 	}
 
 	

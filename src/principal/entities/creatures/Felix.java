@@ -142,12 +142,12 @@ public class Felix extends Creature {
 	}
 
 	private void ralphCollision(Creature c) {
-		if (c.getID() == ID.Ralph){
-			if (getTopBounds().intersects(c.getBounds())) {
-				setY(c.getY() + 82);
-				max_jump = MAX_JUMP;
-			}
-		}
+//		if (c.getID() == ID.Ralph){
+//			if (getTopBounds().intersects(c.getBounds())) {
+//				setY(c.getY() + 82);
+//				max_jump = MAX_JUMP;
+//			}
+//		}
 	}
 
 	private void buildingCollision() {
@@ -162,13 +162,14 @@ public class Felix extends Creature {
 		}
 		
 		
-		if (getBotBounds().intersects(b.getBotBounds()) && b.isChangingSector()){
+		if (getBotBounds().intersects(b.getBotBounds()) ){
 			onGround = true;
 		}else 
 			onGround = false;
 		
-		if (getBotBounds().intersects(Building.getBuilding().getTopBounds())) {
+		if (getBotBounds().intersects(Building.getBuilding().getTopBounds()) && b.isChangingSector()) {
 			Building.getBuilding().changeSector();
+			onGround = true;
 		}
 		
 	}

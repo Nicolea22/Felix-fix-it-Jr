@@ -5,7 +5,7 @@ import principal.physics.Position;
 public class Camera {
 
 	private Position position;
-	
+	private final float VEL = .3f;
 	
 	public Camera(float x, float y){
 		position = new Position(x,y);
@@ -13,7 +13,7 @@ public class Camera {
 	
 	
 	public void tick(){
-		position.setY(getY() + .9f);
+		position.setY(getY() + VEL);
 	}
 	
 	public float getX(){
