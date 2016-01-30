@@ -66,7 +66,7 @@ public class SecondSector extends Sector{
 	@Override
 	public Rectangle getBotBounds(){
 //		return new Rectangle(261 + 18, 314 + 779, 278, 6);
-		return new Rectangle(POS_X + 18, POS_Y + 778, 278, 6);
+		return new Rectangle(POS_X + 18, POS_Y + 778, 278, 8);
 	}
 
 	@Override

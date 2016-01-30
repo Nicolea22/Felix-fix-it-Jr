@@ -163,6 +163,7 @@ public class Felix extends Creature {
 		
 		
 		if (getBotBounds().intersects(b.getBotBounds()) ){
+			
 			onGround = true;
 		}else 
 			onGround = false;
@@ -176,13 +177,15 @@ public class Felix extends Creature {
 
 		
 	private float getInputX(ArrayList<Creature> creat) {
-			
+		
+		// Mover derecha
 		if (KeyBoard.right && !KeyBoard.fix) {
 			directionX = 1;
 				
 			return VEL;
 		}
-			
+		
+		// Mover izquierda
 		if (KeyBoard.left && !KeyBoard.fix){
 			directionX = -1;
 			return -VEL;
@@ -195,6 +198,7 @@ public class Felix extends Creature {
 		
 	private float getInputY(ArrayList<Creature> creat) {
 
+		// Mover arriba
 		if (KeyBoard.up && !falling && max_jump > MAX_JUMP && System.currentTimeMillis() - time > 150) {
 			directionY = -1;
 			max_jump += JUMP_SPEED;
@@ -202,7 +206,9 @@ public class Felix extends Creature {
 			return JUMP_SPEED;
 		}
 				
-		if (KeyBoard.down && onGround && getY() < 503 && System.currentTimeMillis() - time > 100) {
+		// Mover abajo
+		if (KeyBoard.down && onGround && getY() < 503 && System.currentTimeMillis() - time > 100
+				&& !getBounds().intersects(Building.getBuilding().getBotBounds())) {
 			time = System.currentTimeMillis();
 			directionY = 1; 
 				

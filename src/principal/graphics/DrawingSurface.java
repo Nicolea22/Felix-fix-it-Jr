@@ -45,7 +45,7 @@ public class DrawingSurface extends Canvas {
 				return;
 			}
 		}
-		Building.getBuilding().setChangingSector(false);
+		HUD.getHud().tick();
 	}
 		
 	
