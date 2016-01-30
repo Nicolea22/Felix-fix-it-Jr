@@ -15,7 +15,7 @@ public class Ralph extends Creature {
 	
 	private float vel = 1.5f;
 	private int freq;
-	
+	private boolean climb=false;
 	private State state;
 	
 	private Brick brick;
@@ -44,6 +44,24 @@ public class Ralph extends Creature {
 
 	@Override
 	public void tick(ArrayList<Creature> creat) {
+
+		
+		climb = Building.getBuilding().isChangingSector();
+		
+		
+		if (climb && getY()>0) climbing(); else killing();
+			
+	
+	}
+	
+	private void climbing(){
+		setDy(-vel);
+		if (getY()>0)
+			setY(getY() + getDy());
+					
+	}
+	
+	private void killing(){
 		setX(getX() + getDx());
 		
 		if (getBounds().intersects(Building.getBuilding().getLeftBounds())){
@@ -57,10 +75,7 @@ public class Ralph extends Creature {
 			throwBrick();
 		}
 		
-		
 	}
-	
-	
 	private void throwBrick() {
 		if (Random.value(1, 50) % 5 == 0){
 			handler.add(new Brick((int)getX() + 32, (int)getY()+ 70, handler));
