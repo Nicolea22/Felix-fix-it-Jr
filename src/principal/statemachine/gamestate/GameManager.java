@@ -6,6 +6,7 @@ import principal.Constant;
 import principal.HUD;
 import principal.Handler;
 import principal.Images;
+import principal.Score;
 import principal.entities.Building;
 import principal.entities.creatures.Cloud;
 import principal.entities.creatures.Felix;
@@ -26,7 +27,9 @@ public class GameManager implements GameState {
 	private Ralph ralph;
 	
 //	private Building building;
-	private DrawDebug drawDebug;
+//	private DrawDebug drawDebug;
+	
+	private Score score;
 	
 	private Sprite bush;
 	

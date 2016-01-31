@@ -5,14 +5,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
-
 import principal.Camera;
 import principal.Constant;
 import principal.HUD;
 import principal.entities.Building;
 import principal.input.KeyBoard;
 import principal.statemachine.GameStatus;
-import principal.statemachine.sectorstates.ThirdSector;
 
 
 // Se extiende a Canvas ya que esta clase es la que puede crear el buffer Strategy por eso no hicimos un JPanel 
@@ -51,15 +49,13 @@ public class DrawingSurface extends Canvas {
 				prevGM = true;		
 				}else{
 					Building.getBuilding().stopGM();
-					}
-		} else {
-				
+				}
+		}else{	
 			if(prevGM){
 				piso = piso +203;
 				prevGM = false;
 			}
 		}
-	
 	}
 		
 	
@@ -83,7 +79,7 @@ public class DrawingSurface extends Canvas {
 		HUD.getHud().draw(g);
 		
 		// esta linea evita el screen tearing, es decir, que no se vean multiples frames a la vez coordinando los refresh rates del monitor
-		// con 
+		// con los frames a mostrar
 		Toolkit.getDefaultToolkit().sync();
 		
 		
