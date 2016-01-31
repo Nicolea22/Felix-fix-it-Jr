@@ -17,7 +17,7 @@ private static Climbing climb = new Climbing();
 	
 	private Climbing(){
 		animation = new Animation(paths);
-		animUpdate = 400;
+		animUpdate = 600;
 	}
 	
 	public static Climbing getClimbing(){

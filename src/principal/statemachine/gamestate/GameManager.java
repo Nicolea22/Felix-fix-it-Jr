@@ -76,8 +76,4 @@ public class GameManager implements GameState {
 		}
 	}
 	
-	
-
-	
-	
 }
