@@ -14,7 +14,7 @@ public class Score {
 	}
 	
 	
-	public void add(int score) {
+	public void add(Integer score) {
 		bestScores.add(score);
 	}
 	
@@ -37,8 +37,11 @@ public class Score {
 	}
 	
 	
-	public  Object[] getScores() {
-		return bestScores.toArray();
+	public  String getScores() {
+		return bestScores.toString();
 	}
-	
+
+	public PriorityQueue<Integer> getHeap() {
+		return bestScores;
+	}
 }
