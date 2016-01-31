@@ -1,9 +1,7 @@
 package principal.input;
 
-import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import principal.statemachine.GameStatus;
 import principal.statemachine.gamestate.GameManager;
 import principal.statemachine.gamestate.GameRules;
@@ -14,34 +12,22 @@ import principal.statemachine.init.PrincipalMenu;
 public class MouseInput implements MouseListener{
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseClicked(MouseEvent e) {		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		
+	public void mousePressed(MouseEvent e) {	
 		int mx = e.getX();
 		int my = e.getY();
-		/*
-	public Rectangle playButton1 = new Rectangle(200,150,100,50);
-	public Rectangle playButton2 = new Rectangle(200,250,100,50);
-	public Rectangle playButton3 = new Rectangle(200,350,100,50);
-		*/
-		
+	
 		if(mx >= 200 && mx <= 300){
 			if(my >= 150 && my <= 200){
 				//NEW GAME
@@ -96,9 +82,7 @@ public class MouseInput implements MouseListener{
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseReleased(MouseEvent e) {		
 	}
 
 }
