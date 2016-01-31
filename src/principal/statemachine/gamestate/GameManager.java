@@ -73,11 +73,6 @@ public class GameManager implements GameState {
 	}
 
 	
-//	public boolean changeSector(){
-//		return Building.getBuilding().ischangeSector();
-//	}
-	
-	
 	private void drawBushes(Graphics2D g) {
 		int bushPosX = 0;
 		for (int i = 0; i < 33; i++){

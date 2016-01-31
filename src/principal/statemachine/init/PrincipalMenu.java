@@ -24,7 +24,7 @@ public class PrincipalMenu implements GameState{
 		Font fnt0 = new Font("arial",Font.BOLD,50);
 		g.setFont(fnt0);
 		g.setColor(Color.white);
-		g.drawString("JUEGUITO", 200,100);
+		g.drawString("REKIT ROLFITT,FIXIT FOXIL", 50,100);
 		
 		
 		Font fnt1 = new Font("arial",Font.BOLD,30);

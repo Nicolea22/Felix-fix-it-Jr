@@ -35,7 +35,7 @@ public class HUD {
 		}
 	}
 
-	
+
 	public static HUD getHud(){
 		return hud;
 	}
@@ -67,6 +67,8 @@ public class HUD {
 		drawLife(g);
 	}
 	
+	
+	
 	private void drawLife(Graphics2D g) {
 		int lifePosX = 0;
 		for (int i = 0; i < lifeAmount; i++) {
@@ -75,7 +77,13 @@ public class HUD {
 		}
 	}
 	
+	public void reset(){
+		initFelix();
+		clock = new Timer(10, 10,System.currentTimeMillis());
+	}
+	
 	public void tick() {
+		
 		lifeAmount = felix.getLife();
 		clock.tick();
 	}

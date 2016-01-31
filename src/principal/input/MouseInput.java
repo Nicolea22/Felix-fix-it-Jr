@@ -4,6 +4,9 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import principal.HUD;
+import principal.entities.Building;
+import principal.graphics.DrawingSurface;
 import principal.statemachine.GameStatus;
 import principal.statemachine.gamestate.GameManager;
 import principal.statemachine.gamestate.GameRules;
@@ -36,17 +39,12 @@ public class MouseInput implements MouseListener{
 		
 		int mx = e.getX();
 		int my = e.getY();
-		/*
-	public Rectangle playButton1 = new Rectangle(200,150,100,50);
-	public Rectangle playButton2 = new Rectangle(200,250,100,50);
-	public Rectangle playButton3 = new Rectangle(200,350,100,50);
-		*/
-		
+	
 		if(mx >= 200 && mx <= 300){
 			if(my >= 150 && my <= 200){
 				//NEW GAME
 				if(GameStatus.actualState instanceof PrincipalMenu){
-					GameStatus.states[1] = new GameManager();
+					//GameStatus.states[1] = new GameManager();
 					GameStatus.changeState(1);	
 				}
 				//MAIN MENU
@@ -55,8 +53,6 @@ public class MouseInput implements MouseListener{
 				}
 			}
 		}
-		
-
 		
 		if(mx >= 200 && mx <= 300){
 			if(my >= 250 && my <= 300){
@@ -78,9 +74,14 @@ public class MouseInput implements MouseListener{
 				//RESTART BUTTON
 				if(GameStatus.actualState instanceof PauseMenu){
 					GameStatus.states[1] = new GameManager();
+					Building.getBuilding().initSectors();
+					Building.getBuilding().initActualSectors();
+					Building.getBuilding().stopGM();
+					HUD.getHud().reset();
+					DrawingSurface.resetSurface();
 					GameStatus.changeState(1);	
 				}
-				
+			
 			}
 			
 		}
@@ -91,7 +92,6 @@ public class MouseInput implements MouseListener{
 					GameStatus.changeState(0);	
 			}
 		}
-		
 	
 	}
 

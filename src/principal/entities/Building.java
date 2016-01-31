@@ -42,7 +42,7 @@ public class Building extends Entity{
 	}
 	
 	
-	private void initSectors() {
+	public void initSectors() {
 		sectors = new Sector[Constant.SECTORS];
 		sectors[0] = new FirstSector();
 		sectors[1] = new SecondSector();
@@ -50,7 +50,7 @@ public class Building extends Entity{
  	}
 	
 	
-	private void initActualSectors() {
+	public void initActualSectors() {
 		actualSector = sectors[0];
 		nextSector = sectors[1];
 	}
