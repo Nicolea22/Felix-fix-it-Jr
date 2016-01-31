@@ -11,7 +11,9 @@ import principal.entities.creatures.Cloud;
 import principal.entities.creatures.Felix;
 import principal.entities.creatures.Ralph;
 import principal.graphics.Sprite;
+import principal.input.KeyBoard;
 import principal.statemachine.GameState;
+import principal.statemachine.GameStatus;
 import principal.util.DrawDebug;
 import principal.util.ResourceLoader;
 import principal.util.Timer;
@@ -35,6 +37,8 @@ public class GameManager implements GameState {
 	
 	
 	public GameManager() {
+		
+		
 		animations = new Images();
 		
 		handler = new Handler();
@@ -53,6 +57,9 @@ public class GameManager implements GameState {
 	@Override
 	public void tick() {	
 		handler.tick();
+		if (KeyBoard.pause){
+			GameStatus.changeState(2);	
+		}
 	}
 
 	
@@ -75,9 +82,5 @@ public class GameManager implements GameState {
 			bushPosX += bush.getWidth();
 		}
 	}
-	
-	
-
-	
 	
 }

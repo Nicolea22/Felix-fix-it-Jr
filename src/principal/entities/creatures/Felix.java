@@ -80,8 +80,6 @@ public class Felix extends Creature {
 
 		
 	private void checkButtons() {
-		if (KeyBoard.pause)
-			System.exit(1);
 			
 		if (KeyBoard.fix && onGround) {
 			state = Fixing.getFixing();

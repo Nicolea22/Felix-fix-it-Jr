@@ -20,6 +20,7 @@ public class PrincipalMenu implements GameState{
 
 	@Override
 	public void draw(Graphics2D g) {
+		
 		Font fnt0 = new Font("arial",Font.BOLD,50);
 		g.setFont(fnt0);
 		g.setColor(Color.white);
