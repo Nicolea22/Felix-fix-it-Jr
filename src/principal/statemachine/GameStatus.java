@@ -2,6 +2,7 @@ package principal.statemachine;
 
 import java.awt.Graphics2D;
 
+import principal.Camera;
 import principal.Constant;
 import principal.statemachine.gamestate.*;
 import principal.statemachine.init.*;

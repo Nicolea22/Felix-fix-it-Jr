@@ -1,12 +1,13 @@
 package principal.input;
 
-import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 
 import principal.HUD;
 import principal.entities.Building;
 import principal.graphics.DrawingSurface;
+
 import principal.statemachine.GameStatus;
 import principal.statemachine.gamestate.GameManager;
 import principal.statemachine.gamestate.GameRules;
@@ -17,26 +18,19 @@ import principal.statemachine.init.PrincipalMenu;
 public class MouseInput implements MouseListener{
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseClicked(MouseEvent e) {		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		
+	public void mousePressed(MouseEvent e) {	
 		int mx = e.getX();
 		int my = e.getY();
 	
@@ -88,7 +82,7 @@ public class MouseInput implements MouseListener{
 		
 		if(mx >= 300 && mx <= 400){
 			if(my >= 450 && my <= 500){
-				if(GameStatus.actualState instanceof GameRules || GameStatus.actualState instanceof ScoreMenu )
+				if(GameStatus.actualState instanceof GameRules || GameStatus.actualState instanceof ScoreMenu)
 					GameStatus.changeState(0);	
 			}
 		}
@@ -96,9 +90,6 @@ public class MouseInput implements MouseListener{
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseReleased(MouseEvent e) {}
 
 }

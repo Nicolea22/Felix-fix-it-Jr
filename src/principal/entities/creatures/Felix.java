@@ -63,7 +63,6 @@ public class Felix extends Creature {
 
 	
 	public void tick(ArrayList<Creature> creat) {
-		
 		stopFalling();
 				
 		setDx(getInputX(creat));

@@ -37,7 +37,7 @@ public class Score {
 	}
 	
 	
-	public  String getScores() {
+	public String getScores() {
 		return bestScores.toString();
 	}
 
