@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import principal.statemachine.sectorstates.*;
 import java.util.ArrayList;
+
+
 import principal.Constant;
 import principal.entities.creatures.Creature;
 import principal.entities.windows.Window;
@@ -15,7 +17,7 @@ public class Building extends Entity{
 	
 	private final static int BUILDING_WIDTH = 315;
 	private final static int BUILDING_HEIGHT = 1065;
-	
+	private boolean globalMovement = false;
 	public final static int POS_X = Constant.WIDTH/2 - BUILDING_WIDTH/2;
 	public final static int POS_Y = Constant.HEIGHT - BUILDING_HEIGHT;
 	
@@ -27,12 +29,12 @@ public class Building extends Entity{
 	private Sector actualSector;
 	private Sector nextSector;
 	
-	private boolean changingSector;
+	
 
 	private Building() {
 		super(POS_X, POS_Y);
 		sprite = new Sprite(ResourceLoader.getLoader().loadImage("images/building/0.png"));
-		changingSector = false;
+		
 		initSectors();
 		initActualSectors();
 	}
@@ -58,7 +60,12 @@ public class Building extends Entity{
 	
 	@Override
 	public void tick(ArrayList<Creature> creat) {
+		
+		
+		System.out.println(actualSector.brokenWinsAmount());
 		actualSector.tick();
+		if(isChangingSector())
+			globalMovement = true;
 //		if (changeSector() && actualState < 1) actualState++;
 	}
 	
@@ -91,7 +98,12 @@ public class Building extends Entity{
 		
 	}
 	
-	
+	public void stopGM(){
+		globalMovement = false;
+	}
+	public boolean getGM(){
+		return globalMovement;
+	}
 	public Window[] getWindows() {
 		return actualSector.getWindows();
 	}
@@ -135,9 +147,16 @@ public class Building extends Entity{
 		return actualSector.changeSector();
 	}
 	
-	
-	public void setChangingSector(boolean changingSector){
-		this.changingSector = changingSector;
+
+	public Sector getActualSector() {
+		// TODO Auto-generated method stub
+		return actualSector;
+	}
+
+
+	public Sector nextSector() {
+		// TODO Auto-generated method stub
+		return nextSector;
 	}
 
 }

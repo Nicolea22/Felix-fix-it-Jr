@@ -12,6 +12,7 @@ import principal.HUD;
 import principal.entities.Building;
 import principal.input.KeyBoard;
 import principal.statemachine.GameStatus;
+import principal.statemachine.sectorstates.ThirdSector;
 
 
 // Se extiende a Canvas ya que esta clase es la que puede crear el buffer Strategy por eso no hicimos un JPanel 
@@ -21,7 +22,8 @@ public class DrawingSurface extends Canvas {
 
 	private KeyBoard inputKeys; 
 	private Camera cam;
-	
+	private boolean prevGM = false;
+	private int piso;
 	
 	public DrawingSurface() {
 		cam = new Camera(0, 0);
@@ -30,6 +32,7 @@ public class DrawingSurface extends Canvas {
 		setFocusable(true);
 		setIgnoreRepaint(true);
 		requestFocus();
+		piso=237;
 	}
 	
 
@@ -38,13 +41,25 @@ public class DrawingSurface extends Canvas {
 	// la camara se va a mover hasta la punta del edificio
 	
 	public void tick() {
+		
 		inputKeys.tick();
 		HUD.getHud().tick();
-		if (Building.getBuilding().isChangingSector()) {
-			if (cam.getY() < 237) {
+			
+		if (Building.getBuilding().getGM()) {
+			if (cam.getY() < piso ) {
 				cam.tick();
+				prevGM = true;		
+				}else{
+					Building.getBuilding().stopGM();
+					}
+		} else {
+				
+			if(prevGM){
+				piso = piso +203;
+				prevGM=false;
 			}
 		}
+	
 	}
 		
 	

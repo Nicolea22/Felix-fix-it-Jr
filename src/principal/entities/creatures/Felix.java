@@ -122,9 +122,9 @@ public class Felix extends Creature {
 			}
 			
 			if(w.getBotBounds() != null){
-			if (getBotBounds().intersects(w.getBotBounds())) {
-				onGround = true;
-			}
+				if (getBotBounds().intersects(w.getBotBounds())) {
+					onGround = true;
+				}
 			}
 		}
 		}

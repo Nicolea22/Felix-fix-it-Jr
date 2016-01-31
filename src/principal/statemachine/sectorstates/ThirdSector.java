@@ -75,7 +75,7 @@ public class ThirdSector extends Sector{
 
 	@Override
 	public Rectangle getBotBounds() {
-		return new Rectangle();
+		return new Rectangle(POS_X + 18, POS_Y + 540, 278, 8);
 	}
 
 

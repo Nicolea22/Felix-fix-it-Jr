@@ -9,6 +9,8 @@ import principal.entities.Building;
 import principal.entities.ID;
 import principal.statemachine.characterstates.State;
 import principal.statemachine.characterstates.ralphstates.Move;
+import principal.statemachine.sectorstates.SecondSector;
+import principal.statemachine.sectorstates.ThirdSector;
 import principal.util.Random;
 
 public class Ralph extends Creature {
@@ -17,8 +19,9 @@ public class Ralph extends Creature {
 	private int freq;
 	private boolean climb=false;
 	private State state;
-	
+	private int piso;
 	private Brick brick;
+	private boolean prevGM = false;
 	
 	public Ralph(float x, float y, Handler handler) {
 		super(x, y, handler);
@@ -28,6 +31,7 @@ public class Ralph extends Creature {
 		setDx(vel);
 		width = 93;
 		height = 84;
+		piso = 0;
 		
 	}
 	
@@ -46,19 +50,44 @@ public class Ralph extends Creature {
 	public void tick(ArrayList<Creature> creat) {
 
 		
-		climb = Building.getBuilding().isChangingSector();
-		
-		
+		if (Building.getBuilding().getGM()) {
+				climbing(piso);
+				prevGM = true;
+				
+				if (getY() == piso){
+					killing();
+				
+				}
+				if (getY() == piso+1){
+					killing();
+				
+				}
+				if (getY() == piso-1){
+					killing();
+				
+				}
+		} else {
+			killing();	
+			if(prevGM){
+				piso = piso -238;
+				prevGM=false;
+			}
+		}
+		/*
+		System.out.println(Building.getBuilding().getActualSector().brokenWinsAmount() ); 
 		if (climb && getY()>0) climbing(); else killing();
-			
+		
+		if(Building.getBuilding().getActualSector().brokenWinsAmount() <= 0 && getY() > )
+			climbing();
+			*/
 	
 	}
 	
-	private void climbing(){
+	private void climbing(int piso){
 		setDy(-vel);
-		if (getY()>0)
+		if (getY() > piso ){
 			setY(getY() + getDy());
-					
+		}		
 	}
 	
 	private void killing(){
