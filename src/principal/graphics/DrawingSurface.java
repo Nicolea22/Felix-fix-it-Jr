@@ -11,6 +11,7 @@ import principal.Constant;
 import principal.HUD;
 import principal.entities.Building;
 import principal.input.KeyBoard;
+import principal.input.MouseInput;
 import principal.statemachine.GameStatus;
 import principal.statemachine.sectorstates.ThirdSector;
 
@@ -29,6 +30,7 @@ public class DrawingSurface extends Canvas {
 		cam = new Camera(0, 0);
 		inputKeys = new KeyBoard();
 		addKeyListener(inputKeys);
+		addMouseListener(new MouseInput());
 		setFocusable(true);
 		setIgnoreRepaint(true);
 		requestFocus();

@@ -1,6 +1,7 @@
 package principal;
 
 import principal.graphics.*;
+import principal.input.MouseInput;
 import principal.statemachine.GameStatus;
 
 public class Game {
@@ -20,6 +21,7 @@ public class Game {
 		drawingSurface = new DrawingSurface();
 		window = new Window("Fix it, Felix Jr." , drawingSurface);
 		gameStatus = new GameStatus();
+		
 	}
 	
 	
@@ -80,8 +82,10 @@ public class Game {
 
 
 	private void tick() {
+		
 		gameStatus.tick();
 		drawingSurface.tick();
+	
 	}
 
 	// se manda el game status porque sabe que dibujar en el momento indicado, ejemplo si pulso pausa

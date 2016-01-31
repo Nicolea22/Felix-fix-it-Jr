@@ -8,8 +8,9 @@ import principal.statemachine.init.*;
 
 public class GameStatus implements GameState{
 	
-	private GameState[] states;
-	private GameState actualState;
+	public static GameState[] states;
+	public static GameState actualState;
+	
 	
 	public GameStatus(){
 		initState();
@@ -27,11 +28,11 @@ public class GameStatus implements GameState{
 
 	
 	private void initActualState(){
-		actualState = states[1];
+		actualState = states[0];
 	}
 
 	
-	public void changeState(int i) {
+	public static void changeState(int i) {
 		actualState = states[i];
 	}
 	
