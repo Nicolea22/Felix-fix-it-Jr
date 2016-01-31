@@ -73,7 +73,7 @@ public class MouseInput implements MouseListener{
 		
 		if(mx >= 300 && mx <= 400){
 			if(my >= 450 && my <= 500){
-				if(GameStatus.actualState instanceof GameRules || GameStatus.actualState instanceof ScoreMenu )
+				if(GameStatus.actualState instanceof GameRules || GameStatus.actualState instanceof ScoreMenu)
 					GameStatus.changeState(0);	
 			}
 		}
@@ -82,7 +82,6 @@ public class MouseInput implements MouseListener{
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {		
-	}
+	public void mouseReleased(MouseEvent e) {}
 
 }
