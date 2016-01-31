@@ -5,14 +5,11 @@ import principal.physics.Position;
 public class Camera {
 
 	private Position position;
-	private final float VEL = .6f;
+	private final float VEL = .8f;
 	
 	public Camera(float x, float y){
 		position = new Position(x,y);
 	}
-	
-	
-	
 	
 	public void tick(){
 		position.setY(getY() + VEL);

@@ -17,9 +17,11 @@ public class Building extends Entity{
 	
 	private final static int BUILDING_WIDTH = 315;
 	private final static int BUILDING_HEIGHT = 1065;
-	private boolean globalMovement = false;
+	
 	public final static int POS_X = Constant.WIDTH/2 - BUILDING_WIDTH/2;
 	public final static int POS_Y = Constant.HEIGHT - BUILDING_HEIGHT;
+	
+	private boolean globalMovement = false;
 	
 	private static Building building =  new Building();
 	
@@ -61,8 +63,6 @@ public class Building extends Entity{
 	@Override
 	public void tick(ArrayList<Creature> creat) {
 		
-		
-		System.out.println(actualSector.brokenWinsAmount());
 		actualSector.tick();
 		if(isChangingSector())
 			globalMovement = true;
@@ -76,8 +76,8 @@ public class Building extends Entity{
 		g.setColor(Color.GREEN);
 //		g.draw(getLeftBounds());
 //		g.draw(getRightBounds());
-		g.draw(getBotBounds());
-		g.draw(getTopBounds());
+//		g.draw(getBotBounds());
+//		g.draw(getTopBounds());
 		
 		sectors[0].draw(g);
 		sectors[1].draw(g); 
@@ -101,9 +101,13 @@ public class Building extends Entity{
 	public void stopGM(){
 		globalMovement = false;
 	}
+	
+	
 	public boolean getGM(){
 		return globalMovement;
 	}
+	
+	
 	public Window[] getWindows() {
 		return actualSector.getWindows();
 	}
@@ -149,13 +153,11 @@ public class Building extends Entity{
 	
 
 	public Sector getActualSector() {
-		// TODO Auto-generated method stub
 		return actualSector;
 	}
 
 
 	public Sector nextSector() {
-		// TODO Auto-generated method stub
 		return nextSector;
 	}
 

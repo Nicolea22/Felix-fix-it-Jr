@@ -60,8 +60,8 @@ public class Semicircular extends Window{
 	@Override
 	public void draw(Graphics2D g) {
 		g.drawImage(images[state].getImage(), (int)getX(), (int)getY(), null);
-		g.draw(getBotBounds());
-		g.draw(getBounds());
+//		g.draw(getBotBounds());
+//		g.draw(getBounds());
 	}
 
 

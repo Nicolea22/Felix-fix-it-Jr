@@ -43,7 +43,7 @@ public class Door extends Window{
 	@Override
 	public void draw(Graphics2D g) {
 		g.drawImage(images[state].getImage(), (int)getX(), (int)getY(), null);
-		g.draw(getBounds());
+//		g.draw(getBounds());
 	}
 
 	

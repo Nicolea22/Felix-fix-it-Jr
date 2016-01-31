@@ -57,8 +57,8 @@ public class TwoPanels extends Window{
 				(int)getY() + botGlass.getDispY(botGlassState) + BOT_DISP_Y, null);
 		
 		g.setColor(Color.GREEN);
-		g.draw(getBounds());
-		g.draw(getBotBounds());
+//		g.draw(getBounds());
+//		g.draw(getBotBounds());
 	}
 
 	

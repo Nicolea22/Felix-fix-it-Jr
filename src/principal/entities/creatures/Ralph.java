@@ -8,16 +8,18 @@ import principal.Handler;
 import principal.entities.Building;
 import principal.entities.ID;
 import principal.statemachine.characterstates.State;
+import principal.statemachine.characterstates.ralphstates.Climbing;
 import principal.statemachine.characterstates.ralphstates.Move;
-import principal.statemachine.sectorstates.SecondSector;
-import principal.statemachine.sectorstates.ThirdSector;
 import principal.util.Random;
 
 public class Ralph extends Creature {
 	
+	private float CLIMBING = 3.0f;
 	private float vel = 1.5f;
 	private int freq;
-	private boolean climb=false;
+	
+	private boolean climb = false;
+	
 	private State state;
 	private int piso;
 	private Brick brick;
@@ -54,17 +56,9 @@ public class Ralph extends Creature {
 				climbing(piso);
 				prevGM = true;
 				
-				if (getY() == piso){
+				if (getY() == piso || getY() == piso + 1 
+						|| getY() == piso -1){
 					killing();
-				
-				}
-				if (getY() == piso+1){
-					killing();
-				
-				}
-				if (getY() == piso-1){
-					killing();
-				
 				}
 		} else {
 			killing();	
@@ -84,13 +78,17 @@ public class Ralph extends Creature {
 	}
 	
 	private void climbing(int piso){
-		setDy(-vel);
+		state = Climbing.getClimbing();
+		setDy(-CLIMBING);
 		if (getY() > piso ){
 			setY(getY() + getDy());
 		}		
 	}
 	
 	private void killing(){
+		
+		state = Move.getMove();
+		
 		setX(getX() + getDx());
 		
 		if (getBounds().intersects(Building.getBuilding().getLeftBounds())){
@@ -105,21 +103,27 @@ public class Ralph extends Creature {
 		}
 		
 	}
+	
+	
 	private void throwBrick() {
 		if (Random.value(1, 50) % 5 == 0){
 			handler.add(new Brick((int)getX() + 32, (int)getY()+ 70, handler));
 		}
 	}
 
+	
+	
 	@Override
 	public String getName() {
 		return "Ralph";
 	}
 
+	
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle((int)getX(), (int)getY(), width, height);
 	}
+	
 	
 	@Override
 	public Rectangle getTopBounds() {

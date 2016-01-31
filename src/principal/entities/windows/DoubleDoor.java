@@ -42,7 +42,7 @@ public class DoubleDoor extends Window{
 	public void draw(Graphics2D g) {
 		g.drawImage(img[doors].getImage() ,(int)getX() ,(int)getY(), null);
 		g.setColor(Color.GREEN);
-		g.draw(getBounds());
+//		g.draw(getBounds());
 	}
 	
 	@Override

@@ -32,6 +32,8 @@ public class Felix extends Creature {
 	private final float MAX_JUMP = -85;// la velocidad de salto es negativa y la gravedad positiva
 	private final float VEL = 3f; 
 	
+	private boolean fixing;
+	
 	private State state;
 	
 	private long time = System.currentTimeMillis();
@@ -81,14 +83,22 @@ public class Felix extends Creature {
 		if (KeyBoard.pause)
 			System.exit(1);
 			
-		if (KeyBoard.fix && onGround) 
+		if (KeyBoard.fix && onGround) {
 			state = Fixing.getFixing();
+			fixing = true;
+		}
 			
-		if (getDx() == 0 && getDy() == 0 && !KeyBoard.fix) 
+		if (getDx() == 0 && getDy() == 0 && !KeyBoard.fix){
 			state = Normal.getNormal();
+			fixing = false;
+		}
+			
 		
-		if (getDx() != 0 || getDy() != 0) 
+		if (getDx() != 0 || getDy() != 0){
 			state = Moving.getMoving();
+			fixing = false;
+		}
+			
 	}
 		
 		
@@ -166,7 +176,7 @@ public class Felix extends Creature {
 		}else 
 			onGround = false;
 		
-		if (getBotBounds().intersects(Building.getBuilding().getTopBounds()) && b.isChangingSector()) {
+		if (getBotBounds().intersects(b.getTopBounds()) && b.isChangingSector()) {
 			Building.getBuilding().changeSector();
 			onGround = true;
 		}
@@ -259,6 +269,16 @@ public class Felix extends Creature {
 
 	public int getLife(){
 		return life;
+	}
+	
+	
+	public boolean getFixing() {
+		return fixing;
+	}
+	
+	
+	public void getFixing(boolean fixing) {
+		this.fixing = fixing;
 	}
 	
 	

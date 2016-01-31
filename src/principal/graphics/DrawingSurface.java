@@ -32,7 +32,7 @@ public class DrawingSurface extends Canvas {
 		setFocusable(true);
 		setIgnoreRepaint(true);
 		requestFocus();
-		piso=237;
+		piso = 237;
 	}
 	
 
@@ -56,7 +56,7 @@ public class DrawingSurface extends Canvas {
 				
 			if(prevGM){
 				piso = piso +203;
-				prevGM=false;
+				prevGM = false;
 			}
 		}
 	
