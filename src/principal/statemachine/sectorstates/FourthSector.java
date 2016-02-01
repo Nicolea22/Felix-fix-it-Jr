@@ -2,9 +2,12 @@ package principal.statemachine.sectorstates;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
+import principal.Score;
 import principal.entities.windows.DoubleDoor;
 import principal.entities.windows.TwoPanels;
 import principal.entities.windows.Window;
+import principal.statemachine.GameStatus;
 import principal.util.Random;
 
 public class FourthSector extends Sector{
@@ -55,8 +58,19 @@ public class FourthSector extends Sector{
 	@Override
 	public void tick() {
 		for (int i = 0; i < windows.length; i++) {
-			windows[i].tick(null);
-			
+			Window w = windows[i];
+			w.tick(null);			
+			if (!w.isBroken()) {
+				if(brokenWindows.contains(w)){
+					Score.getScore().fixWindow();
+				}
+				brokenWindows.remove(w);
+			}
+		}
+		if(brokenWindows.size() == 0){
+			//GANASTE
+			GameStatus.changeState(0);
+			Score.getScore().saveScore();
 		}
 	}
 

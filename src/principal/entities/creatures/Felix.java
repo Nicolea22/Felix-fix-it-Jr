@@ -12,6 +12,7 @@ import principal.entities.Building;
 import principal.entities.ID;
 import principal.entities.windows.Window;
 import principal.input.KeyBoard;
+import principal.statemachine.GameStatus;
 import principal.statemachine.characterstates.State;
 import principal.statemachine.characterstates.felixstates.Fixing;
 import principal.statemachine.characterstates.felixstates.Moving;
@@ -236,6 +237,7 @@ public class Felix extends Creature {
 		if(onGround && falling) {
 			falling = false;
 			max_jump = 0;
+			Score.getScore().jump();
 		}
 	}
 		
@@ -244,7 +246,12 @@ public class Felix extends Creature {
 			time = System.currentTimeMillis();
 			if (life>0)
 				Score.getScore().loseHP();
+			
 			life--;
+			if(life == 0){
+				Score.getScore().saveScore();
+				GameStatus.changeState(0);
+			}
 			
 		}
 	}

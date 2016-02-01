@@ -67,10 +67,6 @@ public class DrawingSurface extends Canvas {
 		
 	public static void resetSurface(){
 
-		Score.getScore().readFromFile();
-		Score.getScore().printScores();
-		Score.getScore().saveScore();
-
 		prevGM = false;
 
 		cam.setY(0);

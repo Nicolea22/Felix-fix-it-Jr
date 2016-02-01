@@ -43,6 +43,7 @@ public class Score {
 	public Score (){
 		readFromFile();
 		bestScore = scorePoints[0];
+		
 		actualScore = 0;
 	}
 	
@@ -168,7 +169,7 @@ public class Score {
 		frame.add(newPanel,BorderLayout.CENTER);
 		frame.setVisible(true);
 		frame.setSize(200, 100);
-		
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		btn.addActionListener(new ActionListener() {
 			
 			@Override

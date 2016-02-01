@@ -77,6 +77,7 @@ public class Ralph extends Creature {
 	
 	}
 	
+	
 	private void climbing(int piso){
 		state = Climbing.getClimbing();
 		setDy(-CLIMBING);

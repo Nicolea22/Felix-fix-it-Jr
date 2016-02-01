@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import principal.Score;
 import principal.statemachine.GameState;
 
 public class ScoreMenu implements GameState{
@@ -22,15 +23,12 @@ public class ScoreMenu implements GameState{
 		g.setColor(Color.white);
 		Font fnt1 = new Font("arial",Font.BOLD,15);
 		g.setFont(fnt1);	
-		String reglas = "NICOLEA 10000000000";
-		g.drawString(reglas,100,100);
 		
-		g.drawString(reglas,100,200);
-		
-		g.drawString(reglas,100,300);
-		
-		g.drawString(reglas,100,400);
-		
+		for (int i=0; i<4;i++){
+			String reglas = Score.getScore().getCertainNamee(i)+": "+Score.getScore().getCertainScore(i);
+			g.drawString(reglas,100,(i+1)*100);
+		}
+
 		g.drawString("Back",playButton.x+19,playButton.y+30);
 		g.draw(playButton);
 		

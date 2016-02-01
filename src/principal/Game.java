@@ -24,7 +24,10 @@ public class Game {
 	}
 	
 	
+	
+	
 	public void startGame(){
+		Score.getScore().readFromFile();
 		loopGame();
 	} 
 	
