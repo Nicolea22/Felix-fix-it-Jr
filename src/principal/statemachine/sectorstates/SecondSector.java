@@ -2,6 +2,8 @@ package principal.statemachine.sectorstates;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
+import principal.Score;
 import principal.entities.windows.DoubleDoor;
 import principal.entities.windows.TwoPanels;
 import principal.entities.windows.Window;
@@ -57,6 +59,9 @@ public class SecondSector extends Sector{
 			Window w = windows[i];
 			w.tick(null);			
 			if (!w.isBroken()) {
+				if(brokenWindows.contains(w)){
+					Score.getScore().fixWindow();
+				}
 				brokenWindows.remove(w);
 			}
 		}

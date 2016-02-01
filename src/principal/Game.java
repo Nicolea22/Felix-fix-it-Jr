@@ -82,10 +82,12 @@ public class Game {
 
 
 	private void tick() {
-		
-		gameStatus.tick();
-		drawingSurface.tick();
-	
+		if(!Score.getScore().askName()){
+			gameStatus.tick();
+			drawingSurface.tick();
+		}else{
+			//do nothing
+		}
 	}
 
 	// se manda el game status porque sabe que dibujar en el momento indicado, ejemplo si pulso pausa

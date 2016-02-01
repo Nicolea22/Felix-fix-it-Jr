@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import principal.Camera;
 import principal.Constant;
 import principal.HUD;
+import principal.Score;
 import principal.entities.Building;
 import principal.input.KeyBoard;
 import principal.input.MouseInput;
@@ -65,6 +66,12 @@ public class DrawingSurface extends Canvas {
 	}
 		
 	public static void resetSurface(){
+		
+		Score.getScore().readFromFile();
+		Score.getScore().printScores();
+		Score.getScore().saveScore();
+		
+		
 		cam.setY(0);
 		piso = 237;
 	}

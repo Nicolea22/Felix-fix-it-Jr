@@ -59,8 +59,8 @@ public class HUD {
 		
 		// valores
 		g.setColor(Color.WHITE);
-		g.drawString("00000000000", 2, 25);
-		g.drawString("00000000000", 343, 25);
+		g.drawString(""+Score.getScore().getHighScore(), 2, 25);
+		g.drawString(""+Score.getScore().getActualScore(), 343, 25);
 
 		clock.draw(g);
 		

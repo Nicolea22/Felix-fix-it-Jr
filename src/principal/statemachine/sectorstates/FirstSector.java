@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import principal.Constant;
+import principal.Score;
 import principal.entities.windows.*;
 
 public class FirstSector extends Sector {
@@ -66,7 +67,11 @@ public class FirstSector extends Sector {
 			Window w = windows[i];
 			w.tick(null);			
 			if (!w.isBroken()) {
+				if(brokenWindows.contains(w)){
+					Score.getScore().fixWindow();
+				}
 				brokenWindows.remove(w);
+				
 			}
 		}
 	}

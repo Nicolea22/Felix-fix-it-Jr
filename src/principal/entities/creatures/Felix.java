@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import principal.Constant;
 import principal.Handler;
+import principal.Score;
 import principal.entities.Building;
 import principal.entities.ID;
 import principal.entities.windows.Window;
@@ -241,7 +242,10 @@ public class Felix extends Creature {
 	private void decLife() {
 		if (System.currentTimeMillis() - time > 20){
 			time = System.currentTimeMillis();
+			if (life>0)
+				Score.getScore().loseHP();
 			life--;
+			
 		}
 	}
 		
