@@ -16,7 +16,7 @@ public class Cloud extends Creature{
 	
 	public Cloud(float x, float y, Handler handler){
 		super(x,y,handler);
-		setDx(.5f);
+		setDx(.3f);
 		sprite = new Sprite(ResourceLoader.getLoader().loadImage("images/entities/cloud/0.png"));
 	}
 	

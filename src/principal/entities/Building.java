@@ -3,14 +3,22 @@ package principal.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
 import principal.statemachine.sectorstates.*;
+
 import java.util.ArrayList;
 
 
+
+
+
 import principal.Constant;
+import principal.Handler;
+import principal.entities.creatures.Bird;
 import principal.entities.creatures.Creature;
 import principal.entities.windows.Window;
 import principal.graphics.Sprite;
+import principal.util.Random;
 import principal.util.ResourceLoader;
 
 public class Building extends Entity{ 
@@ -47,6 +55,7 @@ public class Building extends Entity{
 		sectors[0] = new FirstSector();
 		sectors[1] = new SecondSector();
 		sectors[2] = new ThirdSector();
+		sectors[3] = new FourthSector();
  	}
 	
 	
@@ -62,13 +71,13 @@ public class Building extends Entity{
 	
 	@Override
 	public void tick(ArrayList<Creature> creat) {
-		
 		actualSector.tick();
-		if(isChangingSector())
-			globalMovement = true;
+		if(isChangingSector()) globalMovement = true;		
 //		if (changeSector() && actualState < 1) actualState++;
 	}
-	
+
+
+
 	
 	public void draw(Graphics2D g) {
 		g.drawImage(sprite.getImage(), POS_X, POS_Y, null);
@@ -82,6 +91,7 @@ public class Building extends Entity{
 		sectors[0].draw(g);
 		sectors[1].draw(g); 
 		sectors[2].draw(g);
+		sectors[3].draw(g);
 	}
 	/* el tercer sector no esta hecho = index 2 */
 	
@@ -93,8 +103,13 @@ public class Building extends Entity{
 		}else
 			if (actualSector instanceof SecondSector) {
 				actualSector = sectors[2];
-				nextSector = sectors[2];
-			}
+				nextSector = sectors[3];
+			}else
+				if (actualSector instanceof ThirdSector) {
+					actualSector = sectors[3];
+					nextSector = sectors[3];
+				}
+			
 		
 	}
 	

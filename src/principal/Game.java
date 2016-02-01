@@ -1,7 +1,6 @@
 package principal;
 
 import principal.graphics.*;
-import principal.input.MouseInput;
 import principal.statemachine.GameStatus;
 
 public class Game {
@@ -82,10 +81,8 @@ public class Game {
 
 
 	private void tick() {
-		
 		gameStatus.tick();
 		drawingSurface.tick();
-	
 	}
 
 	// se manda el game status porque sabe que dibujar en el momento indicado, ejemplo si pulso pausa
@@ -93,7 +90,7 @@ public class Game {
 	// (falta indicar en el codigo que cuando pulso escape el game status cambiara al modo pausa), si pongo game manager como status
 	// dibujara los objetos que corresponden cuando estes jugando felix, pajaros, ralph, etc.
 	
-	private void draw(){
+	private void draw() {
 		drawingSurface.draw(gameStatus);
 	}
 	

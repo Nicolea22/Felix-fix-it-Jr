@@ -59,19 +59,19 @@ public class Door extends Window{
 
 	@Override
 	public Rectangle getTopBounds() {
-		return null;
+		return new Rectangle(0,0,0,0);
 	}
 
 	
 	@Override
 	public Rectangle getLeftBounds() {
-		return null;
+		return new Rectangle(0,0,0,0);
 	}
 
 	
 	@Override
 	public Rectangle getRightBounds() {
-		return null;
+		return new Rectangle(0,0,0,0);
 	}
 
 	

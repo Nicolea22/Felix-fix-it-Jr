@@ -17,8 +17,10 @@ public class ThirdSector extends Sector{
 	public ThirdSector(){
 		windows =  new Window[15];
 		initWindows();
+		
+		countBrokenWindows();
 	}
-	
+		
 	
 	private void initWindows() {
 		int posX = 283;
@@ -40,14 +42,26 @@ public class ThirdSector extends Sector{
 	}
 	
 	
+	private void countBrokenWindows(){
+		for (int i = 0; i < windows.length; i++) {
+			Window w = windows[i];
+			if (w.isBroken()) {
+				brokenWindows.add(w);
+			}
+		}
+	}
+	
+	
 	@Override
 	public void tick() {
 		for (int i = 0; i < windows.length; i++) {
-			windows[i].tick(null);
-			
+			Window w = windows[i];
+			w.tick(null);			
+			if (!w.isBroken()) {
+				brokenWindows.remove(w);
+			}
 		}
 	}
-
 	
 	@Override
 	public void draw(Graphics2D g) {
@@ -75,13 +89,13 @@ public class ThirdSector extends Sector{
 
 	@Override
 	public Rectangle getBotBounds() {
-		return new Rectangle(POS_X + 18, POS_Y + 540, 278, 8);
+		return new Rectangle(POS_X + 18, POS_Y + 543, 278, 8);
 	}
 
 
 	@Override
 	public Rectangle getTopBounds() {
-		return new Rectangle();
+		return new Rectangle(POS_X + 18, POS_Y + 300, 278, 8);
 	}
 
 	

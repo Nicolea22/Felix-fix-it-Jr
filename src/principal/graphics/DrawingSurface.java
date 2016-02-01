@@ -23,7 +23,7 @@ public class DrawingSurface extends Canvas {
 	
 	private KeyBoard inputKeys; 
 	private static Camera cam;
-	private boolean prevGM = false;
+	private static boolean prevGM = false;
 	private static int piso;
 	
 	public DrawingSurface() {
@@ -57,7 +57,7 @@ public class DrawingSurface extends Canvas {
 					}
 			}else{	
 				if(prevGM){
-					piso = piso +203;
+					piso = piso + 203;
 					prevGM = false;
 				}
 			}
@@ -65,6 +65,7 @@ public class DrawingSurface extends Canvas {
 	}
 		
 	public static void resetSurface(){
+		prevGM = false;
 		cam.setY(0);
 		piso = 237;
 	}

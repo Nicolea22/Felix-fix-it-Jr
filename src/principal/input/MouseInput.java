@@ -37,12 +37,12 @@ public class MouseInput implements MouseListener{
 		if(mx >= 200 && mx <= 300){
 			if(my >= 150 && my <= 200){
 				//NEW GAME
-				if(GameStatus.actualState instanceof PrincipalMenu){
-					//GameStatus.states[1] = new GameManager();
-					GameStatus.changeState(1);	
+				if(GameStatus.actualState instanceof PrincipalMenu) {
+					GameStatus.states[1] = new GameManager();
+					newGame();
 				}
 				//MAIN MENU
-				if(GameStatus.actualState instanceof PauseMenu){
+				if(GameStatus.actualState instanceof PauseMenu) {
 					GameStatus.changeState(0);	
 				}
 			}
@@ -68,12 +68,7 @@ public class MouseInput implements MouseListener{
 				//RESTART BUTTON
 				if(GameStatus.actualState instanceof PauseMenu){
 					GameStatus.states[1] = new GameManager();
-					Building.getBuilding().initSectors();
-					Building.getBuilding().initActualSectors();
-					Building.getBuilding().stopGM();
-					HUD.getHud().reset();
-					DrawingSurface.resetSurface();
-					GameStatus.changeState(1);	
+					newGame();	
 				}
 			
 			}
@@ -87,6 +82,15 @@ public class MouseInput implements MouseListener{
 			}
 		}
 	
+	}
+
+	private void newGame() {
+		Building.getBuilding().initSectors();
+		Building.getBuilding().initActualSectors();
+		Building.getBuilding().stopGM();
+		HUD.getHud().reset();
+		DrawingSurface.resetSurface();
+		GameStatus.changeState(1);
 	}
 
 	@Override

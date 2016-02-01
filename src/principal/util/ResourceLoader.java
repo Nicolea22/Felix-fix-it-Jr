@@ -1,6 +1,7 @@
 package principal.util;
 
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -15,6 +16,7 @@ public class ResourceLoader {
 	
 	private static  ResourceLoader resourceLoader = new ResourceLoader();
 	private Image image;
+	private File file;
 		
 	public Image loadImage(String path){
 		URL imgUrl = getClass().getClassLoader().getResource(path);
@@ -30,6 +32,10 @@ public class ResourceLoader {
 		}
 		return image;
 	}
+	
+	
+	
+	
 	
 	
 	public static ResourceLoader getLoader(){
