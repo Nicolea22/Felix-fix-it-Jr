@@ -22,7 +22,7 @@ public class ScoreMenu implements GameState{
 		g.setColor(Color.white);
 		Font fnt1 = new Font("arial",Font.BOLD,15);
 		g.setFont(fnt1);	
-		String reglas = "MATIAS 10000000000";
+		String reglas = "NICOLEA 10000000000";
 		g.drawString(reglas,100,100);
 		
 		g.drawString(reglas,100,200);

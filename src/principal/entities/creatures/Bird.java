@@ -4,18 +4,36 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import principal.Constant;
 import principal.Handler;
-import principal.Images;
+import principal.entities.ID;
 import principal.graphics.Animation;
 import principal.statemachine.gamestate.GameManager;
 
 public class Bird extends Creature{
 
-	private Animation bird;
+	private Animation animation;
+
+	private long animDelay;
 	
-	public Bird(float x, float y, Handler handler){
+	private boolean side;
+	private final float VEL = .7f;
+	
+	public Bird(float x, float y, Handler handler, boolean side){
 		super(x,y,handler);
-		bird = GameManager.animations.getBird();
+		this.side = side;
+		animDelay = System.currentTimeMillis();
+		side();
+		
+		animation = GameManager.animations.getBird();
+		id = ID.Bird;
+	}
+	
+	private void side(){
+		if (side){
+			setX(0 - 30);
+		}else
+			setX(Constant.WIDTH);
 	}
 	
 	
@@ -26,11 +44,24 @@ public class Bird extends Creature{
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.drawImage(bird.getActualFrame(), (int)getX(), (int)getY(), null);
+		
+		g.drawImage(animation.getActualFrame(), (int)getX(), (int)getY(), null);
+
+		if (animDelay - System.currentTimeMillis() > 100){
+			animDelay = System.currentTimeMillis();
+			animation.tick();
+		}
+			
+
 	}
 
 	@Override
 	public void tick(ArrayList<Creature> objects) {
+		setX(getX() + getDx());
+		if (side){
+			setDx(VEL);
+		}else
+			setDx(-VEL);
 	}
 
 	@Override
@@ -40,22 +71,22 @@ public class Bird extends Creature{
 
 	@Override
 	public Rectangle getTopBounds() {
-		return null;
+		return new Rectangle();
 	}
 
 	@Override
 	public Rectangle getLeftBounds() {
-		return null;
+		return new Rectangle();
 	}
 
 	@Override
 	public Rectangle getRightBounds() {
-		return null;
+		return new Rectangle();
 	}
 
 	@Override
 	public Rectangle getBotBounds() {
-		return null;
+		return new Rectangle();
 	}
 
 }

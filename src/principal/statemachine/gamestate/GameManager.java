@@ -8,6 +8,7 @@ import principal.Handler;
 import principal.Images;
 import principal.Score;
 import principal.entities.Building;
+import principal.entities.creatures.Bird;
 import principal.entities.creatures.Cloud;
 import principal.entities.creatures.Felix;
 import principal.entities.creatures.Ralph;
@@ -15,7 +16,10 @@ import principal.graphics.Sprite;
 import principal.input.KeyBoard;
 import principal.statemachine.GameState;
 import principal.statemachine.GameStatus;
+import principal.statemachine.sectorstates.SecondSector;
+import principal.statemachine.sectorstates.ThirdSector;
 import principal.util.DrawDebug;
+import principal.util.Random;
 import principal.util.ResourceLoader;
 import principal.util.Timer;
 
@@ -37,11 +41,11 @@ public class GameManager implements GameState {
 	
 	private Cloud cloud;
 	private Cloud cloud1;
-	
+		
+	private int birdCounter;
+	private final int MAX_BIRDS = 2;
 	
 	public GameManager() {
-		
-		
 		animations = new Images();
 		
 		handler = new Handler();
@@ -54,18 +58,25 @@ public class GameManager implements GameState {
 	
 		bush = new Sprite(ResourceLoader.getLoader().loadImage("images/bush.png"));
 		
-		}
+		birdCounter = 0;
+	}
 	
 	
 	@Override
 	public void tick() {	
 		handler.tick();
+		generateBirds();
+				
 		if (KeyBoard.pause){
 			GameStatus.changeState(2);	
 		}
+		
 	}
 
 	
+	private void generateBirds() {
+	}
+
 	@Override
 	public void draw(Graphics2D g) {
 		drawBushes(g);

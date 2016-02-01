@@ -117,5 +117,4 @@ public class FirstSector extends Sector {
 		return new Rectangle(POS_X + 18, POS_Y + 778, 278, 6);
 	}
 	
-	
 }
