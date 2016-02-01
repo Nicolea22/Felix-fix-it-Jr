@@ -15,6 +15,11 @@ public abstract class Entity {
 	protected int width;
 	protected int height;
 
+	protected Rectangle top;
+	protected Rectangle bot;
+	protected Rectangle left;
+	protected Rectangle right;
+	protected Rectangle all;
 	
 	private Position position;
 	
@@ -22,20 +27,8 @@ public abstract class Entity {
 		position = new Position(x, y);
 	}
 	
-	
-	
 	public abstract void draw(Graphics2D g);
 	public abstract void tick(ArrayList<Creature> objects);
-	
-	
-	// Limites
-	public abstract Rectangle getBounds();
-	public abstract Rectangle getTopBounds();
-	public abstract Rectangle getLeftBounds();
-	public abstract Rectangle getRightBounds();
-	public abstract Rectangle getBotBounds();
-	
-	
 	
 	// Getters and setters
 	public int getWidth() {
@@ -70,8 +63,27 @@ public abstract class Entity {
 		position.setY(y);
 	}
 	
-	
-
 	public abstract String getName();
 
+	// Limites
+	public Rectangle getBounds(){
+		return all;
+	}
+		
+	public Rectangle getTopBounds(){
+		return top;
+	}
+	
+	public Rectangle getLeftBounds() {
+		return left;
+	}
+		
+	public Rectangle getRightBounds() {
+		return right;
+	}
+		
+	public Rectangle getBotBounds() {
+		return bot;
+	}
+	
 }
