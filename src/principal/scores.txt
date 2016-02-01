@@ -1,4 +1,4 @@
-proplayer,760
-Nicotelecheafelix,400
-Matipro,140
-matias,10
+mati,10
+nico,7
+budoca,5
+jason,0

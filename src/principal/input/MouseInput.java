@@ -52,7 +52,8 @@ public class MouseInput implements MouseListener{
 			if(my >= 250 && my <= 300){
 				//SCORE BUTTON
 				if(GameStatus.actualState instanceof PrincipalMenu)
-					GameStatus.changeState(3);
+
+
 				//RESUME BUTTON
 				if(GameStatus.actualState instanceof PauseMenu){
 					GameStatus.changeState(1);	

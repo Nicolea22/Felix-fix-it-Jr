@@ -103,7 +103,7 @@ public class Score {
         for(int i=0;i< scorePoints.length;i++){
         	content = content + scoreNames[i]+","+scorePoints[i]+"\n";
 		}
-        System.out.println("ACA ARRANCA" + content);
+      
 		 Writer writer = null;
 			
 		try {
@@ -177,7 +177,6 @@ public class Score {
 				//PONE EL ULTIMO SCORE CON EL NOMBRE INDICADO
 				add(actualScore,userName.getText());
 				frame.setVisible(false);
-				printScores();
 				asking=false;
 				useFileWriter();
 				reset();
