@@ -8,24 +8,24 @@ import principal.Constant;
 import principal.Handler;
 import principal.entities.ID;
 import principal.graphics.Animation;
+import principal.statemachine.characterstates.State;
+import principal.statemachine.characterstates.bird.BirdMoving;
 import principal.statemachine.gamestate.GameManager;
 
 public class Bird extends Creature{
 
-	private Animation animation;
-
-	private long animDelay;
+	private State state;
 	
 	private boolean side;
 	private final float VEL = .7f;
 	
 	public Bird(float x, float y, Handler handler, boolean side){
 		super(x,y,handler);
+		
 		this.side = side;
-		animDelay = System.currentTimeMillis();
 		side();
 		
-		animation = GameManager.animations.getBird();
+		state = BirdMoving.getMoving();
 		id = ID.Bird;
 	}
 	
@@ -43,50 +43,58 @@ public class Bird extends Creature{
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		
-		g.drawImage(animation.getActualFrame(), (int)getX(), (int)getY(), null);
+	public void draw(Graphics2D g, long elapsedTime) {
+		state.update(elapsedTime);
 
-		if (animDelay - System.currentTimeMillis() > 100){
-			animDelay = System.currentTimeMillis();
-			animation.tick();
-		}
-			
+		g.drawImage(state.getImage(0), (int)getX(), (int)getY(), null);
+		g.draw(getBounds());
 
 	}
+
 
 	@Override
-	public void tick(ArrayList<Creature> objects) {
+	public void tick(ArrayList<Creature> objects, long beforeTime) {
+
 		setX(getX() + getDx());
-		if (side){
+		if (side) {
 			setDx(VEL);
-		}else
+			if (getX()> Constant.WIDTH + 20) side = !side;
+		}else{
 			setDx(-VEL);
+			if (getX() < 0 - 20) side = !side;
+		}
+		
 	}
 
+	
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle();
+		return new Rectangle((int)getX(), (int)getY(), 30, 30);
 	}
 
+	
 	@Override
 	public Rectangle getTopBounds() {
-		return new Rectangle();
+		return new Rectangle(0,0,0,0);
 	}
 
+	
 	@Override
 	public Rectangle getLeftBounds() {
-		return new Rectangle();
+		return new Rectangle(0,0,0,0);
 	}
 
+	
 	@Override
 	public Rectangle getRightBounds() {
-		return new Rectangle();
+		return new Rectangle(0,0,0,0);
 	}
 
+	
 	@Override
 	public Rectangle getBotBounds() {
-		return new Rectangle();
+		return new Rectangle(0,0,0,0);
 	}
 
+	
 }

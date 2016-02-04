@@ -1,6 +1,5 @@
 package principal.entities.windows;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -15,69 +14,67 @@ public class DoubleDoor extends Window{
 	private Sprite[] img;
 	private int doors;
 	
-	public DoubleDoor(float x, float y, boolean openDoors) {
+	
+	public DoubleDoor(float x, float y) {
 		super(x, y);
+		
 		img = new Sprite[4];
 		loadImages();
-		initWindows();
 		
 		width = img[0].getImage().getWidth(null);
 		height = img[0].getImage().getHeight(null);
 		
-		doors = getIndex(openDoors);
+		doors = Random.value(0, 3);
 	}
 	
 	
 	private void loadImages(){
-		for (int i = 0; i < 4; i++){
+		for (int i = 0; i < 4; i++) {
 			img[i] =  new Sprite(ResourceLoader.getLoader().loadImage("images/window/doubledoor/"+i+".png"));
 		}
 	}
 
 	
-	private void initWindows() {}
-	
-	
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, long time) {
 		g.drawImage(img[doors].getImage() ,(int)getX() ,(int)getY(), null);
-		g.setColor(Color.GREEN);
+//		g.setColor(Color.GREEN);
 //		g.draw(getBounds());
+//		g.draw(getTopBounds());
+//		g.draw(getBotBounds());
+//		g.draw(getLeftBounds());
+//		g.draw(getRightBounds());
 	}
 	
 	@Override
-	public void tick(ArrayList<Creature> objects) {	
+	public void tick(ArrayList<Creature> objects, long BeforeTime) {	
 		
-	}
-
-	
-	public int getIndex(boolean openDoors) {
-		if (openDoors){
-			return Random.value(1, 3);
-		}else
-			return 0;
 	}
 	
 	@Override
 	public Rectangle getTopBounds() {
-		return null;
+		return new Rectangle ((int)getX(),(int)getY(), 32, 6);
 	}
 
 	@Override
 	public Rectangle getLeftBounds() {
-		return null;
+		if (doors == 0 || doors == 3){
+			return new Rectangle(0,0,0,0);	
+		}
+		return new Rectangle((int)getX(),(int)getY(),4, 50);
 	}
 
 	@Override
 	public Rectangle getRightBounds() {
-		return null;
+		if (doors == 0 || doors == 2){
+			return new Rectangle(0,0,0,0);	
+		}
+		return new Rectangle((int)getX() + 32,(int)getY(),4, 50);
 	}
 
 	@Override
 	public Rectangle getBotBounds() {
-	
 		return new Rectangle((int)getX() ,(int)getY() + 49 ,40 ,5 );
-			
 	}
 
 	@Override

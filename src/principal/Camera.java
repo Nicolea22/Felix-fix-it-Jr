@@ -5,7 +5,7 @@ import principal.physics.Position;
 public class Camera {
 
 	private Position position;
-	private final float VEL = 1.4f;
+	private final float VEL = 1f;
 	
 	public Camera(float x, float y){
 		position = new Position(x,y);

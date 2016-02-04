@@ -4,20 +4,16 @@ import java.awt.Image;
 
 import principal.graphics.Animation;
 import principal.statemachine.characterstates.State;
+import principal.statemachine.gamestate.GameManager;
 
 public class Moving extends State{
 	
 	private final static Moving moving = new Moving();
 	
-	private String[] paths = {
-		"images/felix/moving/0.png",
-		"images/felix/moving/1.png",
-		"images/felix/moving/2.png",
-		"images/felix/moving/3.png",
-	};
+	
 	
 	private Moving() {
-		animation  = new Animation(paths);
+		animation  = GameManager.animations.getFelixMoveRight();
 		animUpdate = 300;
 	}
 	
@@ -27,7 +23,11 @@ public class Moving extends State{
 	
 		
 	@Override
-	public Image getImage() {
+	public Image getImage(int dir) {
+		if (dir == -1){
+			animation = GameManager.animations.getFelixMoveLeft();
+		}else
+			animation = GameManager.animations.getFelixMoveRight();
 		return animation.getActualFrame();
 	}
 	

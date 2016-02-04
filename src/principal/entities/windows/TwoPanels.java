@@ -45,7 +45,7 @@ public class TwoPanels extends Window{
 	
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, long time) {
 		g.drawImage(window.getImage(), (int)getX(), (int)getY(), null);
 		
 		g.drawImage(topGlass.getGlass(topGlassState).getImage(), 
@@ -63,7 +63,7 @@ public class TwoPanels extends Window{
 
 	
 	@Override
-	public void tick(ArrayList<Creature> objects) {	
+	public void tick(ArrayList<Creature> objects, long beforeTime) {	
 		broken = strokesRequired > 0;
 		tickingImages();
 	}
@@ -83,19 +83,19 @@ public class TwoPanels extends Window{
 	
 	@Override
 	public Rectangle getTopBounds() {
-		return null;
+		return new Rectangle ((int)getX(),(int)getY(), 32, 6);
 	}
 
 	
 	@Override
 	public Rectangle getLeftBounds() {
-		return null;
+		return new Rectangle(0,0,0,0);
 	}
 
 	
 	@Override
 	public Rectangle getRightBounds() {
-		return null;
+		return new Rectangle(0,0,0,0);
 	}
 
 	

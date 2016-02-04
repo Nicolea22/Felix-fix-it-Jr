@@ -1,8 +1,6 @@
 package principal.statemachine;
 
 import java.awt.Graphics2D;
-
-import principal.Camera;
 import principal.Constant;
 import principal.statemachine.gamestate.*;
 import principal.statemachine.init.*;
@@ -40,14 +38,14 @@ public class GameStatus implements GameState{
 	
 	
 	@Override
-	public void tick() {
-		actualState.tick();
+	public void tick(long time) {
+		actualState.tick(time);
 	}
 
 
 	@Override
-	public void draw(Graphics2D g) {
-		actualState.draw(g);
+	public void draw(Graphics2D g, long time) {
+		actualState.draw(g, time);
 	}
 	
 	

@@ -14,7 +14,7 @@ public class Handler {
 	private Creature tempObject;
 	
 	private Building building;
-	
+
 	
 	public Handler() {
 		objects = new ArrayList<Creature>();
@@ -22,9 +22,11 @@ public class Handler {
 	}
 
 	
+	
 	public boolean add(Creature object) {
 		return objects.add(object);
 	}
+	
 	
 	
 	public boolean remove(Creature object) {
@@ -32,22 +34,25 @@ public class Handler {
 	}
 
 	
-	public void tick(){
-		building.tick(null);
+	
+	public void tick(long time){
+		building.tick(null, time);
 		for (int i = 0; i < objects.size(); i++) {
 			tempObject = objects.get(i);
-			tempObject.tick(objects);
+			tempObject.tick(objects, time);
 		}
 	}
 
 	
-	public void draw(Graphics2D g) {
-		building.draw(g);
+	
+	public void draw(Graphics2D g, long time) {
+		building.draw(g, time);
 		for (int i = 0; i < objects.size(); i++) {
 			tempObject = objects.get(i);
-			tempObject.draw(g);
+			tempObject.draw(g, time);
 		}
 	}
+	
 	
 	
 	public Building getBuilding() {

@@ -1,4 +1,4 @@
-mati,10
-nico,7
-budoca,5
-jason,0
+NumberUAN,82220
+Nico,45980
+Nicooox20,31820
+,19590

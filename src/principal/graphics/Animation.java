@@ -29,7 +29,7 @@ public class Animation{
 		this.sprites = sprites;
 	}
 	
-	public void addFrames(String[] paths) {
+	private void addFrames(String[] paths) {
 		for (int i = 0; i < paths.length; i++){
 			addFrame(new Sprite(ResourceLoader.getLoader().loadImage(paths[i])));
     	}
@@ -58,7 +58,7 @@ public class Animation{
 	}
 	
 	
-	public void tick() {
+	public void tick(long time) {
 		if (actualFrame == framesAmount - 1)
 			actualFrame = -1;
 		actualFrame++;
@@ -83,4 +83,6 @@ public class Animation{
 	}
 	
 }
-
+    
+    
+    

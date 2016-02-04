@@ -48,14 +48,15 @@ public class DrawingSurface extends Canvas {
 		inputKeys.tick();
 		
 		HUD.getHud().tick();
+		
 		if (GameStatus.actualState instanceof GameManager){	
 			if (Building.getBuilding().getGM()) {
-				if (cam.getY() < piso ) {
+				if (cam.getY() < piso) {
 					cam.tick();
 					prevGM = true;		
-					}else{
-						Building.getBuilding().stopGM();
-					}
+				}else{
+					Building.getBuilding().stopGM();
+				}
 			}else{	
 				if(prevGM){
 					piso = piso + 203;
@@ -65,17 +66,16 @@ public class DrawingSurface extends Canvas {
 		}
 	}
 		
-	public static void resetSurface(){
-
+	public static void resetSurface() {
 		prevGM = false;
-
 		cam.setY(0);
 		piso = 237;
 	}
+	
 	// el buffer strategy lo que hace es armar un buffer de imagenes e ir reproduciendolas, es decir, antes de producir la imagen es creada y guardada
 	// en memoria (en una cola) porque en caso de que ocurra algo con el programa las imagenes van a estar dibujadas de ante mano y no va a haber problemas 
 	// ya que procesar y dibujar ni bien es creada la imagen puede causar errores de dibujo.
-	public void draw(GameStatus gs) {
+	public void draw(GameStatus gs, long time) {
 		
 	
 		BufferStrategy bufferStrat = getBufferStrategy();
@@ -86,11 +86,14 @@ public class DrawingSurface extends Canvas {
 		Graphics2D g = (Graphics2D) bufferStrat.getDrawGraphics();
 		
 		clean(g);
+		
 		if (GameStatus.actualState instanceof GameManager)
 			g.translate(0, cam.getY());
-		gs.draw(g);
+		
+		gs.draw(g, time);
 		
 		g.translate(0, -cam.getY());
+		
 		if (GameStatus.actualState instanceof GameManager)
 			HUD.getHud().draw(g);
 		

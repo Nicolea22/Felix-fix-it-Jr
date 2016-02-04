@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 
 public class ResourceLoader {
 
+//	private int i = 0;
+	
 	private ResourceLoader(){}
 	
 	private static  ResourceLoader resourceLoader = new ResourceLoader();
@@ -19,10 +21,11 @@ public class ResourceLoader {
 	private File file;
 		
 	public Image loadImage(String path){
+
 		URL imgUrl = getClass().getClassLoader().getResource(path);
 		
 		if (imgUrl == null){
-			System.err.println("No se encuentra el archivo" + path);	
+			System.err.println("No se encuentra el archivo " + path);	
 		}else{
 			try{
 				image = ImageIO.read(imgUrl);

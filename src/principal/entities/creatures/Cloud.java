@@ -21,7 +21,7 @@ public class Cloud extends Creature{
 	}
 	
 	
-	public void tick(ArrayList<Creature> creat){
+	public void tick(ArrayList<Creature> creat, long beforeTime){
 		if (getX() > Constant.WIDTH + sprite.getImage().getWidth(null)){
 			reset();
 		}
@@ -34,7 +34,7 @@ public class Cloud extends Creature{
 		setX(- sprite.getImage().getWidth(null));
 	}
 	
-	public void draw(Graphics2D g){
+	public void draw(Graphics2D g, long time){
 		g.drawImage(sprite.getImage(), (int)getX(), (int)getY(), null);
 	}
 

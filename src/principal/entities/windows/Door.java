@@ -41,14 +41,14 @@ public class Door extends Window{
 	
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, long time) {
 		g.drawImage(images[state].getImage(), (int)getX(), (int)getY(), null);
 //		g.draw(getBounds());
 	}
 
 	
 	@Override
-	public void tick(ArrayList<Creature> objects) {	
+	public void tick(ArrayList<Creature> objects, long beforeTime) {	
 		broken = strokesRequired > 0;
 		if (strokesRequired >= 12) state = 11;
 		if (strokesRequired < 8 && strokesRequired >= 4) state = 6;

@@ -24,7 +24,7 @@ public class Falling extends State{
 	}
 	
 	@Override
-	public Image getImage() {
+	public Image getImage(int dir) {
 		return animation.getActualFrame();
 	}	
 	

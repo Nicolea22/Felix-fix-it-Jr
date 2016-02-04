@@ -11,7 +11,7 @@ import principal.util.Random;
 
 public class ThirdSector extends Sector{
 
-	private final int MAX_DOUBLE_DOOR = 4;
+	private final int MAX_DOUBLE_DOOR = 3;
 	private int doubleDoorCounter;
 	
 	
@@ -25,12 +25,12 @@ public class ThirdSector extends Sector{
 	
 	private void initWindows() {
 		int posX = 283;
-		int posY = 6;
+		int posY = 5;
 		int i = 0;
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 5; x++) {
-				if (Random.pairValue() && doubleDoorCounter < MAX_DOUBLE_DOOR){
-					windows[i] = new DoubleDoor(posX, posY, Random.pairValue());
+				if (Random.pairValue(5) && doubleDoorCounter < MAX_DOUBLE_DOOR){
+					windows[i] = new DoubleDoor(posX, posY);
 					doubleDoorCounter++;
 				}else
 					windows[i] = new TwoPanels(posX, posY);
@@ -54,10 +54,10 @@ public class ThirdSector extends Sector{
 	
 	
 	@Override
-	public void tick() {
+	public void tick(long beforeTime) {
 		for (int i = 0; i < windows.length; i++) {
 			Window w = windows[i];
-			w.tick(null);			
+			w.tick(null, beforeTime);			
 			if (!w.isBroken()) {
 				if(brokenWindows.contains(w)){
 					Score.getScore().fixWindow();
@@ -68,9 +68,9 @@ public class ThirdSector extends Sector{
 	}
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, long time) {
 		for(int i = 0; i < windows.length; i++) {
-			windows[i].draw(g);
+			windows[i].draw(g, time);
 		}
 	}
 	
@@ -84,12 +84,7 @@ public class ThirdSector extends Sector{
 	public boolean hasNicelanders() {
 		return true;
 	}
-
-	@Override
-	public boolean hasObstacles() {
-		return true;
-	}
-
+	
 
 	@Override
 	public Rectangle getBotBounds() {

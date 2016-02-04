@@ -9,6 +9,7 @@ import principal.entities.Building;
 import principal.entities.ID;
 import principal.statemachine.characterstates.State;
 import principal.statemachine.characterstates.ralphstates.Climbing;
+import principal.statemachine.characterstates.ralphstates.Demolishing;
 import principal.statemachine.characterstates.ralphstates.Move;
 import principal.util.Random;
 
@@ -16,65 +17,59 @@ public class Ralph extends Creature {
 	
 	private float CLIMBING = 3.0f;
 	private float vel = 1.5f;
-	private int freq;
+	private long freq;
 	
 	private boolean climb = false;
+	private boolean demolishing = false;
+	private long delay = 5000;
 	
 	private State state;
-	private int piso;
+	private int floor;
 	private Brick brick;
+	
+	private long time = System.currentTimeMillis();
+	
 	private boolean prevGM = false;
 	
 	public Ralph(float x, float y, Handler handler) {
 		super(x, y, handler);
-		freq = 10;
+		freq = 5000;
 		id = ID.Ralph;
 		state = Move.getMove();
 		setDx(vel);
 		width = 93;
 		height = 84;
-		piso = 0;
+		floor = 0;
 		
 	}
 	
 
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, long time) {
 		
-		state.update();
-		g.drawImage(state.getImage(),(int)getX(), (int)getY() + 10, null);
+		state.update(time);
+		g.drawImage(state.getImage(0),(int)getX(), (int)getY() + 10, null);
 //		g.draw(getBounds());
 		
 	}
 
 
 	@Override
-	public void tick(ArrayList<Creature> creat) {
-
-		
-		if (Building.getBuilding().getGM()) {
-				climbing(piso);
+	public void tick(ArrayList<Creature> creat, long elapsedTime) {
+		if (elapsedTime - time > 1500  || Building.getBuilding().isChangingSector()){
+			if (Building.getBuilding().getGM()) {
+				climbing(floor);
 				prevGM = true;
-				
-				if (getY() == piso || getY() == piso + 1 
-						|| getY() == piso -1){
-					killing();
+				if (getY() == floor - 1)
+				moving(elapsedTime);
+			}else {
+				moving(elapsedTime);	
+				if(prevGM){
+					floor = floor - 238;
+					prevGM = false;
 				}
-		} else {
-			killing();	
-			if(prevGM){
-				piso = piso -238;
-				prevGM=false;
 			}
 		}
-		/*
-		System.out.println(Building.getBuilding().getActualSector().brokenWinsAmount() ); 
-		if (climb && getY()>0) climbing(); else killing();
-		
-		if(Building.getBuilding().getActualSector().brokenWinsAmount() <= 0 && getY() > )
-			climbing();
-			*/
-	
 	}
 	
 	
@@ -86,7 +81,7 @@ public class Ralph extends Creature {
 		}		
 	}
 	
-	private void killing(){
+	private void moving(long elapsedTime){
 		
 		state = Move.getMove();
 		
@@ -99,17 +94,21 @@ public class Ralph extends Creature {
 				setDx(-vel);
 		
 		
-		if (Random.value(1, 100) % freq == 0) {
+		
+		if (elapsedTime - time > 3000) {
+			time = System.currentTimeMillis();
+			state = Demolishing.getDemolishing();
 			throwBrick();
 		}
 		
 	}
+		
 	
 	
 	private void throwBrick() {
-		if (Random.value(1, 50) % 5 == 0){
-			handler.add(new Brick((int)getX() + 32, (int)getY()+ 70, handler));
-		}
+		handler.add(new Brick((int)getX(), (int)getY() + 70, handler));
+		handler.add(new Brick((int)getX() + 32, (int)getY()+ 70, handler));
+		handler.add(new Brick((int)getX() + 64, (int)getY() + 70, handler));
 	}
 
 	

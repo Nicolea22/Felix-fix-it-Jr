@@ -5,6 +5,11 @@ import java.awt.event.KeyEvent;
 
 import principal.Handler;
 
+/*
+ * CLASE SIN 
+ * USAR
+ */
+
 public class KeyInputs extends KeyAdapter{
 
 	

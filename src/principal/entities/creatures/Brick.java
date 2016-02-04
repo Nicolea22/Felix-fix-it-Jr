@@ -30,20 +30,16 @@ public class Brick extends Creature {
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		
-		animationTickCounter++;
-		if (animationTickCounter % animUpdate == 0){
-			animationTickCounter = 0;
-			brick.tick();
-		}
+	public void draw(Graphics2D g, long time) {
+		brick.tick(time);
+
 		g.drawImage(brick.getActualFrame(), (int)getX(), (int)getY(), null);
 		
 //		g.draw(getBounds());
 	}
 
 	@Override
-	public void tick(ArrayList<Creature> creat) {
+	public void tick(ArrayList<Creature> creat, long BeforeTime) {
 	
 		setY(getY() + 1.5f);
 		if (getY() > 590) {

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import principal.Score;
+
 public class Timer {
 		
 	private boolean reset = false;
@@ -19,6 +21,9 @@ public class Timer {
 	
 	public void tick() {
 		countDown();
+		if(second == 0 && minute == 0){
+			Score.getScore().saveScore();
+		}
 		reset();
 	}
 	
@@ -26,7 +31,7 @@ public class Timer {
 		if (System.currentTimeMillis() - ms > 1000){
 			second--;
 			ms = System.currentTimeMillis();
-			if (second == 0){
+			if (second == -1){
 				minute--;
 				second = 59;
 			}

@@ -7,6 +7,8 @@ public abstract class Window extends Entity{
 	protected boolean broken;
 	protected int strokesRequired;
 	
+	protected boolean hasFlowerPot;
+	protected boolean hasRoof;
 	
 	public Window(float x, float y) {
 		super(x, y);
@@ -29,6 +31,15 @@ public abstract class Window extends Entity{
 	
 	public boolean isBroken() {
 		return strokesRequired > 0;
+	}
+	
+	
+	public boolean hasFlowerPot(){
+		return hasFlowerPot;
+	}
+	
+	public boolean hasRoof(){
+		return hasRoof;
 	}
 	
 }

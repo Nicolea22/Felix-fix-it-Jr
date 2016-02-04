@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import principal.statemachine.gamestate.GameManager;
 import principal.statemachine.sectorstates.*;
 
 import java.util.ArrayList;
@@ -12,8 +13,12 @@ import java.util.ArrayList;
 
 
 
+
+
+
 import principal.Constant;
 import principal.Handler;
+import principal.Score;
 import principal.entities.creatures.Bird;
 import principal.entities.creatures.Creature;
 import principal.entities.windows.Window;
@@ -36,11 +41,9 @@ public class Building extends Entity{
 	private Sprite sprite; 
 	
 	private Sector[] sectors;
-	private Sector actualSector;
-	private Sector nextSector;
+	private int actualSector;
 	
 	
-
 	private Building() {
 		super(POS_X, POS_Y);
 		sprite = new Sprite(ResourceLoader.getLoader().loadImage("images/building/0.png"));
@@ -60,8 +63,7 @@ public class Building extends Entity{
 	
 	
 	public void initActualSectors() {
-		actualSector = sectors[0];
-		nextSector = sectors[1];
+		actualSector = 0;
 	}
 	
 	public static Building getBuilding() {
@@ -70,47 +72,35 @@ public class Building extends Entity{
 	
 	
 	@Override
-	public void tick(ArrayList<Creature> creat) {
-		actualSector.tick();
+	public void tick(ArrayList<Creature> creat, long beforeTime) {
+		sectors[actualSector].tick(beforeTime);
 		if(isChangingSector()) globalMovement = true;		
 //		if (changeSector() && actualState < 1) actualState++;
 	}
 
-
-
-	
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, long time) {
 		g.drawImage(sprite.getImage(), POS_X, POS_Y, null);
 		
 		g.setColor(Color.GREEN);
-//		g.draw(getLeftBounds());
-//		g.draw(getRightBounds());
-//		g.draw(getBotBounds());
-//		g.draw(getTopBounds());
+		if (GameManager.showHitBox){
+			g.draw(getLeftBounds());
+			g.draw(getRightBounds());
+			g.draw(getBotBounds());
+			g.draw(getTopBounds());
+		}
 		
-		sectors[0].draw(g);
-		sectors[1].draw(g); 
-		sectors[2].draw(g);
-		sectors[3].draw(g);
+		
+		sectors[0].draw(g, time);
+		sectors[1].draw(g, time); 
+		sectors[2].draw(g, time);
+		sectors[3].draw(g, time);
 	}
 	/* el tercer sector no esta hecho = index 2 */
 	
 	
 	public void changeSector() {
-		if (actualSector instanceof FirstSector) {
-			actualSector = sectors[1];
-			nextSector = sectors[2];
-		}else
-			if (actualSector instanceof SecondSector) {
-				actualSector = sectors[2];
-				nextSector = sectors[3];
-			}else
-				if (actualSector instanceof ThirdSector) {
-					actualSector = sectors[3];
-					nextSector = sectors[3];
-				}
-			
-		
+		actualSector++;
+		Score.getScore().nextSector();
 	}
 	
 	public void stopGM(){
@@ -124,7 +114,7 @@ public class Building extends Entity{
 	
 	
 	public Window[] getWindows() {
-		return actualSector.getWindows();
+		return sectors[actualSector].getWindows();
 	}
 	
 	
@@ -135,25 +125,25 @@ public class Building extends Entity{
 
 	@Override
 	public Rectangle getTopBounds() {
-		return nextSector.getBotBounds();
+		return sectors[actualSector].getTopBounds();
 	}
 
 	
 	@Override
 	public Rectangle getLeftBounds() {
-		return new Rectangle(POS_X + 16, POS_Y, 3, 1000);
+		return new Rectangle(POS_X + 11, POS_Y, 3, 1000);
 	}
 
 	
 	@Override
 	public Rectangle getRightBounds() {
-		return new Rectangle(POS_X + 295, POS_Y, 3, 1000);
+		return new Rectangle(POS_X + 298, POS_Y, 3, 1000);
 	}
 
 	
 	@Override
 	public Rectangle getBotBounds() {
-		return actualSector.getBotBounds();
+		return sectors[actualSector].getBotBounds();
 	}
 
 	
@@ -163,18 +153,14 @@ public class Building extends Entity{
 
 	
 	public boolean isChangingSector() {
-		return actualSector.changeSector();
+		return sectors[actualSector].changeSector();
 	}
 	
 
 	public Sector getActualSector() {
-		return actualSector;
+		return sectors[actualSector];
 	}
 
-
-	public Sector nextSector() {
-		return nextSector;
-	}
 
 	
 }

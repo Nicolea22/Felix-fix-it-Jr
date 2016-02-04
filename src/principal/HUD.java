@@ -21,7 +21,7 @@ public class HUD {
 	
 	private HUD() {
 		initFelix();
-		clock = new Timer(10, 10,System.currentTimeMillis());
+		clock = new Timer(3, 0,System.currentTimeMillis());
 		font = new Font("Bold", Font.BOLD, 15);
 		lifeImage = ResourceLoader.getLoader().loadImage("images/life.png");
 	}
@@ -79,7 +79,7 @@ public class HUD {
 	
 	public void reset(){
 		initFelix();
-		clock = new Timer(10, 10,System.currentTimeMillis());
+		clock = new Timer(3, 0,System.currentTimeMillis());
 	}
 	
 	public void tick() {

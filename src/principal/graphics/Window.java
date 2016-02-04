@@ -15,7 +15,6 @@ public class Window extends JFrame{
 	public Window(String title, final DrawingSurface ds){
 		this.title = title;
 		init(ds);
-		
 	}
 
 	private void init(final DrawingSurface ds) {

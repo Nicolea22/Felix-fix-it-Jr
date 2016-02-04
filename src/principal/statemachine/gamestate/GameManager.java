@@ -1,9 +1,7 @@
 package principal.statemachine.gamestate;
 
 import java.awt.Graphics2D;
-
 import principal.Constant;
-import principal.HUD;
 import principal.Handler;
 import principal.Images;
 import principal.Score;
@@ -16,25 +14,27 @@ import principal.graphics.Sprite;
 import principal.input.KeyBoard;
 import principal.statemachine.GameState;
 import principal.statemachine.GameStatus;
-import principal.statemachine.sectorstates.SecondSector;
-import principal.statemachine.sectorstates.ThirdSector;
-import principal.util.DrawDebug;
 import principal.util.Random;
 import principal.util.ResourceLoader;
-import principal.util.Timer;
+
 
 public class GameManager implements GameState {
 	
+	
+	public static boolean showHitBox;
 	public static Images animations;
+	
+	private  Bird bird;
+	
+	private boolean birdInit;
 	
 	private Handler handler;
 	
+	private Building b;
+	
 	private Felix felix;
 	private Ralph ralph;
-	
-//	private Building building;
-//	private DrawDebug drawDebug;
-	
+
 	private Score score;
 	
 	private Sprite bush;
@@ -42,14 +42,16 @@ public class GameManager implements GameState {
 	private Cloud cloud;
 	private Cloud cloud1;
 		
-	private int birdCounter;
-	private final int MAX_BIRDS = 2;
-	
 	public GameManager() {
+		
 		animations = new Images();
 		
+		birdInit = true;
+		
 		handler = new Handler();
-	
+		
+		b = Building.getBuilding();
+		
 		cloud = new Cloud(0, 300, handler);
 		cloud1 = new Cloud(150, 200, handler);
 		
@@ -58,29 +60,51 @@ public class GameManager implements GameState {
 	
 		bush = new Sprite(ResourceLoader.getLoader().loadImage("images/bush.png"));
 		
-		birdCounter = 0;
 	}
 	
 	
+	
+	
 	@Override
-	public void tick() {	
-		handler.tick();
-		generateBirds();
-				
+	public void tick(long time) {	
+		
+		handler.tick(time);
+		
 		if (KeyBoard.pause){
 			GameStatus.changeState(2);	
 		}
 		
+		generateBird();
+		
+		if (KeyBoard.hitBox) {
+			showHitBox = !showHitBox;
+		}
+
 	}
 
-	
-	private void generateBirds() {
+	private void generateBird() {
+		
+		if (b.getActualSector().hasBirds()){
+			
+			if (birdInit){
+				float altitude = Random.value(b.getBotBounds().y - 50, b.getTopBounds().y + 50);
+				bird = new Bird(0, altitude, handler, true);
+				birdInit = false;
+			}
+			
+			if (b.isChangingSector()) {
+				handler.remove(bird);
+				birdInit = true;
+			}
+		}
 	}
+		
+	
 
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, long time) {
 		drawBushes(g);
-		handler.draw(g);
+		handler.draw(g, time);
 	}
 
 	
@@ -91,5 +115,5 @@ public class GameManager implements GameState {
 			bushPosX += bush.getWidth();
 		}
 	}
-	
+
 }

@@ -4,19 +4,21 @@ import java.awt.Image;
 
 import principal.graphics.Animation;
 import principal.statemachine.characterstates.State;
+import principal.statemachine.gamestate.GameManager;
 
 public class Climbing extends State{
 
-private static Climbing climb = new Climbing();
-	
-	String[] paths = {
+	private static Climbing climb = new Climbing();
+
+	private String[] ralphClimbing = {
 		"images/ralph/Climbing/0.png",
 		"images/ralph/Climbing/1.png",
 	};
+
 	
-	
+
 	private Climbing(){
-		animation = new Animation(paths);
+		animation = new Animation(ralphClimbing);
 		animUpdate = 600;
 	}
 	
@@ -25,7 +27,7 @@ private static Climbing climb = new Climbing();
 	}
 	
 	@Override
-	public Image getImage() {
+	public Image getImage(int dir) {
 		return animation.getActualFrame();
 	}
 	

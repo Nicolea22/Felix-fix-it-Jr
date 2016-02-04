@@ -48,7 +48,7 @@ public class Semicircular extends Window{
 	
 	
 	@Override
-	public void tick(ArrayList<Creature> objects) {	
+	public void tick(ArrayList<Creature> objects, long beforeTime) {	
 		broken = strokesRequired > 0;
 		if (strokes >= 4 && state > 0) {
 			state--;
@@ -58,7 +58,7 @@ public class Semicircular extends Window{
 	
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, long time) {
 		g.drawImage(images[state].getImage(), (int)getX(), (int)getY(), null);
 //		g.draw(getBotBounds());
 //		g.draw(getBounds());

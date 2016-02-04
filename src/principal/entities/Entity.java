@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import principal.Handler;
 import principal.entities.creatures.Creature;
 import principal.physics.Position;
 
@@ -27,8 +26,15 @@ public abstract class Entity {
 		position = new Position(x, y);
 	}
 	
-	public abstract void draw(Graphics2D g);
-	public abstract void tick(ArrayList<Creature> objects);
+	public abstract void draw(Graphics2D g, long time);
+	public abstract void tick(ArrayList<Creature> objects, long beforeTime);
+	
+	// Limites
+	public abstract Rectangle getBounds();
+	public abstract Rectangle getTopBounds();
+	public abstract Rectangle getLeftBounds();
+	public abstract Rectangle getRightBounds();
+	public abstract Rectangle getBotBounds();
 	
 	// Getters and setters
 	public int getWidth() {
@@ -65,25 +71,5 @@ public abstract class Entity {
 	
 	public abstract String getName();
 
-	// Limites
-	public Rectangle getBounds(){
-		return all;
-	}
-		
-	public Rectangle getTopBounds(){
-		return top;
-	}
-	
-	public Rectangle getLeftBounds() {
-		return left;
-	}
-		
-	public Rectangle getRightBounds() {
-		return right;
-	}
-		
-	public Rectangle getBotBounds() {
-		return bot;
-	}
-	
+
 }

@@ -12,14 +12,14 @@ public abstract class State {
 	protected Animation animation;
 	
 	
-	public abstract Image getImage();
+	public abstract Image getImage(int dir);
 
-	public void update(){
+	public void update(long time){
 		animationTickCounter++;
 		if (animationTickCounter % animUpdate == 0) {
-			animation.tick();
+			animation.tick(time);
 			animationTickCounter = 0;
 		}	
-	}	
+	}
 
 }

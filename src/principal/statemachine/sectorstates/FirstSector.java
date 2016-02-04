@@ -25,17 +25,13 @@ public class FirstSector extends Sector {
 		int i = 0;
 		for (int y = 0; y < ROW; y++) {
 			for (int x = 0; x < COL; x++) {			
-				
-				
 				if ((posX != 381 && posY != 478) || (posX != 381 && posY != 407) || posY == 330) {
 					windows[i] = new TwoPanels(posX, posY);
 				}
 				
-				
 				if (posY == 478 && posX == 381) {
 					windows[i] = new Door(369, 458);
 				}
-				
 				
 				if (posY == 404 && posX == 381) {
 					windows[i] = new Semicircular(369, 403);
@@ -43,10 +39,9 @@ public class FirstSector extends Sector {
 				
 				i++;
 				posX += 49;
-				
 			}
 			posX = 283;
-			posY -= 74; 
+			posY -= 74;
 		}
 	}
 		
@@ -62,47 +57,36 @@ public class FirstSector extends Sector {
 	
 	
 	@Override
-	public void tick() {
+	public void tick(long beforeTime) {
 		for (int i = 0; i < windows.length; i++) {
 			Window w = windows[i];
-			w.tick(null);			
+			w.tick(null, beforeTime);			
 			if (!w.isBroken()) {
 				if(brokenWindows.contains(w)){
 					Score.getScore().fixWindow();
 				}
 				brokenWindows.remove(w);
-				
 			}
 		}
 	}
 	
 	
-	
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, long time) {
 		for (int i = 0; i < windows.length; i++){
-			windows[i].draw(g);
+			windows[i].draw(g, time);
 		}
 	}
 
-	
 	
 	@Override
 	public boolean hasBirds() {
 		return false;
 	}
 
-	
-	
+
 	@Override
 	public boolean hasNicelanders() {
-		return false;
-	}
-
-	
-	
-	@Override
-	public boolean hasObstacles() {
 		return false;
 	}
 
@@ -116,5 +100,4 @@ public class FirstSector extends Sector {
 	public Rectangle getTopBounds() {
 		return new Rectangle(POS_X + 18, POS_Y + 778, 278, 6);
 	}
-	
 }

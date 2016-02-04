@@ -2,7 +2,6 @@ package principal.statemachine.sectorstates;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
 import principal.Score;
 import principal.entities.windows.DoubleDoor;
 import principal.entities.windows.TwoPanels;
@@ -11,25 +10,26 @@ import principal.util.Random;
 
 public class SecondSector extends Sector{
 	
-	private final int MAX_DOUBLE_DOOR = 4;
+	private final int MAX_DOUBLE_DOOR = 3;
 	private int doubleDoorCounter;
 	
-	public SecondSector(){
+	public SecondSector() {
 		super();
 		windows =  new Window[15];
-		initWindows();
 		
+		initWindows();
 		countBrokenWindows();
 	}
 	
+	
 	private void initWindows() {
 		int posX = 283;
-		int posY = 242;
+		int posY = 240;
 		int i = 0;
-		for (int y = 0; y < 3; y++) {
-			for (int x = 0; x < 5; x++) {
-				if (Random.pairValue() && doubleDoorCounter < MAX_DOUBLE_DOOR){
-					windows[i] = new DoubleDoor(posX, posY, Random.pairValue());
+		for (int y = 0; y < ROW; y++) {
+			for (int x = 0; x < COL; x++) {
+				if (Random.pairValue(5) && doubleDoorCounter < MAX_DOUBLE_DOOR) {
+					windows[i] = new DoubleDoor(posX, posY);
 					doubleDoorCounter++;
 				}else
 					windows[i] = new TwoPanels(posX, posY);
@@ -37,7 +37,7 @@ public class SecondSector extends Sector{
 				i++;
 			}
 			posX = 283;
-			posY -= 74; 
+			posY -= 74;
 		}
 	}
 
@@ -53,11 +53,12 @@ public class SecondSector extends Sector{
 	}
 	
 	
+	
 	@Override
-	public void tick() {
+	public void tick(long beforeTime) {
 		for (int i = 0; i < windows.length; i++) {
 			Window w = windows[i];
-			w.tick(null);			
+			w.tick(null, beforeTime);			
 			if (!w.isBroken()) {
 				if(brokenWindows.contains(w)){
 					Score.getScore().fixWindow();
@@ -70,12 +71,14 @@ public class SecondSector extends Sector{
 	
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, long time) {
 		for(int i = 0; i < windows.length; i++) {
-			windows[i].draw(g);
+			windows[i].draw(g, time);
 		}
 	}
 
+	
+	
 	@Override
 	public boolean hasBirds() {
 		return true;
@@ -86,10 +89,6 @@ public class SecondSector extends Sector{
 		return true;
 	}
 
-	@Override
-	public boolean hasObstacles() {
-		return true;
-	}
 
 	// Rectangle(261 + 18, 314 + 779, 278, 6);
 	@Override

@@ -1,8 +1,7 @@
 package principal;
 
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
-import java.awt.List;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -11,39 +10,29 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.PriorityQueue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import principal.entities.Building;
 
 public class Score {
 
-	private String[] scoreNames=new String[4];
-	private int[] scorePoints=new int[4];
-	
+	private String[] scoreNames = new String[4];
+	private int[] scorePoints = new int[4];
 	private JTextField userName;
 	private JFrame frame;
-	
-	
-	private boolean asking=false;
+	private boolean asking = false;
 	private int bestScore;
 	private int actualScore;
 	private int MAX_SCORE_AMOUNT = 4;
+	private static Score score = new Score();
 	
-	private static Score score=  new Score();
-	
-	public Score (){
+	private Score () {
 		readFromFile();
 		bestScore = scorePoints[0];
-		
 		actualScore = 0;
 	}
 	
@@ -52,32 +41,25 @@ public class Score {
 	}
 	
 	public void readFromFile(){
-		
-	
-        // The name of the file to open.
         String fileName = "src/principal/scores.txt";
 
-        // This will reference one line at a time
         String line = null;
 
         try {
-            // FileReader reads text files in the default encoding.
             FileReader fileReader = new FileReader(fileName);
 
-            // Always wrap FileReader in BufferedReader.
             BufferedReader bufferedReader = new BufferedReader(fileReader);
            
             int cont = 0;
             while((line = bufferedReader.readLine()) != null) {
             	
-    			String []result = line.split(",");
-    			scoreNames[cont]=result[0];
-    			scorePoints[cont]=Integer.parseInt(result[1]);
+    			String[] result = line.split(",");
+    			scoreNames[cont] = result[0];
+    			scorePoints[cont] = Integer.parseInt(result[1]);
     			cont++;
     			
             }     	
             
-            // Always close files.
             bufferedReader.close();         
         }
         catch(FileNotFoundException ex) {
@@ -85,8 +67,6 @@ public class Score {
         }
         catch(IOException ex) {
             System.out.println("Error reading file '"  + fileName + "'");                  
-            // Or we could just do this: 
-            // ex.printStackTrace();
         }
     }
 
@@ -94,12 +74,11 @@ public class Score {
 	
 	public void useFileWriter( ) {
 			
-		 // The name of the file to open.
         String fileName = "src/principal/scores.txt";
 		
         
-        //Texto
         String content = "";
+        
         for(int i=0;i< scorePoints.length;i++){
         	content = content + scoreNames[i]+","+scorePoints[i]+"\n";
 		}
@@ -108,19 +87,17 @@ public class Score {
 			
 		try {
 			writer = new FileWriter(fileName);
-			
 			writer.write(content);
 			
 		} catch (IOException e) {
-			
-				  System.err.println("Error writing the file : ");
-			
-				   e.printStackTrace();
+			System.err.println("Error writing the file : ");
+			e.printStackTrace();
 		} finally {
+			
 		if (writer != null) {
 			try {
 				writer.close();
-			} catch (IOException e) {
+			}catch (IOException e) {
 				System.err.println("Error closing the file : ");
 				e.printStackTrace();
 				}
@@ -131,21 +108,22 @@ public class Score {
 	
 		
 	public void printScores(){
-		for(int i=0;i< scorePoints.length;i++){
+		
+		for(int i = 0; i < scorePoints.length;i++){	
 			System.out.println(scoreNames[i]+", "+scorePoints[i]);
 		}
 	}
 		
 	//Agrega el score a la lista en la pos correcta
-	public void add(Integer score, String nombre) {
-		for (int i=0;i<MAX_SCORE_AMOUNT;i++){
-			if(scorePoints[i]<score){
+	public void add(Integer score, String name) {
+		for (int i = 0 ; i < MAX_SCORE_AMOUNT ; i++) {
+			if(scorePoints[i] < score) {
 				int aux = scorePoints[i];
-				String auxName=scoreNames[i];
-				scorePoints[i]=score;
-				scoreNames[i]=nombre;
+				String auxName = scoreNames[i];
+				scorePoints[i] = score;
+				scoreNames[i] = name;
 				score = aux;
-				nombre = auxName;
+				name = auxName;
 			}
 		}
 	}
@@ -154,9 +132,9 @@ public class Score {
 	
 	public void saveScore(){
 		asking=true;
-		//BOTONERA
+		// botonera
 		frame = new JFrame();
-		JPanel newPanel = new JPanel(new BorderLayout());
+		JPanel newPanel = new JPanel();
 		JLabel label = new JLabel("Enter username:");
 		userName = new JTextField(20);
 		 
@@ -166,18 +144,20 @@ public class Score {
 		newPanel.setVisible(true);
 		
 		newPanel.add(btn,BorderLayout.SOUTH);
-		frame.add(newPanel,BorderLayout.CENTER);
+		
+		frame.add(newPanel, BorderLayout.CENTER);
 		frame.setVisible(true);
-		frame.setSize(200, 100);
+		frame.setSize(380, 110);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
 		btn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//PONE EL ULTIMO SCORE CON EL NOMBRE INDICADO
-				add(actualScore,userName.getText());
+				// pone el ultimo score con el nombre indicado
+				add(actualScore, userName.getText());
 				frame.setVisible(false);
-				asking=false;
+				asking = false;
 				useFileWriter();
 				reset();
 			}
@@ -195,7 +175,7 @@ public class Score {
 		return scorePoints[i];
 	}
 	
-	public String getCertainNamee(int i){
+	public String getCertainName(int i){
 		return scoreNames[i];
 	}
 	

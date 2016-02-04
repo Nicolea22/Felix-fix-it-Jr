@@ -17,7 +17,7 @@ public class Move extends State{
 	
 	private Move(){
 		animation = new Animation(paths);
-		animUpdate = 400;
+		animUpdate = 200;
 	}
 	
 	public static Move getMove(){
@@ -25,7 +25,7 @@ public class Move extends State{
 	}
 	
 	@Override
-	public Image getImage() {
+	public Image getImage(int dir) {
 		return animation.getActualFrame();
 	}
 			
