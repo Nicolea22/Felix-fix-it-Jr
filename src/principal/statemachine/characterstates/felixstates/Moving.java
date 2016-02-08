@@ -14,7 +14,7 @@ public class Moving extends State{
 	
 	private Moving() {
 		animation  = GameManager.animations.getFelixMoveRight();
-		animUpdate = 300;
+		animUpdate = 200;
 	}
 	
 	public static Moving getMoving(){

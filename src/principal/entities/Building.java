@@ -3,24 +3,13 @@ package principal.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
 import principal.statemachine.gamestate.GameManager;
 import principal.statemachine.sectorstates.*;
-
 import java.util.ArrayList;
-
-
-
-
-
-
-
-
 import principal.Constant;
 import principal.Handler;
 import principal.Score;
 import principal.entities.creatures.Bird;
-import principal.entities.creatures.Creature;
 import principal.entities.windows.Window;
 import principal.graphics.Sprite;
 import principal.util.Random;
@@ -36,17 +25,32 @@ public class Building extends Entity{
 	
 	private boolean globalMovement = false;
 	
+	private Nicelander nicelander;
+	private boolean spawnNicelander;
+	private long nicelanderDelay;
+	private long waitForNice;
+	
+	private boolean birdInit;
+	private  Bird bird;
+
+	
 	private static Building building =  new Building();
 	
 	private Sprite sprite; 
 	
 	private Sector[] sectors;
 	private int actualSector;
+	private int previousSector;
 	
 	
 	private Building() {
 		super(POS_X, POS_Y);
 		sprite = new Sprite(ResourceLoader.getLoader().loadImage("images/building/0.png"));
+		id = ID.Building;
+		
+		birdInit = true;
+		spawnNicelander = false;
+		waitForNice = 10000;
 		
 		initSectors();
 		initActualSectors();
@@ -64,6 +68,7 @@ public class Building extends Entity{
 	
 	public void initActualSectors() {
 		actualSector = 0;
+		previousSector = 0;
 	}
 	
 	public static Building getBuilding() {
@@ -72,12 +77,62 @@ public class Building extends Entity{
 	
 	
 	@Override
-	public void tick(ArrayList<Creature> creat, long beforeTime) {
+	public void tick(ArrayList<Entity> creat, long beforeTime) {
 		sectors[actualSector].tick(beforeTime);
 		if(isChangingSector()) globalMovement = true;		
-//		if (changeSector() && actualState < 1) actualState++;
+		generateBird();
+		generateNicelander(beforeTime);
 	}
 
+	
+	private void generateBird() {
+		
+		if (getActualSector().hasBirds()) {
+			
+			if (birdInit) {
+				float altitude = Random.value(getBotBounds().y - 50, getTopBounds().y + 50);
+				bird = new Bird(0, altitude, true);
+				birdInit = false;
+			}
+			
+			if (isChangingSector()) {
+				Handler.remove(bird);
+				birdInit = true;
+			}
+		}
+	}
+	
+	
+	private void generateNicelander(long beforeTime) {
+		Window[] windows = getActualWindows();
+		Window w;
+		if (spawnNicelander) {
+			for (int i = 0; i < windows.length; i++) {
+				w = windows[i];
+				initNicePosition(w, beforeTime);
+				if (!spawnNicelander) break;
+			}
+		}
+	}
+	
+	
+	private void initNicePosition(Window w, long beforeTime) {
+		if (getActualSector().hasNicelanders()) {
+			if (beforeTime - nicelanderDelay > waitForNice) {
+				waitForNice -= 3000;
+				if (w.getStrokesRequired() == 2 || w.getStrokesRequired() == 3 && w.getID() != ID.DoubleDoor) {
+						if (Random.boolValue(5)) {
+							waitForNice = 10000;
+							nicelander = new Nicelander(w.getX() + 8, w.getY() + 30);
+							spawnNicelander = false;
+						}// boolValue
+				}// strokesRequired
+			}// delay time
+		}// actualSector
+	}// void
+	
+	
+	
 	public void draw(Graphics2D g, long time) {
 		g.drawImage(sprite.getImage(), POS_X, POS_Y, null);
 		
@@ -95,11 +150,13 @@ public class Building extends Entity{
 		sectors[2].draw(g, time);
 		sectors[3].draw(g, time);
 	}
-	/* el tercer sector no esta hecho = index 2 */
 	
 	
 	public void changeSector() {
+		previousSector = actualSector;
 		actualSector++;
+		spawnNicelander = true;
+		nicelanderDelay = System.currentTimeMillis();
 		Score.getScore().nextSector();
 	}
 	
@@ -113,8 +170,12 @@ public class Building extends Entity{
 	}
 	
 	
-	public Window[] getWindows() {
+	public Window[] getActualWindows() {
 		return sectors[actualSector].getWindows();
+	}
+	
+	public Window[] getPreviousWindows() {
+		return sectors[previousSector].getWindows();
 	}
 	
 	

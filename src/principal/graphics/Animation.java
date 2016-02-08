@@ -58,7 +58,7 @@ public class Animation{
 	}
 	
 	
-	public void tick(long time) {
+	public void tick() {
 		if (actualFrame == framesAmount - 1)
 			actualFrame = -1;
 		actualFrame++;

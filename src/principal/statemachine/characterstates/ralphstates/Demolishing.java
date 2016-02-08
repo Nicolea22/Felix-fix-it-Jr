@@ -22,7 +22,7 @@ public class Demolishing extends State{
 	public Image getImage(int dir) {
 		return animation.getActualFrame();
 	}
-	
+
 }
 	
 

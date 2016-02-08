@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import principal.Constant;
 import principal.Handler;
+import principal.entities.Entity;
 import principal.entities.ID;
 import principal.graphics.Animation;
 import principal.statemachine.characterstates.State;
@@ -19,8 +20,8 @@ public class Bird extends Creature{
 	private boolean side;
 	private final float VEL = .7f;
 	
-	public Bird(float x, float y, Handler handler, boolean side){
-		super(x,y,handler);
+	public Bird(float x, float y, boolean side){
+		super(x,y);
 		
 		this.side = side;
 		side();
@@ -32,8 +33,11 @@ public class Bird extends Creature{
 	private void side(){
 		if (side){
 			setX(0 - 30);
-		}else
+			directionX = 1;
+		}else{
 			setX(Constant.WIDTH);
+			directionX = -1;
+		}
 	}
 	
 	
@@ -44,24 +48,26 @@ public class Bird extends Creature{
 
 	@Override
 	public void draw(Graphics2D g, long elapsedTime) {
-		state.update(elapsedTime);
+		state.update();
 
-		g.drawImage(state.getImage(0), (int)getX(), (int)getY(), null);
+		g.drawImage(state.getImage(directionX), (int)getX(), (int)getY(), null);
 		g.draw(getBounds());
 
 	}
 
 
 	@Override
-	public void tick(ArrayList<Creature> objects, long beforeTime) {
+	public void tick(ArrayList<Entity> objects, long beforeTime) {
 
 		setX(getX() + getDx());
 		if (side) {
 			setDx(VEL);
 			if (getX()> Constant.WIDTH + 20) side = !side;
+			directionX = 1;
 		}else{
 			setDx(-VEL);
 			if (getX() < 0 - 20) side = !side;
+			directionX = -1;
 		}
 		
 	}

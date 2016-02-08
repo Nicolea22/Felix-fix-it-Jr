@@ -8,7 +8,7 @@ public class Random {
 	}
 	
 	
-	public static boolean pairValue(int i) {
+	public static boolean boolValue(int i) {
 		if (value(1, 10) % i == 0){
 			return true;
 		}

@@ -22,25 +22,28 @@ public class GlassAndDisplacement{
 				dispY = 12;
 				break;
 			case 1:
-				dispX = 10;
-				dispY = 11;
+				dispX = 9;
+				dispY = 12;
 				break;
 			case 2:
 				dispX = 10;
-				dispY = 10;
+				dispY = 11;
 				break;
 			case 3:
+				dispX = 10;
+				dispY = 10;
+				break;
+			case 4:
 				dispX = 11;
 				dispY = 11;
 				break;
-			case 4:
+			case 5:
 				dispX = 13;
 				dispY = 11;
 				break;
-			case 5:
+			case 6:
 				dispX = 9;
 				dispY = 11;
-				break;
 			default:
 				break;
 		}

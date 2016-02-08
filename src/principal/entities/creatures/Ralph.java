@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import principal.Handler;
 import principal.entities.Building;
+import principal.entities.Entity;
 import principal.entities.ID;
 import principal.statemachine.characterstates.State;
 import principal.statemachine.characterstates.ralphstates.Climbing;
@@ -17,26 +18,22 @@ public class Ralph extends Creature {
 	
 	private float CLIMBING = 3.0f;
 	private float vel = 1.5f;
-	private long freq;
 	
-	private boolean climb = false;
-	private boolean demolishing = false;
 	private long delay = 5000;
 	
-	private State state;
 	private int floor;
 	private Brick brick;
 	
 	private long time = System.currentTimeMillis();
 	
-	private boolean prevGM = false;
+	private boolean prevGM;
 	
-	public Ralph(float x, float y, Handler handler) {
-		super(x, y, handler);
-		freq = 5000;
+	public Ralph(float x, float y) {
+		super(x, y);
 		id = ID.Ralph;
 		state = Move.getMove();
 		setDx(vel);
+		prevGM = false;
 		width = 93;
 		height = 84;
 		floor = 0;
@@ -47,7 +44,7 @@ public class Ralph extends Creature {
 	@Override
 	public void draw(Graphics2D g, long time) {
 		
-		state.update(time);
+		state.update();
 		g.drawImage(state.getImage(0),(int)getX(), (int)getY() + 10, null);
 //		g.draw(getBounds());
 		
@@ -55,7 +52,7 @@ public class Ralph extends Creature {
 
 
 	@Override
-	public void tick(ArrayList<Creature> creat, long elapsedTime) {
+	public void tick(ArrayList<Entity> ent, long elapsedTime) {
 		if (elapsedTime - time > 1500  || Building.getBuilding().isChangingSector()){
 			if (Building.getBuilding().getGM()) {
 				climbing(floor);
@@ -106,9 +103,8 @@ public class Ralph extends Creature {
 	
 	
 	private void throwBrick() {
-		handler.add(new Brick((int)getX(), (int)getY() + 70, handler));
-		handler.add(new Brick((int)getX() + 32, (int)getY()+ 70, handler));
-		handler.add(new Brick((int)getX() + 64, (int)getY() + 70, handler));
+		Handler.add(new Brick((int)getX() + 25, (int)getY()+ 70));
+		Handler.add(new Brick((int)getX() + 50, (int)getY() + 70));
 	}
 
 	

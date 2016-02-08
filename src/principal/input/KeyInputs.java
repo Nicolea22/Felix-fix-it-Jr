@@ -22,20 +22,19 @@ public class KeyInputs extends KeyAdapter{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		for(int i = 0; i < handler.objects.size(); i++){
+//		for(int i = 0; i < handler.objects.size(); i++){
 			
-		}
-		
+//		}	
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		for(int i = 0; i < handler.objects.size(); i++){
+//		for(int i = 0; i < handler.objects.size(); i++){
 			
 		}
-	}
+
+
+}
 
 	
-	
-}

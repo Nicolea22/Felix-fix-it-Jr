@@ -28,6 +28,7 @@ public class Move extends State{
 	public Image getImage(int dir) {
 		return animation.getActualFrame();
 	}
+
 			
 	
 	

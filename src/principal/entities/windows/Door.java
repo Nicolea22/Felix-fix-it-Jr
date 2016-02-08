@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import principal.entities.Entity;
 import principal.entities.creatures.Creature;
 import principal.graphics.Sprite;
 import principal.util.Random;
@@ -48,8 +49,7 @@ public class Door extends Window{
 
 	
 	@Override
-	public void tick(ArrayList<Creature> objects, long beforeTime) {	
-		broken = strokesRequired > 0;
+	public void tick(ArrayList<Entity> objects, long beforeTime) {	
 		if (strokesRequired >= 12) state = 11;
 		if (strokesRequired < 8 && strokesRequired >= 4) state = 6;
 		if (strokesRequired < 4 && strokesRequired >= 1) state = 4;
@@ -91,6 +91,8 @@ public class Door extends Window{
 	public Rectangle getBounds() {
 		return new Rectangle((int)getX() + 10, (int)getY() + 40, width, height);
 	}
+
+
 
 	
 	

@@ -24,10 +24,6 @@ public class GameManager implements GameState {
 	public static boolean showHitBox;
 	public static Images animations;
 	
-	private  Bird bird;
-	
-	private boolean birdInit;
-	
 	private Handler handler;
 	
 	private Building b;
@@ -46,17 +42,16 @@ public class GameManager implements GameState {
 		
 		animations = new Images();
 		
-		birdInit = true;
 		
 		handler = new Handler();
 		
 		b = Building.getBuilding();
 		
-		cloud = new Cloud(0, 300, handler);
-		cloud1 = new Cloud(150, 200, handler);
+		cloud = new Cloud(0, 300);
+		cloud1 = new Cloud(150, 200);
 		
-		felix = new Felix(Constant.WIDTH/2 , Constant.HEIGHT - 90, handler);
-		ralph = new Ralph(300 ,227, handler);
+		felix = new Felix(Constant.WIDTH/2 , Constant.HEIGHT - 600);
+		ralph = new Ralph(300 ,227);
 	
 		bush = new Sprite(ResourceLoader.getLoader().loadImage("images/bush.png"));
 		
@@ -74,7 +69,6 @@ public class GameManager implements GameState {
 			GameStatus.changeState(2);	
 		}
 		
-		generateBird();
 		
 		if (KeyBoard.hitBox) {
 			showHitBox = !showHitBox;
@@ -82,22 +76,7 @@ public class GameManager implements GameState {
 
 	}
 
-	private void generateBird() {
-		
-		if (b.getActualSector().hasBirds()){
-			
-			if (birdInit){
-				float altitude = Random.value(b.getBotBounds().y - 50, b.getTopBounds().y + 50);
-				bird = new Bird(0, altitude, handler, true);
-				birdInit = false;
-			}
-			
-			if (b.isChangingSector()) {
-				handler.remove(bird);
-				birdInit = true;
-			}
-		}
-	}
+	
 		
 	
 

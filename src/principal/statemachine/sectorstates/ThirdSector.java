@@ -29,7 +29,7 @@ public class ThirdSector extends Sector{
 		int i = 0;
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 5; x++) {
-				if (Random.pairValue(5) && doubleDoorCounter < MAX_DOUBLE_DOOR){
+				if (Random.boolValue(5) && doubleDoorCounter < MAX_DOUBLE_DOOR){
 					windows[i] = new DoubleDoor(posX, posY);
 					doubleDoorCounter++;
 				}else

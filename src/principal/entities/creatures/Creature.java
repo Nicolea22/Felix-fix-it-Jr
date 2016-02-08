@@ -14,13 +14,10 @@ public abstract class Creature extends Entity{
 	
 	protected ID id;
 	
-	protected Handler handler;
-	
-	public Creature(float x, float y, Handler handler) {
+	public Creature(float x, float y) {
 		super(x,y);
-		this.handler = handler;
 		displacement = new Displacement();
-		handler.add(this);
+		Handler.add(this);
 	}
 	
 	// Setters y getters

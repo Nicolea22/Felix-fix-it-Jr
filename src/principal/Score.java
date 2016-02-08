@@ -164,44 +164,48 @@ public class Score {
 		});
 	}
 	
+	
 	public int getActualScore(){
 		return actualScore;
 	}
+	
+	
 	public int getHighScore(){
 		return scorePoints[0];
 	}
+	
 	
 	public int getCertainScore(int i){
 		return scorePoints[i];
 	}
 	
+	
 	public String getCertainName(int i){
 		return scoreNames[i];
 	}
+	
 	
 	public boolean askName(){
 		return asking;
 	}
 	
+	
 	public void fixWindow(){
 		actualScore += 100;
 	}
+	
 	
 	public void nextSector(){
 		actualScore += 500;
 	}
 	
-	public void jump(){
-		if (actualScore>10){
-			actualScore -= 10;
-		}else{actualScore=0;}
-	}
 	
 	public void loseHP(){
 		if (actualScore>800){
 			actualScore -= 800;
 		}else{actualScore=0;}
 	}
+	
 	
 	public void reset() {
 		actualScore = 0;

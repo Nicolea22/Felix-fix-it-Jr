@@ -3,6 +3,8 @@ package principal.entities.windows;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+
+import principal.entities.Entity;
 import principal.entities.creatures.Creature;
 import principal.graphics.Sprite;
 import principal.util.Random;
@@ -48,8 +50,7 @@ public class Semicircular extends Window{
 	
 	
 	@Override
-	public void tick(ArrayList<Creature> objects, long beforeTime) {	
-		broken = strokesRequired > 0;
+	public void tick(ArrayList<Entity> objects, long beforeTime) {	
 		if (strokes >= 4 && state > 0) {
 			state--;
 			strokes = 0;

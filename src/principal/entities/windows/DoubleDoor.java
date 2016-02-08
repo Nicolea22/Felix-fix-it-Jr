@@ -1,9 +1,11 @@
 package principal.entities.windows;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import principal.entities.Entity;
 import principal.entities.creatures.Creature;
 import principal.graphics.Sprite;
 import principal.util.Random;
@@ -38,7 +40,7 @@ public class DoubleDoor extends Window{
 	@Override
 	public void draw(Graphics2D g, long time) {
 		g.drawImage(img[doors].getImage() ,(int)getX() ,(int)getY(), null);
-//		g.setColor(Color.GREEN);
+		g.setColor(Color.GREEN);
 //		g.draw(getBounds());
 //		g.draw(getTopBounds());
 //		g.draw(getBotBounds());
@@ -47,7 +49,7 @@ public class DoubleDoor extends Window{
 	}
 	
 	@Override
-	public void tick(ArrayList<Creature> objects, long BeforeTime) {	
+	public void tick(ArrayList<Entity> objects, long BeforeTime) {	
 		
 	}
 	
@@ -61,7 +63,7 @@ public class DoubleDoor extends Window{
 		if (doors == 0 || doors == 3){
 			return new Rectangle(0,0,0,0);	
 		}
-		return new Rectangle((int)getX(),(int)getY(),4, 50);
+		return new Rectangle((int)getX(),(int)getY() + 6 ,4, 44);
 	}
 
 	@Override
@@ -69,7 +71,7 @@ public class DoubleDoor extends Window{
 		if (doors == 0 || doors == 2){
 			return new Rectangle(0,0,0,0);	
 		}
-		return new Rectangle((int)getX() + 32,(int)getY(),4, 50);
+		return new Rectangle((int)getX() + 32,(int)getY() + 6,4, 44);
 	}
 
 	@Override

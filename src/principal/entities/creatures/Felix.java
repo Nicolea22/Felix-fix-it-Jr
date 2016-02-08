@@ -4,17 +4,17 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-
 import principal.Constant;
 import principal.Handler;
 import principal.Score;
 import principal.entities.Building;
+import principal.entities.Entity;
 import principal.entities.ID;
 import principal.entities.windows.Window;
 import principal.input.KeyBoard;
 import principal.statemachine.GameStatus;
-import principal.statemachine.characterstates.State;
 import principal.statemachine.characterstates.felixstates.Fixing;
+import principal.statemachine.characterstates.felixstates.Immune;
 import principal.statemachine.characterstates.felixstates.Moving;
 import principal.statemachine.characterstates.felixstates.Normal;
 
@@ -33,93 +33,112 @@ public class Felix extends Creature {
 	private final float MAX_JUMP = -80;// la velocidad de salto es negativa y la gravedad positiva
 	private final float VEL = 3f; 
 	
-	private boolean fixing;
-	
-	private State state;
+	private final long IMMUNE_DURATION = 7000;
 	
 	private long movDelay = System.currentTimeMillis();
 	private long delay = System.currentTimeMillis();
+	private long inmTime;
 	private float max_jump = 0;
 	
+	private boolean onObstacle;
 	private boolean onGround;
 	private boolean falling;
+	
+	private boolean isImmune;
 	
 	private int life;
 	
 	
-	public Felix(float x, float y, Handler handler) {
-		super(x, y, handler);
+	public Felix(float x, float y) {
+		super(x, y);
 		
 		life = 3;
 		state = Normal.getNormal();
 		
+		onObstacle = false;
 		onGround = false;
 		falling = false;
-		
-		width = 28;
-		height = 59;
+		isImmune = false;
 		
 		directionX = 1;
 		id = ID.Felix;
 		
+		width = 20;
+		height = 50;
 	}	
 
 	
 	
-	public void tick(ArrayList<Creature> creat, long beforeTime) {
+	public void tick(ArrayList<Entity> ent, long beforeTime) {
 		stopFalling();
-				
-		setDx(getInputX(creat));
+		checkImmune(beforeTime);
+		checkButtons(ent, beforeTime);
+		checkStates();
+		collision(ent, beforeTime);
+	}
+
+
+
+	private void checkButtons(ArrayList<Entity> ent, long beforeTime) {
+		setDx(getInputX(ent));
 		setX(getX() + getDx());
 			    
-		setDy(getInputY(creat,beforeTime));
+		setDy(getInputY(ent,beforeTime));
 		setY(getY() + getDy());
-			    
-		checkButtons();
-		
-		collision(creat, beforeTime);
+	}
+
+
+	private void checkImmune(long beforeTime) {
+		if (isImmune) {
+			if (beforeTime - inmTime > IMMUNE_DURATION) {
+				isImmune = false;
+			}
+				
+		}
 	}
 
 		
-	
-	private void checkButtons() {
 		
+// 		setX(e.getX() + 17);
+// 		setX(e.getX() + 269);
+		
+	private void checkStates() {
 		if (KeyBoard.fix && onGround) {
 			state = Fixing.getFixing();
 		}
-			
-		if (getDx() == 0 && getDy() == 0 && !KeyBoard.fix) {
+		
+		if (isImmune && !KeyBoard.fix){
+			state = Immune.getImmune();
+		}
+		
+		if (getDx() == 0 && getDy() == 0 && !KeyBoard.fix && !isImmune) {
 			state = Normal.getNormal();
 		}
 			
 		
-		if (getDx() != 0 || getDy() != 0) {
+		if ((getDx() != 0 || getDy() != 0) && !isImmune) {
 			state = Moving.getMoving();
 		}
 	}
-		
 	
-// 		setX(e.getX() + 17);
-// 		setX(e.getX() + 269);
-		
 	
-	private void collision(ArrayList<Creature> creat, long beforeTime) {
-			
+	private void collision(ArrayList<Entity> ent, long beforeTime) {
 		buildingCollision();
 		windowCollision(beforeTime);
 		
-		for (int i = 0; i < creat.size(); i++) {
-			Creature c = creat.get(i);
-			ralphCollision(c);
-			brickCollision(c, beforeTime);
-			birdCollision(c, beforeTime);
+		for (int i = 0; i < ent.size(); i++) {
+			Entity e = ent.get(i);
+			ralphCollision(e);
+			brickCollision(e, beforeTime);
+			birdCollision(e, beforeTime);
+			cakeCollision(e, beforeTime);
 		}
 	}
 	
 
 	
 	private void windowCollision(long beforeTime) {	
-		Window[] windows = Building.getBuilding().getWindows();
+		Window[] windows = Building.getBuilding().getActualWindows();
 		for (int i = 0; i < windows.length; i++) {
 			Window w = windows[i];
 			
@@ -145,7 +164,7 @@ public class Felix extends Creature {
 		}
 		
 		if (getRightBounds().intersects(w.getLeftBounds())) {
-			setX(w.getX() - 34);
+			setX(w.getX() - 19);
 		}
 		
 		if (getLeftBounds().intersects(w.getRightBounds())) {
@@ -153,29 +172,33 @@ public class Felix extends Creature {
 		}
 		
 		if (getRightBounds().intersects(w.getRightBounds())) {
-			setX(w.getX());
+			setX(w.getX() + 12);
+		}
+		
+		if (getBotBounds().intersects(w.getRightBounds()) || getBotBounds().intersects(w.getLeftBounds())) {
+			onObstacle = true;
+			onGround = true;
 		}
 	}
 	
 	
 	
-	private void brickCollision(Creature c, long beforeTime) {
-//		if (c.getID() == ID.Brick) {
-//			if(getTopBounds().intersects(c.getBounds())) {
-//				handler.remove(c);
-//				decLife(beforeTime);
-//			}
-//		}
+	private void brickCollision(Entity e, long beforeTime) {
+		if (e.getID() == ID.Brick) {
+			if(getTopBounds().intersects(e.getBounds())) {
+				Handler.remove(e);
+				decLife(beforeTime);
+			}
+		}
 	}
 	
 	
 	
-	private void birdCollision(Creature c, long beforeTime){
-		if (c.getID() == ID.Bird){
-			if (getTopBounds().intersects(c.getBounds()) || getBotBounds().intersects(c.getBounds())
-				|| getLeftBounds().intersects(c.getBounds()) || getRightBounds().intersects(c.getBounds())){
+	private void birdCollision(Entity e, long beforeTime) {
+		if (e.getID() == ID.Bird){
+			if (getAllBounds().intersects(e.getBounds())){
 					decLife(beforeTime);
-					handler.remove(c);
+					Handler.remove(e);
 			}
 		}
 	}
@@ -184,15 +207,25 @@ public class Felix extends Creature {
 	
 	
 
-	private void ralphCollision(Creature c) {
-//		if (c.getID() == ID.Ralph){
-//			if (getTopBounds().intersects(c.getBounds())) {
-//				setY(c.getY() + 82);
+	private void ralphCollision(Entity e) {
+//		if (e.getID() == ID.Ralph){
+//			if (getTopBounds().intersects(e.getBounds())) {
+//				setY(e.getY() + 82);
 //				max_jump = MAX_JUMP;
 //			}
 //		}
 	}
 
+	
+	private void cakeCollision(Entity e, long beforeTime) {
+		if (e.getID() == ID.Cake) { 
+			if (getAllBounds().intersects(e.getBounds())) {
+				isImmune = true;
+				inmTime = System.currentTimeMillis();
+				Handler.remove(e);
+			}
+		}
+	}
 	
 	
 	private void buildingCollision() {
@@ -206,13 +239,14 @@ public class Felix extends Creature {
 		
 		
 		if (getRightBounds().intersects(b.getRightBounds())){
-			setX(b.getX() + 264);
+			setX(b.getX() + 278);
 		}
 		
 		
 		if (getBotBounds().intersects(b.getTopBounds()) && b.isChangingSector()) {
 			Building.getBuilding().changeSector();
 			onGround = true;
+			isImmune = false;
 		}
 		
 		
@@ -220,17 +254,17 @@ public class Felix extends Creature {
 			onGround = true;
 		}else 
 			onGround = false;
+		
 	}
 
 		
 	
 	
-	private float getInputX(ArrayList<Creature> creat) {
+	private float getInputX(ArrayList<Entity> ent) {
 		
 		// Mover derecha
 		if (KeyBoard.right && !KeyBoard.fix) {
 			directionX = 1;
-				
 			return VEL;
 		}
 		
@@ -245,7 +279,7 @@ public class Felix extends Creature {
 		
 		
 		
-	private float getInputY(ArrayList<Creature> creat, long beforeTime) {
+	private float getInputY(ArrayList<Entity> ent, long beforeTime) {
 
 		// Mover arriba
 		if (KeyBoard.up && !falling && max_jump > MAX_JUMP && beforeTime - movDelay > 150) {
@@ -256,7 +290,7 @@ public class Felix extends Creature {
 		}
 				
 		// Mover abajo
-		if (KeyBoard.down && onGround && getY() < 503 && beforeTime - movDelay > 100
+		if (KeyBoard.down && onGround && !onObstacle && getY() < 503 && beforeTime - movDelay > 100
 				&& !getBotBounds().intersects(Building.getBuilding().getBotBounds())) {
 			
 			movDelay = System.currentTimeMillis();
@@ -265,9 +299,10 @@ public class Felix extends Creature {
 			return Constant.GRAVITY;
 		}
 			
-		if (!onGround && getY() < 503) {
+		if (!onGround) {
 			movDelay = System.currentTimeMillis();
 			falling = true;
+			onObstacle = false;
 			return Constant.GRAVITY;	
 		}
 			
@@ -280,44 +315,41 @@ public class Felix extends Creature {
 		if(onGround && falling) {
 			falling = false;
 			max_jump = 0;
-			Score.getScore().jump();
 		}
 	}
 		
 	
 	
 	private void decLife(long beforeTime) {
-		if (beforeTime - delay > 20) {
-			
-			delay = System.currentTimeMillis();
-			
-			life--;
-			
-			if (life > 0)	
-				Score.getScore().loseHP();
-			
-			if(life == 0){
-				Score.getScore().saveScore();
-				GameStatus.changeState(0);
+		if (!isImmune){
+			if (beforeTime - delay > 20) {
+				delay = System.currentTimeMillis();
+				life--;
+				if (life > 0)	
+					Score.getScore().loseHP();	
+				if(life == 0){
+					Score.getScore().saveScore();
+					GameStatus.changeState(0);
+				}
 			}
-			
-			
-			
 		}
 	}
 		
 	
 	@Override
 	public void draw(Graphics2D g, long time) {
-		state.update(time);
+		state.update();
 		g.drawImage(state.getImage(directionX), (int)getX(), (int)getY(), null);
 		
-		g.setColor(Color.GREEN);
+		g.setColor(Color.RED);
 //		g.draw(getBounds());
+		
+		g.setColor(Color.GREEN);
 //		g.draw(getBotBounds());
 //		g.draw(getLeftBounds());
 //		g.draw(getRightBounds());
 //		g.draw(getTopBounds());
+//		g.draw(getAllBounds());
 	}
 
 	
@@ -326,23 +358,12 @@ public class Felix extends Creature {
 		return "Felix";
 	}
 
-	public int getLife(){
+	public int getLife() {
 		return life;
 	}
 	
 	
-	public boolean getFixing() {
-		return fixing;
-	}
-	
-	
-	public void getFixing(boolean fixing) {
-		this.fixing = fixing;
-	}
-	
-	
 	// limites
-	
 	@Override
 	public Rectangle getTopBounds() {
 		return new Rectangle((int)getX() + 12, (int)getY(), 15, 3);
@@ -351,24 +372,39 @@ public class Felix extends Creature {
 
 	@Override
 	public Rectangle getLeftBounds() {
-		return new Rectangle((int)getX() + 10 ,(int)getY() + 6 , 3, 39);
+		return new Rectangle((int)getX() + 7 ,(int)getY() + 6 , 3, 39);
 	}
 
 
 	@Override
 	public Rectangle getRightBounds() {
-		return new Rectangle((int)getX() + 30, (int)getY() + 6, 3, 39);
+		return new Rectangle((int)getX() + 15, (int)getY() + 6, 3, 39);
 	}
 
 
 	@Override
 	public Rectangle getBotBounds() {
-		return new Rectangle((int)getX() + 10, (int)getY() + 52, 25, 2);
+		if (directionX == -1){
+			return new Rectangle((int)getX() + 12, (int)getY() + 52, 12, 2);
+		}
+		return new Rectangle((int)getX() + 6, (int)getY() + 54, 12, 2);
 	}
 
+	
+	public Rectangle getAllBounds(){
+		if (directionX == -1){
+			return new Rectangle((int)getX() + 10, (int)getY(), width, height);
+		}
+		return new Rectangle((int)getX(), (int)getY(), width, height);
+	}
+	
+	
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle((int)getX() + 6, (int)getY() + 30, 7, 7);
+		if (directionX == -1){
+			return new Rectangle((int)getX() + 6, (int)getY() + 30, 7, 7);
+		}
+		return new Rectangle((int)getX() + 26, (int)getY() + 30, 7, 7);
 	}
 
 	

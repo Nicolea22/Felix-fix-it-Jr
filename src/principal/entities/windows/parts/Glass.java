@@ -8,7 +8,7 @@ public class Glass {
 	
 	
 	public Glass(){
-		glasses = new GlassAndDisplacement[6];
+		glasses = new GlassAndDisplacement[7];
 		for (int i = 0 ; i < glasses.length; i++) {
 			glasses[i] = new GlassAndDisplacement(i);
 		}

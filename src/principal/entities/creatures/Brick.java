@@ -17,8 +17,8 @@ public class Brick extends Creature {
 	private int animationTickCounter = 0;
 	private int animUpdate;
 	
-	public Brick(float x, float y, Handler handler) {
-		super(x,y, handler);
+	public Brick(float x, float y) {
+		super(x,y);
 		animUpdate = 4000;
 		brick = GameManager.animations.getBrick();
 		id = ID.Brick;
@@ -31,7 +31,7 @@ public class Brick extends Creature {
 
 	@Override
 	public void draw(Graphics2D g, long time) {
-		brick.tick(time);
+		brick.tick();
 
 		g.drawImage(brick.getActualFrame(), (int)getX(), (int)getY(), null);
 		
@@ -39,11 +39,11 @@ public class Brick extends Creature {
 	}
 
 	@Override
-	public void tick(ArrayList<Creature> creat, long BeforeTime) {
+	public void tick(ArrayList<Entity> creat, long BeforeTime) {
 	
 		setY(getY() + 1.5f);
 		if (getY() > 590) {
-			handler.remove(this);
+			Handler.remove(this);
 		}
 	}
 

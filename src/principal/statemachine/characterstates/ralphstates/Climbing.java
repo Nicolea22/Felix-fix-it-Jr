@@ -30,5 +30,6 @@ public class Climbing extends State{
 	public Image getImage(int dir) {
 		return animation.getActualFrame();
 	}
+
 	
 }

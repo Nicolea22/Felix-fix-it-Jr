@@ -14,10 +14,10 @@ public abstract class State {
 	
 	public abstract Image getImage(int dir);
 
-	public void update(long time){
+	public void update(){
 		animationTickCounter++;
 		if (animationTickCounter % animUpdate == 0) {
-			animation.tick(time);
+			animation.tick();
 			animationTickCounter = 0;
 		}	
 	}

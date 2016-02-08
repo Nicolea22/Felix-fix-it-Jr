@@ -9,5 +9,7 @@ public enum ID {
 	Brick(),
 	Molding(),
 	Building(),
+	DoubleDoor(),
+	Cake(),
 	Window();
 }

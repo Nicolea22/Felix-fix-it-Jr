@@ -28,7 +28,7 @@ public class SecondSector extends Sector{
 		int i = 0;
 		for (int y = 0; y < ROW; y++) {
 			for (int x = 0; x < COL; x++) {
-				if (Random.pairValue(5) && doubleDoorCounter < MAX_DOUBLE_DOOR) {
+				if (Random.boolValue(5) && doubleDoorCounter < MAX_DOUBLE_DOOR) {
 					windows[i] = new DoubleDoor(posX, posY);
 					doubleDoorCounter++;
 				}else

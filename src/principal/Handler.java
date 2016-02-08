@@ -5,31 +5,31 @@ import java.util.ArrayList;
 
 import principal.entities.Building;
 import principal.entities.ID;
-import principal.entities.creatures.Creature;
+import principal.entities.Entity;
 
 
 public class Handler {
 	
-	public static ArrayList<Creature> objects;
-	private Creature tempObject;
+	public static ArrayList<Entity> objects;
+	private Entity tempObject;
 	
 	private Building building;
 
 	
 	public Handler() {
-		objects = new ArrayList<Creature>();
+		objects = new ArrayList<Entity>();
 		this.building = Building.getBuilding();
 	}
 
 	
 	
-	public boolean add(Creature object) {
+	public static boolean add(Entity object) {
 		return objects.add(object);
 	}
 	
 	
 	
-	public boolean remove(Creature object) {
+	public static boolean remove(Entity object) {
 		return objects.remove(object);
 	}
 

@@ -14,14 +14,14 @@ public class Cloud extends Creature{
 		
 	private Sprite sprite;
 	
-	public Cloud(float x, float y, Handler handler){
-		super(x,y,handler);
+	public Cloud(float x, float y){
+		super(x,y);
 		setDx(.3f);
 		sprite = new Sprite(ResourceLoader.getLoader().loadImage("images/entities/cloud/0.png"));
 	}
 	
 	
-	public void tick(ArrayList<Creature> creat, long beforeTime){
+	public void tick(ArrayList<Entity> creat, long beforeTime){
 		if (getX() > Constant.WIDTH + sprite.getImage().getWidth(null)){
 			reset();
 		}

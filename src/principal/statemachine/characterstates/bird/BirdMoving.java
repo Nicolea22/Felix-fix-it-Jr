@@ -13,7 +13,6 @@ public class BirdMoving extends State{
 	
 	
 	private BirdMoving() {
-		animation  = GameManager.animations.getBird();
 		animUpdate = 300;
 	}
 	
@@ -24,6 +23,10 @@ public class BirdMoving extends State{
 		
 	@Override
 	public Image getImage(int dir) {
+		if (dir == -1){
+			animation = GameManager.animations.getLeftBird();
+		}else
+			animation = GameManager.animations.getRightBird();
 		return animation.getActualFrame();
 	}
 	

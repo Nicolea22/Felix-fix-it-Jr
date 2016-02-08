@@ -4,7 +4,6 @@ import principal.entities.Entity;
 
 public abstract class Window extends Entity{
 
-	protected boolean broken;
 	protected int strokesRequired;
 	
 	protected boolean hasFlowerPot;
