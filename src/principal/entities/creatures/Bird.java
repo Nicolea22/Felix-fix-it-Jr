@@ -18,11 +18,10 @@ public class Bird extends Creature{
 	private State state;
 	
 	private boolean side;
-	private final float VEL = .7f;
 	
 	public Bird(float x, float y, boolean side){
 		super(x,y);
-		
+		vel = .9f;
 		this.side = side;
 		side();
 		
@@ -61,11 +60,11 @@ public class Bird extends Creature{
 
 		setX(getX() + getDx());
 		if (side) {
-			setDx(VEL);
+			setDx(vel);
 			if (getX()> Constant.WIDTH + 20) side = !side;
 			directionX = 1;
 		}else{
-			setDx(-VEL);
+			setDx(-vel);
 			if (getX() < 0 - 20) side = !side;
 			directionX = -1;
 		}

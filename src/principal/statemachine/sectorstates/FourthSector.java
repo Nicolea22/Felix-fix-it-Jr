@@ -71,16 +71,16 @@ public class FourthSector extends Sector{
 				brokenWindows.remove(w);
 			}
 		}
-		if(changeSector()){
-			//CAMBIA NIVEL
-			Building.getBuilding().initSectors();
-			Building.getBuilding().initActualSectors();
-			Building.getBuilding().stopGM();
-			HUD.getHud().reset();
-			DrawingSurface.resetSurface();
-			GameStatus.states[1] = new GameManager();
-			GameStatus.changeState(1);
-		}
+//		if(changeSector()){
+//			
+//			Building.getBuilding().initSectors();
+//			Building.getBuilding().initActualSectors();
+//			Building.getBuilding().stopGM();
+//			HUD.getHud().reset();
+//			DrawingSurface.resetSurface();
+//			GameManager.getGameManager().resetLevel();
+//			GameStatus.changeState(1);
+//	}
 	}
 
 	

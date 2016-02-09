@@ -5,8 +5,6 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import principal.Handler;
-import principal.graphics.Animation;
-import principal.statemachine.characterstates.State;
 import principal.statemachine.characterstates.nicelander.NicelanderAnimation;
 
 
@@ -14,7 +12,6 @@ public class Nicelander extends Entity  {
 	
 	private long actionsDelay;
 	private boolean leaveCake;
-	
 	private Cake cake;
 	
 	public Nicelander(float x, float y) {
@@ -35,7 +32,6 @@ public class Nicelander extends Entity  {
 	
 	@Override
 	public void tick(ArrayList<Entity> objects, long beforeTime) {
-		System.out.println(beforeTime - actionsDelay > 3000);
 		if (beforeTime - actionsDelay > 2200) {
 			if (leaveCake) {
 				cake = new Cake((int)getX(), (int)getY());
@@ -73,11 +69,6 @@ public class Nicelander extends Entity  {
 	@Override
 	public Rectangle getBotBounds() {
 		return new Rectangle (0,0,0,0);
-	}
-	
-	
-	public void putCake() {
-		leaveCake = true;
 	}
 	
 	

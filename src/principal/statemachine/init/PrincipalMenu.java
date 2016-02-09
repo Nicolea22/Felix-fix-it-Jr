@@ -30,8 +30,8 @@ public class PrincipalMenu implements GameState{
 	public void tick(long beforeTime) {
 		if (MouseInput.leftClick) {
 			if (playButton.contains(MouseInput.getPointer())){
-				GameStatus.states[1] = new GameManager();
-				newGame();
+				GameManager.getGameManager().resetGameManager();
+				restart();
 			}else
 				if (scoreButton.contains(MouseInput.getPointer())){
 					GameStatus.changeState(3);
@@ -43,14 +43,11 @@ public class PrincipalMenu implements GameState{
 	}
 
 	
-	private void newGame() {
-		Building.getBuilding().initSectors();
-		Building.getBuilding().initActualSectors();
-		Building.getBuilding().stopGM();
-		HUD.getHud().reset();
+	private void restart() {
+		GameManager.getGameManager().resetGameManager();
+		GameStatus.changeState(1);	
 		Score.getScore().reset();
 		DrawingSurface.resetSurface();
-		GameStatus.changeState(1);
 	}
 	
 	@Override

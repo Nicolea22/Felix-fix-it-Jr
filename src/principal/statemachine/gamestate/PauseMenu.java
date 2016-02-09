@@ -46,8 +46,7 @@ public class PauseMenu implements GameState{
 					GameStatus.changeState(1);
 				}else
 					if (restartButton.contains(MouseInput.getPointer())){
-						GameStatus.states[1] = new GameManager();
-						newGame();	
+						restart();
 					}else
 						if (exitButton.contains(MouseInput.getPointer())){
 							Game.quitGame();
@@ -55,16 +54,13 @@ public class PauseMenu implements GameState{
 			
 		}
 	}
-		
-		
-	private void newGame() {
-		Building.getBuilding().initSectors();
-		Building.getBuilding().initActualSectors();
-		Building.getBuilding().stopGM();
-		HUD.getHud().reset();
+
+	
+	private void restart() {
+		GameManager.getGameManager().resetGameManager();
+		GameStatus.changeState(1);	
 		Score.getScore().reset();
 		DrawingSurface.resetSurface();
-		GameStatus.changeState(1);
 	}
 		
 

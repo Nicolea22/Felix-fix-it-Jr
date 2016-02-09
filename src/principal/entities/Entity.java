@@ -79,6 +79,12 @@ public abstract class Entity {
 		return id;
 	}
 	
+	
+	public void setXY(float x, float y){
+		setX(x);
+		setY(y);
+	}
+	
 	public abstract String getName();
 
 

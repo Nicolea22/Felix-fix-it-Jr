@@ -8,11 +8,9 @@ import java.awt.image.BufferStrategy;
 import principal.Camera;
 import principal.Constant;
 import principal.HUD;
-import principal.Score;
 import principal.entities.Building;
 import principal.input.KeyBoard;
 import principal.input.MouseInput;
-import principal.statemachine.GameState;
 import principal.statemachine.GameStatus;
 import principal.statemachine.gamestate.GameManager;
 

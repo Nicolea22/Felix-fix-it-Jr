@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import principal.entities.Building;
 import principal.entities.ID;
 import principal.entities.Entity;
+import principal.entities.creatures.Creature;
+import principal.statemachine.gamestate.GameManager;
 
 
 public class Handler {
@@ -54,13 +56,22 @@ public class Handler {
 	}
 	
 	
-	
-	public Building getBuilding() {
-		return building;
+	public void setVelocities() {
+		for (int i = 0; i < objects.size(); i++) {
+			tempObject = objects.get(i);
+			if (tempObject instanceof Creature) {
+				Creature creat = (Creature)tempObject;
+				creat.setVelocity(creat.getVel() + creat.getVel()*15/100);
+			}
+		}
 	}
 	
 	
 	
+	
+	public Building getBuilding() {
+		return building;
+	}
 	
 	
 }
