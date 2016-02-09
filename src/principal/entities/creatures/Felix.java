@@ -429,10 +429,12 @@ public class Felix extends Creature {
 		return new Rectangle((int)getX() + 26, (int)getY() + 30, 7, 7);
 	}
 
+
 	public void resetAll(float x, float y){
 		setXY(x,y);
 		life = 3;
 	}
+
 
 	public void reset(float x, float y) {
 		setXY(x,y);

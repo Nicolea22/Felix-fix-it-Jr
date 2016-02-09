@@ -28,7 +28,9 @@ public class GameManager implements GameState {
 	public static Images animations;
 	
 	private Handler handler;
+
 		
+
 	private Building b;
 	
 	private Felix felix;
@@ -53,7 +55,9 @@ public class GameManager implements GameState {
 		cloud1 = new Cloud(150, 200);
 		
 		felix = new Felix(Constant.WIDTH/2 , Constant.HEIGHT -100);
+
 		HUD.getHud().setFelix(felix);
+
 		ralph = new Ralph(300 ,227);
 	
 		bush = new Sprite(ResourceLoader.getLoader().loadImage("images/bush.png"));
@@ -71,6 +75,7 @@ public class GameManager implements GameState {
 //		System.out.println(Level.getLevel().getActualLevel());
 		if (b.canChangeLevel()){
 			nextLevel();
+
 		}
 		
 		handler.tick(time);
@@ -106,6 +111,7 @@ public class GameManager implements GameState {
 	public static int getLevel(){
 		return Level.getLevel().getActualLevel();
 	}
+
 	
 	
 	public void resetGameManager() {
@@ -114,17 +120,18 @@ public class GameManager implements GameState {
 		ralph.reset(300 ,227);
 		felix.resetAll(Constant.WIDTH/2 , Constant.HEIGHT - 100);
 		HUD.getHud().setFelix(felix);
+
 		DrawingSurface.resetSurface();
 		HUD.getHud().reset();
 	}
+	
 	
 	public void nextLevel(){
 		b.resetBuilding();
 		ralph.reset(300 ,227);
 		felix.reset(Constant.WIDTH/2 , Constant.HEIGHT -100);
 		DrawingSurface.resetSurface();
-		Level.getLevel().levelUp();
-		
+		Level.getLevel().levelUp();	
 	}
 	
 }

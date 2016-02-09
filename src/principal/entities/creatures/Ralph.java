@@ -31,13 +31,15 @@ public class Ralph extends Creature {
 		super(x, y);
 		id = ID.Ralph;
 		state = Move.getMove();
+
 		vel = Level.getLevel().getRalphVel();
+
 		setDx(vel);
 		prevGM = false;
 		
 		width = 93;
 		height = 84;
-		
+
 		floor = 0;
 	}
 	
@@ -54,7 +56,9 @@ public class Ralph extends Creature {
 
 	@Override
 	public void tick(ArrayList<Entity> ent, long elapsedTime) {
+
 //		System.out.println("Ralph: " + vel);
+
 		if (elapsedTime - time > 1500  || Building.getBuilding().isChangingSector()){
 			if (Building.getBuilding().getGM()) {
 				climbing(floor);

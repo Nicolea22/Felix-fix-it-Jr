@@ -29,8 +29,10 @@ public class TwoPanels extends Window{
 		super(x,y);
 		window = new Sprite(ResourceLoader.getLoader().loadImage("images/window/0.png"));
 		
+
 		strokesRequired = Random.value(0, 4);
 //		strokesRequired = 1;
+
 		
 		width = 38;
 		height = 60;

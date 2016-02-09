@@ -22,6 +22,7 @@ public class Brick extends Creature {
 		super(x,y);
 		System.out.println("brick: " + Level.getLevel().getBrickVel());
 		vel = Level.getLevel().getBrickVel();
+
 		animUpdate = 4000;
 		brick = GameManager.animations.getBrick();
 		id = ID.Brick;
@@ -43,7 +44,9 @@ public class Brick extends Creature {
 
 	@Override
 	public void tick(ArrayList<Entity> creat, long BeforeTime) {
+
 		setY(getY() + vel);
+
 		if (getY() > 590) {
 			Handler.remove(this);
 		}
