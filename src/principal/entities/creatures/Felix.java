@@ -31,7 +31,8 @@ public class Felix extends Creature {
 	
 	private final float JUMP_SPEED = -10f;
 	private final float MAX_JUMP = -80;// la velocidad de salto es negativa y la gravedad positiva
-	private final float VEL = 3f; 
+	
+	private final float VEL = 3f;
 	
 	private final long IMMUNE_DURATION = 7000;
 	
@@ -54,7 +55,7 @@ public class Felix extends Creature {
 		
 		life = 3;
 		state = Normal.getNormal();
-		
+			
 		onObstacle = false;
 		onGround = false;
 		falling = false;
@@ -145,6 +146,7 @@ public class Felix extends Creature {
 			// 300 ms entre cada golpe de delay para coordinarlo con el arreglo
 			if(w.getBounds().contains(getBounds()) && KeyBoard.fix && beforeTime - movDelay > 300) {
 				movDelay = System.currentTimeMillis();
+				w.removeNicelander();
 				w.getFixed();
 			}
 			
@@ -153,9 +155,29 @@ public class Felix extends Creature {
 			}
 			
 			doubleDoorsCollision(w);
+			obstacleCollision(w);
 		}
 	}
 	
+	
+	 private void obstacleCollision(Window w) {
+		 
+//		  if(getTopBounds().intersects(w.getTopBounds()) && w.hasRoof()){
+//			  setY(w.getY());
+//		  }
+//		  
+//		  if(getBotBounds().intersects(w.getTopBounds()) && w.hasRoof()){
+//			  setY(w.getY()- 32);
+//		  }
+//		  
+//		  if(getTopBounds().intersects(w.getBotBounds()) && w.hasFlowerPot()){
+//			  setY(w.getY()+ 32);
+//		  }
+//		  
+//		  if(getBotBounds().intersects(w.getBotBounds()) && w.hasFlowerPot()){
+//			  setY(w.getY());
+//		  }
+	}
 	
 
 	private void doubleDoorsCollision(Window w) {
@@ -184,23 +206,23 @@ public class Felix extends Creature {
 	
 	
 	private void brickCollision(Entity e, long beforeTime) {
-		if (e.getID() == ID.Brick) {
-			if(getTopBounds().intersects(e.getBounds())) {
-				Handler.remove(e);
-				decLife(beforeTime);
-			}
-		}
+//		if (e.getID() == ID.Brick) {
+//			if(getTopBounds().intersects(e.getBounds())) {
+//				Handler.remove(e);
+//				decLife(beforeTime);
+//			}
+//		}
 	}
 	
 	
 	
 	private void birdCollision(Entity e, long beforeTime) {
-		if (e.getID() == ID.Bird){
-			if (getAllBounds().intersects(e.getBounds())){
-					decLife(beforeTime);
-					Handler.remove(e);
-			}
-		}
+//		if (e.getID() == ID.Bird){
+//			if (getAllBounds().intersects(e.getBounds())){
+//					decLife(beforeTime);
+//					Handler.remove(e);
+//			}
+//		}
 	}
 	
 	
@@ -405,6 +427,15 @@ public class Felix extends Creature {
 			return new Rectangle((int)getX() + 6, (int)getY() + 30, 7, 7);
 		}
 		return new Rectangle((int)getX() + 26, (int)getY() + 30, 7, 7);
+	}
+
+	public void resetAll(float x, float y){
+		setXY(x,y);
+		life = 3;
+	}
+
+	public void reset(float x, float y) {
+		setXY(x,y);
 	}
 
 	

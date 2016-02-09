@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import principal.entities.Building;
 import principal.entities.ID;
 import principal.entities.Entity;
+import principal.entities.creatures.Creature;
+import principal.statemachine.gamestate.GameManager;
 
 
 public class Handler {
@@ -53,14 +55,9 @@ public class Handler {
 		}
 	}
 	
-	
-	
 	public Building getBuilding() {
 		return building;
 	}
-	
-	
-	
 	
 	
 }

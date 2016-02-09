@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import principal.Constant;
 import principal.Handler;
+import principal.Level;
 import principal.entities.Entity;
 import principal.entities.ID;
 import principal.graphics.Animation;
@@ -16,9 +17,11 @@ public class Brick extends Creature {
 	private Animation brick;
 	private int animationTickCounter = 0;
 	private int animUpdate;
-	
+		
 	public Brick(float x, float y) {
 		super(x,y);
+		System.out.println("brick: " + Level.getLevel().getBrickVel());
+		vel = Level.getLevel().getBrickVel();
 		animUpdate = 4000;
 		brick = GameManager.animations.getBrick();
 		id = ID.Brick;
@@ -31,8 +34,8 @@ public class Brick extends Creature {
 
 	@Override
 	public void draw(Graphics2D g, long time) {
+//		System.out.println("Brick: " + vel);
 		brick.tick();
-
 		g.drawImage(brick.getActualFrame(), (int)getX(), (int)getY(), null);
 		
 //		g.draw(getBounds());
@@ -40,8 +43,7 @@ public class Brick extends Creature {
 
 	@Override
 	public void tick(ArrayList<Entity> creat, long BeforeTime) {
-	
-		setY(getY() + 1.5f);
+		setY(getY() + vel);
 		if (getY() > 590) {
 			Handler.remove(this);
 		}
@@ -71,5 +73,6 @@ public class Brick extends Creature {
 	public Rectangle getBotBounds() {
 		return null;
 	}
+	
 	
 }

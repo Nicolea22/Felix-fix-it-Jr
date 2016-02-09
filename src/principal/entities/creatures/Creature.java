@@ -12,6 +12,9 @@ public abstract class Creature extends Entity{
 	protected int directionX;
 	protected int directionY;
 	
+	protected float vel; 
+	
+	
 	protected ID id;
 	
 	public Creature(float x, float y) {
@@ -53,8 +56,12 @@ public abstract class Creature extends Entity{
 		this.directionY = directionY;
 	}
 	
-	public ID getID(){
-		return id;
+	public void setVelocity(float vel) {
+		this.vel = vel;
+	}
+	
+	public float getVel(){
+		return vel;
 	}
 	
 	public abstract String getName();

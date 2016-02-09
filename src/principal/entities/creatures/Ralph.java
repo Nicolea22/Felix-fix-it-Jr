@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import principal.Handler;
+import principal.Level;
 import principal.entities.Building;
 import principal.entities.Entity;
 import principal.entities.ID;
@@ -17,12 +18,10 @@ import principal.util.Random;
 public class Ralph extends Creature {
 	
 	private float CLIMBING = 3.0f;
-	private float vel = 1.5f;
 	
 	private long delay = 5000;
 	
 	private int floor;
-	private Brick brick;
 	
 	private long time = System.currentTimeMillis();
 	
@@ -32,12 +31,14 @@ public class Ralph extends Creature {
 		super(x, y);
 		id = ID.Ralph;
 		state = Move.getMove();
+		vel = Level.getLevel().getRalphVel();
 		setDx(vel);
 		prevGM = false;
+		
 		width = 93;
 		height = 84;
-		floor = 0;
 		
+		floor = 0;
 	}
 	
 
@@ -53,6 +54,7 @@ public class Ralph extends Creature {
 
 	@Override
 	public void tick(ArrayList<Entity> ent, long elapsedTime) {
+//		System.out.println("Ralph: " + vel);
 		if (elapsedTime - time > 1500  || Building.getBuilding().isChangingSector()){
 			if (Building.getBuilding().getGM()) {
 				climbing(floor);
@@ -103,8 +105,10 @@ public class Ralph extends Creature {
 	
 	
 	private void throwBrick() {
-		Handler.add(new Brick((int)getX() + 25, (int)getY()+ 70));
-		Handler.add(new Brick((int)getX() + 50, (int)getY() + 70));
+		Brick brick = new Brick((int)getX() + 25, (int)getY()+ 70);
+		Handler.add(brick);
+		Brick brick1 = new Brick((int)getX() + 50, (int)getY() + 70);  
+		Handler.add(brick1);
 	}
 
 	
@@ -144,5 +148,15 @@ public class Ralph extends Creature {
 		return null;
 	}
 
+	
+	public void reset(float x, float y) {
+		floor = 0;
+		prevGM = false;
+		setXY(x,y);
+	}
+	
+	
+	
+	
 	
 }

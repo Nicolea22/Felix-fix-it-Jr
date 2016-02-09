@@ -52,13 +52,14 @@ public class Building extends Entity{
 		spawnNicelander = false;
 		waitForNice = 10000;
 		
+		sectors = new Sector[Constant.SECTORS];
+		
 		initSectors();
 		initActualSectors();
 	}
 	
 	
 	public void initSectors() {
-		sectors = new Sector[Constant.SECTORS];
 		sectors[0] = new FirstSector();
 		sectors[1] = new SecondSector();
 		sectors[2] = new ThirdSector();
@@ -86,9 +87,7 @@ public class Building extends Entity{
 
 	
 	private void generateBird() {
-		
 		if (getActualSector().hasBirds()) {
-			
 			if (birdInit) {
 				float altitude = Random.value(getBotBounds().y - 50, getTopBounds().y + 50);
 				bird = new Bird(0, altitude, true);
@@ -120,18 +119,17 @@ public class Building extends Entity{
 		if (getActualSector().hasNicelanders()) {
 			if (beforeTime - nicelanderDelay > waitForNice) {
 				waitForNice -= 3000;
-				if (w.getStrokesRequired() == 2 || w.getStrokesRequired() == 3 && w.getID() != ID.DoubleDoor) {
+				if (w.getStrokesRequired() >= 2 && w.getStrokesRequired() <= 4 && w.getID() != ID.DoubleDoor) {
 						if (Random.boolValue(5)) {
 							waitForNice = 10000;
 							nicelander = new Nicelander(w.getX() + 8, w.getY() + 30);
+							w.setNicelander(nicelander);
 							spawnNicelander = false;
 						}// boolValue
 				}// strokesRequired
 			}// delay time
 		}// actualSector
 	}// void
-	
-	
 	
 	public void draw(Graphics2D g, long time) {
 		g.drawImage(sprite.getImage(), POS_X, POS_Y, null);
@@ -220,6 +218,17 @@ public class Building extends Entity{
 
 	public Sector getActualSector() {
 		return sectors[actualSector];
+	}
+	
+	public boolean canChangeLevel() {
+		return isChangingSector() && actualSector == 3;
+	}
+	
+	public void resetBuilding(){
+		initSectors();
+		actualSector = 0;
+		previousSector = 0;
+		stopGM();
 	}
 
 

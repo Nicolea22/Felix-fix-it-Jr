@@ -10,15 +10,15 @@ import principal.physics.Position;
 import principal.statemachine.characterstates.State;
 
 public abstract class Entity {
-	
-	protected int animCounter = 0;
-	
+		
 	protected int width;
 	protected int height;
 
 	protected State state;
 	
 	protected ID id;
+	 
+	private String hola;
 	
 	protected Rectangle top;
 	protected Rectangle bot;
@@ -27,6 +27,9 @@ public abstract class Entity {
 	protected Rectangle all;
 	
 	private Position position;
+	
+	
+	
 	
 	public Entity(float x, float y){
 		position = new Position(x, y);
@@ -77,6 +80,12 @@ public abstract class Entity {
 	
 	public ID getID(){
 		return id;
+	}
+	
+	
+	public void setXY(float x, float y){
+		setX(x);
+		setY(y);
 	}
 	
 	public abstract String getName();

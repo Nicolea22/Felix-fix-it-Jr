@@ -23,11 +23,14 @@ public class TwoPanels extends Window{
 	private int topGlassState;
 	private int botGlassState;
 	
+	
+	
 	public TwoPanels(float x, float y){
 		super(x,y);
 		window = new Sprite(ResourceLoader.getLoader().loadImage("images/window/0.png"));
 		
 		strokesRequired = Random.value(0, 4);
+//		strokesRequired = 1;
 		
 		width = 38;
 		height = 60;
@@ -125,6 +128,4 @@ public class TwoPanels extends Window{
 	}
 
 
-	
-	
 }

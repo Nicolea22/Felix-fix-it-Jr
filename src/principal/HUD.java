@@ -20,19 +20,14 @@ public class HUD {
 	private static HUD hud = new HUD();
 	
 	private HUD() {
-		initFelix();
-		clock = new Timer(3, 0,System.currentTimeMillis());
+		clock = new Timer(180000);
 		font = new Font("Bold", Font.BOLD, 15);
 		lifeImage = ResourceLoader.getLoader().loadImage("images/life.png");
 	}
 	
 	
-	private void initFelix(){
-		for (int i = 0; i < Handler.objects.size(); i++) {
-			if (Handler.objects.get(i).getID() == ID.Felix){
-				felix = (Felix)Handler.objects.get(i);
-			}
-		}
+	public void setFelix(Felix felix){
+		this.felix = felix;
 	}
 
 
@@ -78,12 +73,10 @@ public class HUD {
 	}
 	
 	public void reset(){
-		initFelix();
-		clock = new Timer(3, 0,System.currentTimeMillis());
+		clock = new Timer(180000);
 	}
 	
 	public void tick() {
-		
 		lifeAmount = felix.getLife();
 		clock.tick();
 	}

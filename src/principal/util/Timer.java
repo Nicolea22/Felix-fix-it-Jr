@@ -13,10 +13,10 @@ public class Timer {
 	private int second;
 	private int minute;
 	
-	public Timer(int minute, int second, long beforeTime){
-		ms = beforeTime;
-		this.second = second;
-		this.minute = minute;
+	public Timer(long initTime){
+		ms = initTime;
+		second = (int) (ms/1000);
+		minute = second/60;
 	}
 	
 	public void tick() {

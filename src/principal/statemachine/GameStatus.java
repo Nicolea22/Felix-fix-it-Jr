@@ -20,7 +20,7 @@ public class GameStatus implements GameState{
 	private void initState() {
 		states = new GameState[Constant.STATES];
 		states[0] = new PrincipalMenu();
-		states[1] = new GameManager();
+		states[1] = GameManager.getGameManager();
 		states[2] = new PauseMenu();
 		states[3] = new ScoreMenu();
 		states[4] = new GameRules();

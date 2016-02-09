@@ -9,4 +9,6 @@ public class Constant {
 	
 	public final static float GRAVITY = 5.5f;
 	
+	public final static float DIFFICULTY = 15/100;
+	
 }

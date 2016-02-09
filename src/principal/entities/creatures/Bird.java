@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import principal.Constant;
 import principal.Handler;
+import principal.Level;
 import principal.entities.Entity;
 import principal.entities.ID;
 import principal.graphics.Animation;
@@ -16,13 +17,12 @@ import principal.statemachine.gamestate.GameManager;
 public class Bird extends Creature{
 
 	private State state;
-	
 	private boolean side;
-	private final float VEL = .7f;
 	
 	public Bird(float x, float y, boolean side){
 		super(x,y);
-		
+		System.out.println("bird: " + Level.getLevel().getBirdVel());
+		vel = Level.getLevel().getBirdVel();
 		this.side = side;
 		side();
 		
@@ -31,6 +31,8 @@ public class Bird extends Creature{
 	}
 	
 	private void side(){
+		
+		
 		if (side){
 			setX(0 - 30);
 			directionX = 1;
@@ -46,6 +48,7 @@ public class Bird extends Creature{
 		return "Bird";
 	}
 
+	
 	@Override
 	public void draw(Graphics2D g, long elapsedTime) {
 		state.update();
@@ -58,14 +61,15 @@ public class Bird extends Creature{
 
 	@Override
 	public void tick(ArrayList<Entity> objects, long beforeTime) {
-
+		
+//		System.out.println("Bird: " + vel);
 		setX(getX() + getDx());
 		if (side) {
-			setDx(VEL);
+			setDx(vel);
 			if (getX()> Constant.WIDTH + 20) side = !side;
 			directionX = 1;
 		}else{
-			setDx(-VEL);
+			setDx(-vel);
 			if (getX() < 0 - 20) side = !side;
 			directionX = -1;
 		}
@@ -73,9 +77,13 @@ public class Bird extends Creature{
 	}
 
 	
+	public void setVelocity(float vel) {
+		
+	}
+	
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle((int)getX(), (int)getY(), 30, 30);
+		return new Rectangle((int)getX(), (int)getY(), 30, 20);
 	}
 
 	
