@@ -3,12 +3,11 @@ package principal.entities.creatures;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-
 import principal.Constant;
-import principal.Handler;
+import principal.Game;
 import principal.entities.Entity;
 import principal.graphics.Sprite;
-import principal.util.ResourceLoader;
+
 
 public class Cloud extends Creature{
 		
@@ -18,7 +17,7 @@ public class Cloud extends Creature{
 		super(x,y);
 		setDx(.3f);
 		
-		sprite = new Sprite(ResourceLoader.getLoader().loadImage("images/entities/cloud/0.png"));
+		sprite = Game.animations.getCloud();
 	}
 	
 	

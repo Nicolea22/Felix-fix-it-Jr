@@ -2,15 +2,15 @@ package principal.statemachine.characterstates.felixstates;
 
 import java.awt.Image;
 
+import principal.Game;
 import principal.statemachine.characterstates.State;
-import principal.statemachine.gamestate.GameManager;
 
 public class Immune extends State{
 	
 private final static Immune inmmune = new Immune();
 	
 	private Immune() {
-		animation  = GameManager.animations.getFelixMoveRight();
+		animation  = Game.animations.getFelixMoveRight();
 		animUpdate = 2;
 	}
 	
@@ -22,9 +22,9 @@ private final static Immune inmmune = new Immune();
 	@Override
 	public Image getImage(int dir) {
 		if (dir == -1){
-			animation = GameManager.animations.getFelixMoveLeft();
+			animation = Game.animations.getFelixMoveLeft();
 		}else
-			animation = GameManager.animations.getFelixMoveRight();
+			animation = Game.animations.getFelixMoveRight();
 		return animation.getActualFrame();
 	}
 	

@@ -1,7 +1,7 @@
 package principal.entities.windows.parts;
 
+import principal.Game;
 import principal.graphics.Sprite;
-import principal.util.ResourceLoader;
 
 public class GlassAndDisplacement{
 
@@ -10,8 +10,7 @@ public class GlassAndDisplacement{
 	private int dispY;
 	
 	public GlassAndDisplacement(int i) {
-		glass = new Sprite(ResourceLoader.getLoader().
-				loadImage("images/window/glasses/"+i+".png"));
+		glass = Game.animations.getGlass(i);
 		initDisplacement(i);
 	}
 	

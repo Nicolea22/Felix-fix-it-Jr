@@ -5,8 +5,10 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import principal.Constant;
+import principal.Game;
 import principal.Handler;
 import principal.Level;
+import principal.entities.Building;
 import principal.entities.Entity;
 import principal.entities.ID;
 import principal.graphics.Animation;
@@ -15,17 +17,21 @@ import principal.statemachine.gamestate.GameManager;
 public class Brick extends Creature {
 	
 	private Animation brick;
-	private int animationTickCounter = 0;
-	private int animUpdate;
-		
-	public Brick(float x, float y) {
+	
+	private int actualSector; 
+	
+	public Brick(float x, float y, int actualSector) {
 		super(x,y);
-		System.out.println("brick: " + Level.getLevel().getBrickVel());
+		brick = Game.animations.getBrick();
+		
 		vel = Level.getLevel().getBrickVel();
-
-		animUpdate = 4000;
-		brick = GameManager.animations.getBrick();
+		
+//		System.out.println( "brick: " + Level.getLevel().getBrickVel());
+		
+		this.actualSector = actualSector;
 		id = ID.Brick;
+		brick = Game.animations.getBrick();
+		
 	}
 
 	@Override
@@ -35,23 +41,26 @@ public class Brick extends Creature {
 
 	@Override
 	public void draw(Graphics2D g, long time) {
-//		System.out.println("Brick: " + vel);
 		brick.tick();
 		g.drawImage(brick.getActualFrame(), (int)getX(), (int)getY(), null);
 		
-//		g.draw(getBounds());
+		g.draw(getBounds());
 	}
 
 	@Override
 	public void tick(ArrayList<Entity> creat, long BeforeTime) {
+		
 
+		Building b = Building.getBuilding();
+		
 		setY(getY() + vel);
 
-		if (getY() > 590) {
+		if (getY() > b.getSector(actualSector).getBotBounds().y + 100) {
 			Handler.remove(this);
 		}
 	}
 
+	
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle((int)getX(), (int)getY(), 18, 12);
@@ -59,22 +68,22 @@ public class Brick extends Creature {
 
 	@Override
 	public Rectangle getTopBounds() {
-		return null;
+		return new Rectangle(0,0,0,0);
 	}
 
 	@Override
 	public Rectangle getLeftBounds() {
-		return null;
+		return new Rectangle(0,0,0,0);
 	}
 
 	@Override
 	public Rectangle getRightBounds() {
-		return null;
+		return new Rectangle(0,0,0,0);
 	}
 
 	@Override
 	public Rectangle getBotBounds() {
-		return null;
+		return new Rectangle(0,0,0,0);
 	}
 	
 	

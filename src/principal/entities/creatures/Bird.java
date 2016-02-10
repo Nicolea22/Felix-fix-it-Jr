@@ -22,14 +22,13 @@ public class Bird extends Creature{
 	public Bird(float x, float y, boolean side){
 		super(x,y);
 
-		System.out.println("bird: " + Level.getLevel().getBirdVel());
 		vel = Level.getLevel().getBirdVel();
+		id = ID.Bird;
 
 		this.side = side;
 		side();
 		
 		state = BirdMoving.getMoving();
-		id = ID.Bird;
 	}
 	
 	private void side(){

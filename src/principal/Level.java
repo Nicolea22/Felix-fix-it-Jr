@@ -16,7 +16,7 @@ public class Level {
 	
 	private void initLevel() {
 		actualLevel = 1;
-		brickVel = 0.8f;
+		brickVel = 2.5f;
 		birdVel = 1.5f;
 		ralphVel = 0.8f;
 	}
@@ -27,10 +27,6 @@ public class Level {
 	
 	public void levelUp() {
 		actualLevel++;
-		
-		System.out.println(birdVel + birdVel * 15/100);
-		System.out.println(ralphVel + ralphVel * 15/100);
-		System.out.println(brickVel + brickVel * 15/100);
 		
 		ralphVel += ralphVel * 15/100;
 		birdVel += birdVel * 15/100;

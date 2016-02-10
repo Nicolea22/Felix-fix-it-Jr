@@ -4,12 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-
+import principal.Game;
 import principal.entities.Entity;
 import principal.entities.windows.parts.Glass;
 import principal.graphics.Sprite;
 import principal.util.Random;
-import principal.util.ResourceLoader;
 
 public class TwoPanels extends Window{
 
@@ -27,7 +26,7 @@ public class TwoPanels extends Window{
 	
 	public TwoPanels(float x, float y){
 		super(x,y);
-		window = new Sprite(ResourceLoader.getLoader().loadImage("images/window/0.png"));
+		window = Game.animations.getTwoPanels();
 		
 
 		strokesRequired = Random.value(0, 4);

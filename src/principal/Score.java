@@ -201,9 +201,10 @@ public class Score {
 	
 	
 	public void loseHP(){
-		if (actualScore>800){
-			actualScore -= 800;
-		}else{actualScore=0;}
+		if (actualScore>800)
+			actualScore -= 500;
+		else
+			actualScore = 0;
 	}
 	
 	

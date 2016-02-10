@@ -15,8 +15,8 @@ public class Timer {
 	
 	public Timer(long initTime){
 		ms = initTime;
-		second = (int) (ms/1000);
-		minute = second/60;
+		minute = ((int) (ms/1000))/ 60;
+		second = ((int) (ms/1000)) % 60;
 	}
 	
 	public void tick() {

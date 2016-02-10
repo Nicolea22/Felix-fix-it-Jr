@@ -23,7 +23,7 @@ public class DrawingSurface extends Canvas {
 	private KeyBoard inputKeys; 
 	private static Camera cam;
 	private static boolean prevGM = false;
-	private static int piso;
+	private static int floor;
 	
 	public DrawingSurface() {
 		cam = new Camera(0, 0);
@@ -33,7 +33,7 @@ public class DrawingSurface extends Canvas {
 		setFocusable(true);
 		setIgnoreRepaint(true);
 		requestFocus();
-		piso = 237;
+		floor = 237;
 	}
 	
 
@@ -49,7 +49,7 @@ public class DrawingSurface extends Canvas {
 		
 		if (GameStatus.actualState instanceof GameManager){	
 			if (Building.getBuilding().getGM()) {
-				if (cam.getY() < piso) {
+				if (cam.getY() < floor) {
 					cam.tick();
 					prevGM = true;		
 				}else{
@@ -57,7 +57,7 @@ public class DrawingSurface extends Canvas {
 				}
 			}else{	
 				if(prevGM){
-					piso = piso + 203;
+					floor = floor + 203;
 					prevGM = false;
 				}
 			}
@@ -67,7 +67,7 @@ public class DrawingSurface extends Canvas {
 	public static void resetSurface() {
 		prevGM = false;
 		cam.setY(0);
-		piso = 237;
+		floor = 237;
 	}
 	
 	// el buffer strategy lo que hace es armar un buffer de imagenes e ir reproduciendolas, es decir, antes de producir la imagen es creada y guardada

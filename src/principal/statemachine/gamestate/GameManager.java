@@ -3,13 +3,13 @@ package principal.statemachine.gamestate;
 import java.awt.Graphics2D;
 
 import principal.Constant;
+import principal.Game;
 import principal.HUD;
 import principal.Handler;
 import principal.Images;
 import principal.Level;
 import principal.Score;
 import principal.entities.Building;
-import principal.entities.creatures.Bird;
 import principal.entities.creatures.Cloud;
 import principal.entities.creatures.Felix;
 import principal.entities.creatures.Ralph;
@@ -18,19 +18,13 @@ import principal.graphics.Sprite;
 import principal.input.KeyBoard;
 import principal.statemachine.GameState;
 import principal.statemachine.GameStatus;
-import principal.util.Random;
-import principal.util.ResourceLoader;
-
 
 public class GameManager implements GameState {
 	
 	public static boolean showHitBox;
-	public static Images animations;
 	
 	private Handler handler;
-
-		
-
+	
 	private Building b;
 	
 	private Felix felix;
@@ -44,9 +38,6 @@ public class GameManager implements GameState {
 	private static GameManager gm = new GameManager();
 	
 	private GameManager() {
-		
-		animations = new Images();
-		
 		handler = new Handler();
 		
 		b = Building.getBuilding();
@@ -60,7 +51,7 @@ public class GameManager implements GameState {
 
 		ralph = new Ralph(300 ,227);
 	
-		bush = new Sprite(ResourceLoader.getLoader().loadImage("images/bush.png"));
+		bush = Game.animations.getBush();
 		
 	}
 	
@@ -77,6 +68,13 @@ public class GameManager implements GameState {
 			nextLevel();
 
 		}
+		
+		if (felix.getLife() == 0) {
+			Score.getScore().saveScore();
+			GameStatus.changeState(3);
+			felix.resetAll(Constant.WIDTH/2 , Constant.HEIGHT -100);
+		}
+		
 		
 		handler.tick(time);
 		
@@ -102,7 +100,7 @@ public class GameManager implements GameState {
 	private void drawBushes(Graphics2D g) {
 		int bushPosX = 0;
 		for (int i = 0; i < 33; i++) {
-			g.drawImage(bush.getImage(), 0 + bushPosX, Constant.HEIGHT - 55, null);
+			g.drawImage(bush.getImage(), 0 + bushPosX, Constant.HEIGHT - 45, null);
 			bushPosX += bush.getWidth();
 		}
 	}
@@ -120,9 +118,9 @@ public class GameManager implements GameState {
 		ralph.reset(300 ,227);
 		felix.resetAll(Constant.WIDTH/2 , Constant.HEIGHT - 100);
 		HUD.getHud().setFelix(felix);
-
 		DrawingSurface.resetSurface();
 		HUD.getHud().reset();
+		Handler.removeAll();
 	}
 	
 	
@@ -130,8 +128,10 @@ public class GameManager implements GameState {
 		b.resetBuilding();
 		ralph.reset(300 ,227);
 		felix.reset(Constant.WIDTH/2 , Constant.HEIGHT -100);
+		ralph.setVelocity(Level.getLevel().getRalphVel());
 		DrawingSurface.resetSurface();
-		Level.getLevel().levelUp();	
+		Level.getLevel().levelUp();
+		Handler.removeAll();
 	}
 	
 }

@@ -2,9 +2,8 @@ package principal.statemachine.characterstates.felixstates;
 
 import java.awt.Image;
 
-import principal.graphics.Animation;
+import principal.Game;
 import principal.statemachine.characterstates.State;
-import principal.statemachine.gamestate.GameManager;
 
 public class Normal extends State {
 	
@@ -16,7 +15,7 @@ public class Normal extends State {
 	
 	
 	private Normal(){
-		animation  = GameManager.animations.getFelixNormalRight();
+		animation  = Game.animations.getFelixNormalRight();
 		animUpdate = 1;
 	}
 	
@@ -27,9 +26,9 @@ public class Normal extends State {
 	@Override
 	public Image getImage(int dir) {
 		if (dir == -1){
-			animation = GameManager.animations.getFelixNormalLeft();
+			animation = Game.animations.getFelixNormalLeft();
 		}else
-			animation = GameManager.animations.getFelixNormalRight();
+			animation = Game.animations.getFelixNormalRight();
 		return animation.getActualFrame();
 	}
 

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import principal.entities.Building;
 import principal.entities.ID;
 import principal.entities.Entity;
+import principal.entities.creatures.Bird;
+import principal.entities.creatures.Brick;
 import principal.entities.creatures.Creature;
 import principal.statemachine.gamestate.GameManager;
 
@@ -36,6 +38,20 @@ public class Handler {
 	}
 
 	
+	public static void addBrick(float x, float y) {
+		int actualSector = Building.getBuilding().getIndexActualSector();
+		Brick brick = new Brick((int)x, (int)y , actualSector);
+	}
+	
+	
+	public static void removeAll() {
+		for (int i = 0; i < objects.size(); i++) {
+			Entity e = objects.get(i);
+			if (e instanceof Brick || e instanceof Bird) {
+				objects.remove(i);
+			}
+		}
+	}
 	
 	public void tick(long time){
 		building.tick(null, time);

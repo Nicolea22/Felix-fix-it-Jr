@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+
 import principal.Constant;
 import principal.Handler;
 import principal.Score;
@@ -12,7 +13,9 @@ import principal.entities.Entity;
 import principal.entities.ID;
 import principal.entities.windows.Window;
 import principal.input.KeyBoard;
+import principal.physics.Position;
 import principal.statemachine.GameStatus;
+import principal.statemachine.characterstates.felixstates.Falling;
 import principal.statemachine.characterstates.felixstates.Fixing;
 import principal.statemachine.characterstates.felixstates.Immune;
 import principal.statemachine.characterstates.felixstates.Moving;
@@ -34,12 +37,20 @@ public class Felix extends Creature {
 	
 	private final float VEL = 3f;
 	
-	private final long IMMUNE_DURATION = 7000;
+	private final long IMMUNE_DEATH = 2000;
+	private final long IMMUNE_CAKE = 7000;
+		
+	private long immuneDuration;
 	
 	private long movDelay = System.currentTimeMillis();
 	private long delay = System.currentTimeMillis();
 	private long inmTime;
 	private float max_jump = 0;
+	
+	private float death_x;
+	private float death_y;
+	
+	private boolean dying;
 	
 	private boolean onObstacle;
 	private boolean onGround;
@@ -71,11 +82,22 @@ public class Felix extends Creature {
 	
 	
 	public void tick(ArrayList<Entity> ent, long beforeTime) {
-		stopFalling();
-		checkImmune(beforeTime);
-		checkButtons(ent, beforeTime);
+		
+		if (!dying){
+			stopFalling();
+			checkImmune(beforeTime);
+			checkButtons(ent, beforeTime);
+			collision(ent, beforeTime);
+		}else{
+			setY(getY() + 3f);
+			if (Building.getBuilding().getActualSector().getBotBounds().y + 100 < getY()){
+				dying = false;
+				reset(death_x,death_y);
+			}
+		}
+			
 		checkStates();
-		collision(ent, beforeTime);
+		
 	}
 
 
@@ -91,7 +113,7 @@ public class Felix extends Creature {
 
 	private void checkImmune(long beforeTime) {
 		if (isImmune) {
-			if (beforeTime - inmTime > IMMUNE_DURATION) {
+			if (beforeTime - inmTime > immuneDuration) {
 				isImmune = false;
 			}
 				
@@ -104,15 +126,20 @@ public class Felix extends Creature {
 // 		setX(e.getX() + 269);
 		
 	private void checkStates() {
-		if (KeyBoard.fix && onGround) {
+		
+		if (dying) {
+			state = Falling.getFalling();
+		}
+		
+		if (KeyBoard.fix && onGround && !dying) {
 			state = Fixing.getFixing();
 		}
 		
-		if (isImmune && !KeyBoard.fix){
+		if (isImmune && !KeyBoard.fix && !dying){
 			state = Immune.getImmune();
 		}
 		
-		if (getDx() == 0 && getDy() == 0 && !KeyBoard.fix && !isImmune) {
+		if (getDx() == 0 && getDy() == 0 && !KeyBoard.fix && !isImmune && !dying) {
 			state = Normal.getNormal();
 		}
 			
@@ -207,34 +234,39 @@ public class Felix extends Creature {
 	
 	private void brickCollision(Entity e, long beforeTime) {
 //		if (e.getID() == ID.Brick) {
-//			if(getTopBounds().intersects(e.getBounds())) {
-//				Handler.remove(e);
-//				decLife(beforeTime);
-//			}
-//		}
+		if (e instanceof Brick) {
+			if(getTopBounds().intersects(e.getBounds()) && !isImmune) {
+				setY(getY());
+				savePosition(e);
+				decLife(beforeTime);
+				Handler.remove(e);
+				setImmune(IMMUNE_DEATH);
+			}
+		}
 	}
-	
-	
-	
+
 	private void birdCollision(Entity e, long beforeTime) {
-//		if (e.getID() == ID.Bird){
-//			if (getAllBounds().intersects(e.getBounds())){
-//					decLife(beforeTime);
-//					Handler.remove(e);
-//			}
-//		}
+//		if (e.getID() == ID.Bird) {
+		if (e instanceof Bird) {
+			if(getAllBounds().intersects(e.getBounds()) && !isImmune) {	
+				setY(getY());
+				savePosition(e);
+				decLife(beforeTime);
+				Handler.remove(e);
+				setImmune(IMMUNE_DEATH);
+			}
+		}
 	}
-	
-	
-	
+
 	
 
 	private void ralphCollision(Entity e) {
 //		if (e.getID() == ID.Ralph){
-//			if (getTopBounds().intersects(e.getBounds())) {
-//				setY(e.getY() + 82);
-//				max_jump = MAX_JUMP;
-//			}
+		if (e instanceof Ralph)
+			if (getTopBounds().intersects(e.getBounds())) {
+				setY(e.getY() + 82);
+				max_jump = MAX_JUMP;
+			}
 //		}
 	}
 
@@ -242,11 +274,23 @@ public class Felix extends Creature {
 	private void cakeCollision(Entity e, long beforeTime) {
 		if (e.getID() == ID.Cake) { 
 			if (getAllBounds().intersects(e.getBounds())) {
-				isImmune = true;
-				inmTime = System.currentTimeMillis();
+				setImmune(IMMUNE_CAKE);
 				Handler.remove(e);
 			}
 		}
+	}
+	
+	
+	private void setImmune(long immuneTime) {
+		inmTime = System.currentTimeMillis();
+		isImmune = true;
+		immuneDuration = immuneTime;
+	}
+	
+	
+	private void savePosition(Entity e) {
+		death_x = e.getX() - 10;
+		death_y = e.getY() - 10;
 	}
 	
 	
@@ -343,19 +387,18 @@ public class Felix extends Creature {
 	
 	
 	private void decLife(long beforeTime) {
+		dying = true;
 		if (!isImmune){
 			if (beforeTime - delay > 20) {
 				delay = System.currentTimeMillis();
 				life--;
 				if (life > 0)	
 					Score.getScore().loseHP();	
-				if(life == 0){
-					Score.getScore().saveScore();
-					GameStatus.changeState(0);
-				}
+
 			}
 		}
 	}
+
 		
 	
 	@Override
@@ -409,7 +452,7 @@ public class Felix extends Creature {
 		if (directionX == -1){
 			return new Rectangle((int)getX() + 12, (int)getY() + 52, 12, 2);
 		}
-		return new Rectangle((int)getX() + 6, (int)getY() + 54, 12, 2);
+		return new Rectangle((int)getX() + 6, (int)getY() + 52, 12, 2);
 	}
 
 	
@@ -433,6 +476,8 @@ public class Felix extends Creature {
 	public void resetAll(float x, float y){
 		setXY(x,y);
 		life = 3;
+		isImmune = false;
+		dying = false;
 	}
 
 

@@ -21,20 +21,20 @@ public class FirstSector extends Sector {
 		// diferencia x = 49
 		// diferencia y = -74
 		int posX = 283;
-		int posY = 478;
+		int posY = 488;
 		int i = 0;
 		for (int y = 0; y < ROW; y++) {
 			for (int x = 0; x < COL; x++) {			
-				if ((posX != 381 && posY != 478) || (posX != 381 && posY != 407) || posY == 330) {
+				if ((posX != 381 && posY != 488) || (posX != 381 && posY != 417) || posY == 340) {
 					windows[i] = new TwoPanels(posX, posY);
 				}
 				
-				if (posY == 478 && posX == 381) {
-					windows[i] = new Door(369, 458);
+				if (posY == 488 && posX == 381) {
+					windows[i] = new Door(369, 468);
 				}
 				
-				if (posY == 404 && posX == 381) {
-					windows[i] = new Semicircular(369, 403);
+				if (posY == 414 && posX == 381) {
+					windows[i] = new Semicircular(369, 413);
 				}
 				
 				i++;

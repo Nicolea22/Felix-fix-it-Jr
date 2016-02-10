@@ -3,15 +3,13 @@ package principal;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import principal.entities.ID;
 import principal.entities.creatures.Felix;
-import principal.util.ResourceLoader;
+import principal.graphics.Sprite;
 import principal.util.Timer;
 
 public class HUD {
 
-	private Image lifeImage;
+	private Sprite lifeImage;
 	private int lifeAmount;
 	private Font font;
 	private Timer clock;
@@ -20,9 +18,9 @@ public class HUD {
 	private static HUD hud = new HUD();
 	
 	private HUD() {
-		clock = new Timer(180000);
+		clock = new Timer(170000);
 		font = new Font("Bold", Font.BOLD, 15);
-		lifeImage = ResourceLoader.getLoader().loadImage("images/life.png");
+		lifeImage = Game.animations.getLife();
 	}
 	
 	
@@ -67,13 +65,13 @@ public class HUD {
 	private void drawLife(Graphics2D g) {
 		int lifePosX = 0;
 		for (int i = 0; i < lifeAmount; i++) {
-			g.drawImage(lifeImage, Constant.WIDTH - 50 - lifePosX, 0, null);
-			lifePosX += lifeImage.getWidth(null) + 5;
+			g.drawImage(lifeImage.getImage(), Constant.WIDTH - 50 - lifePosX, 0, null);
+			lifePosX += lifeImage.getImage().getWidth(null) + 5;
 		}
 	}
 	
 	public void reset(){
-		clock = new Timer(180000);
+		clock = new Timer(170000);
 	}
 	
 	public void tick() {

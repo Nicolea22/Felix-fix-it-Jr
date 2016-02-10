@@ -2,9 +2,9 @@ package principal.statemachine.characterstates.felixstates;
 
 import java.awt.Image;
 
-import principal.graphics.Animation;
+import principal.Game;
 import principal.statemachine.characterstates.State;
-import principal.statemachine.gamestate.GameManager;
+
 
 public class Moving extends State{
 	
@@ -13,7 +13,7 @@ public class Moving extends State{
 	
 	
 	private Moving() {
-		animation  = GameManager.animations.getFelixMoveRight();
+		animation  = Game.animations.getFelixMoveRight();
 		animUpdate = 200;
 	}
 	
@@ -25,9 +25,9 @@ public class Moving extends State{
 	@Override
 	public Image getImage(int dir) {
 		if (dir == -1){
-			animation = GameManager.animations.getFelixMoveLeft();
+			animation = Game.animations.getFelixMoveLeft();
 		}else
-			animation = GameManager.animations.getFelixMoveRight();
+			animation = Game.animations.getFelixMoveRight();
 		return animation.getActualFrame();
 	}
 	

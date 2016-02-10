@@ -3,10 +3,14 @@ package principal.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
 import principal.statemachine.gamestate.GameManager;
 import principal.statemachine.sectorstates.*;
+
 import java.util.ArrayList;
+
 import principal.Constant;
+import principal.Game;
 import principal.Handler;
 import principal.Score;
 import principal.entities.creatures.Bird;
@@ -21,7 +25,7 @@ public class Building extends Entity{
 	private final static int BUILDING_HEIGHT = 1065;
 	
 	public final static int POS_X = Constant.WIDTH/2 - BUILDING_WIDTH/2;
-	public final static int POS_Y = Constant.HEIGHT - BUILDING_HEIGHT;
+	public final static int POS_Y = Constant.HEIGHT - BUILDING_HEIGHT + 10;
 	
 	private boolean globalMovement = false;
 	
@@ -31,7 +35,7 @@ public class Building extends Entity{
 	private long waitForNice;
 	
 	private boolean birdInit;
-	private  Bird bird;
+	private Bird bird;
 
 	
 	private static Building building =  new Building();
@@ -45,12 +49,12 @@ public class Building extends Entity{
 	
 	private Building() {
 		super(POS_X, POS_Y);
-		sprite = new Sprite(ResourceLoader.getLoader().loadImage("images/building/0.png"));
+		sprite = Game.animations.getBuilding();
 		id = ID.Building;
 		
 		birdInit = true;
 		spawnNicelander = false;
-		waitForNice = 10000;
+		waitForNice = 7000;
 		
 		sectors = new Sector[Constant.SECTORS];
 		
@@ -118,7 +122,7 @@ public class Building extends Entity{
 	private void initNicePosition(Window w, long beforeTime) {
 		if (getActualSector().hasNicelanders()) {
 			if (beforeTime - nicelanderDelay > waitForNice) {
-				waitForNice -= 3000;
+				waitForNice -= 1500;
 				if (w.getStrokesRequired() >= 2 && w.getStrokesRequired() <= 4 && w.getID() != ID.DoubleDoor) {
 						if (Random.boolValue(5)) {
 							waitForNice = 10000;
@@ -216,8 +220,16 @@ public class Building extends Entity{
 	}
 	
 
+	public int getIndexActualSector() {
+		return actualSector;
+	}
+	
 	public Sector getActualSector() {
 		return sectors[actualSector];
+	}
+	
+	public Sector getSector(int i) {
+		return sectors[i];
 	}
 	
 	public boolean canChangeLevel() {

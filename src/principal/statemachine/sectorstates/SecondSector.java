@@ -24,7 +24,7 @@ public class SecondSector extends Sector{
 	
 	private void initWindows() {
 		int posX = 283;
-		int posY = 240;
+		int posY = 250;
 		int i = 0;
 		for (int y = 0; y < ROW; y++) {
 			for (int x = 0; x < COL; x++) {

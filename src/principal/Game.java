@@ -16,13 +16,22 @@ public class Game {
 	public static int  fps = 0;
 	public static int  tps = 0;
 	
-	public Game() {
+	public static Images animations;
+	
+	private static Game game = new Game();
+	
+	private Game() {
+		animations = new Images();
 		inGame = true;
 		drawingSurface = new DrawingSurface();
-		window = new Window("Fix it, Felix Jr." , drawingSurface);
+		window = new Window("Fix it, Felix Jr.", drawingSurface);
 		gameStatus = new GameStatus();	
 	}
 	
+	
+	public static Game getGame() {
+		return game;
+	}
 	
 	public void startGame(){
 		Score.getScore().readFromFile();
@@ -70,8 +79,8 @@ public class Game {
 				fps = framesAmount;
 				tps = ticksAmount;
 			
-//				System.out.println("fps  "+ fps);
-//				System.out.println("tps  "+ tps);
+				System.out.println("fps  "+ fps);
+				System.out.println("tps  "+ tps);
 
 				framesAmount = 0;
 				ticksAmount = 0;

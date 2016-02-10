@@ -1,15 +1,16 @@
 package principal.statemachine.characterstates.cake;
 
 import java.awt.Image;
+import principal.Game;
 import principal.statemachine.characterstates.State;
-import principal.statemachine.gamestate.GameManager;
+
 
 public class CakeAnimation extends State{
 
 	private static CakeAnimation cake = new CakeAnimation();	
 	
 	private CakeAnimation() {
-		animation =  GameManager.animations.getCake();
+		animation =  Game.animations.getCake();
 		animUpdate = 700;
 	}
 	

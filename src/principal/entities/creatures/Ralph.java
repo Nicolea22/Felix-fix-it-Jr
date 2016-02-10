@@ -19,7 +19,7 @@ public class Ralph extends Creature {
 	
 	private float CLIMBING = 3.0f;
 	
-	private long delay = 5000;
+	private long DELAY_PER_BRICK = 5000;
 	
 	private int floor;
 	
@@ -99,6 +99,7 @@ public class Ralph extends Creature {
 		
 		
 		if (elapsedTime - time > 3000) {
+			
 			time = System.currentTimeMillis();
 			state = Demolishing.getDemolishing();
 			throwBrick();
@@ -109,13 +110,15 @@ public class Ralph extends Creature {
 	
 	
 	private void throwBrick() {
-		Brick brick = new Brick((int)getX() + 25, (int)getY()+ 70);
-		Handler.add(brick);
-		Brick brick1 = new Brick((int)getX() + 50, (int)getY() + 70);  
-		Handler.add(brick1);
+		Handler.addBrick(getX()+25, getY() + 70);
+		Handler.addBrick(getX()+50, getY() + 70);
+//		int actualSector = Building.getBuilding().getIndexActualSector();
+//		Brick brick = new Brick((int)getX() + 25, (int)getY()+ 70, actualSector);
+//		Handler.add(brick);
+//		Brick brick1 = new Brick((int)getX() + 50, (int)getY() + 70, actualSector);  
+//		Handler.add(brick1);
 	}
 
-	
 	
 	@Override
 	public String getName() {
@@ -157,6 +160,7 @@ public class Ralph extends Creature {
 		floor = 0;
 		prevGM = false;
 		setXY(x,y);
+		vel = Level.getLevel().getRalphVel();
 	}
 	
 	

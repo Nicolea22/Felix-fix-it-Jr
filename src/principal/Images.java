@@ -44,6 +44,12 @@ public class Images {
 		"images/felix/normal/normalLeft/0.png",	
 	};
 	
+	
+	private String[] felixFallingPaths = {
+		"images/felix/falling/0.png",
+		"images/felix/falling/1.png",
+	};
+	
 	// RALPH'S ANIMATIONS
 	private String[] ralphDemolishing = {
 		"images/ralph/Demolishing/0.png",	
@@ -53,11 +59,17 @@ public class Images {
 	};
 	
 	
-	private String[] ralphClimbing = {
+	private String[] ralphClimbingPath = {
 		"images/ralph/Climbing/0.png",
 		"images/ralph/Climbing/1.png",
 	};
 
+	
+	String[] ralphMovePath = {
+		"images/ralph/Moving/0.png",
+		"images/ralph/Moving/1.png",
+	};
+	
 	// OBJECTS PATHS
 	private final String[] birdLeftPaths = {
 		"images/entities/bird/birdLeft/0.png",
@@ -86,9 +98,13 @@ public class Images {
 		"images/entities/cake/1.png"
 	};
 	
+	
+	
+	
 	//	Ralph Animations
-	private Animation ralphClimb;
+	private Animation ralphClimbing;
 	private Animation ralphDemolition;
+	private Animation ralphMove;
 	
 	
 	// Felix Animations
@@ -101,23 +117,46 @@ public class Images {
 	private Animation felixFixingRight;
 	private Animation felixFixingLeft;
 	
+	private Animation felixFalling;
 	
 	// OBJECTS
 	private final Sprite flowerPot;
 	private final Sprite roof;
 	
-	private Animation brick;
+	private final Sprite twoPanels; 
 	
-	private Animation birdLeft;
-	private Animation birdRight;
+	private final Animation brick;
 	
-	private Animation nicelander;
+	private final Animation birdLeft;
+	private final Animation birdRight;
 	
-	private Animation cake;
+	private final Animation nicelander;
+	
+	private final Animation cake;
+	
+	private final Sprite life;
+	
+	private final Sprite bush;
+	
+	private final Sprite cloud;
+	
+	private final Sprite building;
+	
+	// WINDOWS & PARTS
+	private Sprite[] glasses; 
+		
 	
 	public Images() {
 		
+		// Ralph's Animations
+		
 		ralphDemolition = new Animation (ralphDemolishing);
+		
+		ralphClimbing = new Animation (ralphClimbingPath);
+		
+		ralphMove = new Animation(ralphMovePath);
+		
+		// Felix's Animations
 		
 		felixMoveLeft = new Animation(felixMovingLeftPaths);
 		felixMoveRight = new Animation (felixMovingRightPaths);
@@ -128,12 +167,28 @@ public class Images {
 		felixFixingLeft = new Animation(felixFixingLeftPaths);
 		felixFixingRight = new Animation(felixFixingRightPaths);
 		
+		felixFalling = new Animation(felixFallingPaths);
+		
 		// OBJECTS
 		flowerPot =  new Sprite(ResourceLoader.getLoader().
 				loadImage("images/window/obstacles/flowerpot.png"));
 		
 		roof =  new Sprite(ResourceLoader.getLoader().
 				loadImage("images/window/obstacles/roof.png"));
+		
+		twoPanels = new Sprite(ResourceLoader.getLoader().
+				loadImage("images/window/0.png"));
+		
+		life = new Sprite(ResourceLoader.getLoader().
+				loadImage("images/life.png"));
+		
+		bush = new Sprite(ResourceLoader.getLoader().
+				loadImage("images/bush.png"));
+		
+		cloud = new Sprite(ResourceLoader.getLoader().
+				loadImage("images/entities/cloud/0.png"));
+		
+		building = new Sprite(ResourceLoader.getLoader().loadImage("images/building/0.png"));
 		
 		brick = new Animation(brickPaths);
 		
@@ -143,6 +198,20 @@ public class Images {
 		nicelander = new Animation(nicelanderPaths);
 		
 		cake = new Animation(cakePaths);
+		
+		
+
+		// WINDOWS & PARTS
+		initGlasses();
+		
+	}
+	
+	
+	private void initGlasses() {
+		glasses = new Sprite[7];
+		for (int i = 0; i < glasses.length; i++) {
+			glasses[i] = new Sprite(ResourceLoader.getLoader().loadImage("images/window/glasses/"+i+".png"));
+		}
 	}
 	
 	public Animation getBrick() {
@@ -152,7 +221,7 @@ public class Images {
 	
 	// RALPH'S ANIMATION
 	public Animation getClimbing() {
-		return ralphClimb;
+		return ralphClimbing;
 	}
 	
 	public Animation getRalphDemolition(){
@@ -186,8 +255,11 @@ public class Images {
 	}
 	
 	
-	// OBJECTS
+	public Animation getFelixFalling(){
+		return felixFalling;
+	}
 	
+	// OBJECTS
 	public Sprite getFlowerPot() {
 		return flowerPot;
 	}
@@ -213,7 +285,41 @@ public class Images {
 	public Animation getCake() {
 		return cake;
 	}
+
+	public Sprite getTwoPanels() {
+		return twoPanels;
+	}
 	
+	public Sprite getBush() {
+		return bush;
+	}
+	
+	public Sprite getCloud(){
+		return cloud;
+	}
+	
+	public Sprite getBuilding() {
+		return building;
+	}
+	
+	
+	// WINDOWS & PARTS
+	public Sprite getGlass(int i){
+		return glasses[i];
+	}
+
+
+	public Sprite getLife() {
+		return life;
+	}
+
+
+	public Animation getRalphMove() {
+		return ralphMove;
+	}
+
+
+
 	
 	
 	

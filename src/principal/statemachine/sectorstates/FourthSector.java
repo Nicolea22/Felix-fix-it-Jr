@@ -30,7 +30,7 @@ public class FourthSector extends Sector{
 	
 	private void initWindows() {
 		int posX = 283;
-		int posY = -232;
+		int posY = -222;
 		int i = 0;
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 5; x++) {

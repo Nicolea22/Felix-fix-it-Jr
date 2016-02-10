@@ -2,9 +2,9 @@ package principal.statemachine.characterstates.felixstates;
 
 import java.awt.Image;
 
-import principal.graphics.Animation;
+import principal.Game;
 import principal.statemachine.characterstates.State;
-import principal.statemachine.gamestate.GameManager;
+
 
 public class Fixing extends State{
 	
@@ -27,9 +27,9 @@ public class Fixing extends State{
 	@Override
 	public Image getImage(int dir) {
 		if (dir == -1){
-			animation = GameManager.animations.getFelixFixingLeft();
+			animation = Game.animations.getFelixFixingLeft();
 		}else
-			animation = GameManager.animations.getFelixFixingRight();
+			animation = Game.animations.getFelixFixingRight();
 		return animation.getActualFrame();
 	}
 

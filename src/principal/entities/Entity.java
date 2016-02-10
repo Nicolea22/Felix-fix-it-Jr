@@ -3,9 +3,6 @@ package principal.entities;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-
-import principal.Handler;
-import principal.entities.creatures.Creature;
 import principal.physics.Position;
 import principal.statemachine.characterstates.State;
 
@@ -17,19 +14,8 @@ public abstract class Entity {
 	protected State state;
 	
 	protected ID id;
-	 
-	private String hola;
-	
-	protected Rectangle top;
-	protected Rectangle bot;
-	protected Rectangle left;
-	protected Rectangle right;
-	protected Rectangle all;
-	
+
 	private Position position;
-	
-	
-	
 	
 	public Entity(float x, float y){
 		position = new Position(x, y);
@@ -81,6 +67,8 @@ public abstract class Entity {
 	public ID getID(){
 		return id;
 	}
+	
+	
 	
 	
 	public void setXY(float x, float y){
