@@ -66,15 +66,17 @@ public class PauseMenu implements GameState{
 
 	@Override
 	public void draw(Graphics2D g, long time) {
-		
+		Building.getBuilding().draw(g, time);
 		g.setRenderingHint(
 		        RenderingHints.KEY_TEXT_ANTIALIASING,
 		        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		
+		
 		g.setFont(font);
-		g.setColor(Color.white);
+		g.setColor(Color.RED);
 		g.drawString("Pause", DISP_X, 100);
 		g.setFont(font1);
+		g.setColor(Color.WHITE);
 		g.drawString("Main Menu", DISP_X, menuButton.y + 35);
 //		g.draw(menuButton);
 		g.drawString("Resume", DISP_X, resumeButton.y + 35);

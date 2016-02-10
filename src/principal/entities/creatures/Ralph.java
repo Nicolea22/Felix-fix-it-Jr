@@ -41,6 +41,8 @@ public class Ralph extends Creature {
 		height = 84;
 
 		floor = 0;
+		
+		Handler.add(this);
 	}
 	
 
@@ -76,10 +78,10 @@ public class Ralph extends Creature {
 	}
 	
 	
-	private void climbing(int piso){
+	private void climbing(int floor){
 		state = Climbing.getClimbing();
 		setDy(-CLIMBING);
-		if (getY() > piso ){
+		if (getY() > floor ){
 			setY(getY() + getDy());
 		}		
 	}

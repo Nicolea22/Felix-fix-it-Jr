@@ -32,6 +32,7 @@ public class Brick extends Creature {
 		id = ID.Brick;
 		brick = Game.animations.getBrick();
 		
+		Handler.add(this);
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class Brick extends Creature {
 		brick.tick();
 		g.drawImage(brick.getActualFrame(), (int)getX(), (int)getY(), null);
 		
-		g.draw(getBounds());
+//		g.draw(getBounds());
 	}
 
 	@Override

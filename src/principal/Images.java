@@ -98,7 +98,7 @@ public class Images {
 		"images/entities/cake/1.png"
 	};
 	
-	
+
 	
 	
 	//	Ralph Animations
@@ -122,29 +122,24 @@ public class Images {
 	// OBJECTS
 	private final Sprite flowerPot;
 	private final Sprite roof;
-	
 	private final Sprite twoPanels; 
-	
 	private final Animation brick;
-	
 	private final Animation birdLeft;
 	private final Animation birdRight;
-	
 	private final Animation nicelander;
-	
 	private final Animation cake;
-	
 	private final Sprite life;
-	
 	private final Sprite bush;
-	
 	private final Sprite cloud;
-	
 	private final Sprite building;
+	private final Sprite menu;
+	
 	
 	// WINDOWS & PARTS
 	private Sprite[] glasses; 
-		
+	private Sprite[] doubleDoor;
+	private Sprite[] semicircular;
+	private Sprite[] door;
 	
 	public Images() {
 		
@@ -199,11 +194,13 @@ public class Images {
 		
 		cake = new Animation(cakePaths);
 		
-		
+		menu = new Sprite (ResourceLoader.getLoader().loadImage("images/initial_menu.png"));
 
 		// WINDOWS & PARTS
 		initGlasses();
-		
+		initDoubleDoor();
+		initSemicircular();
+		initDoor();
 	}
 	
 	
@@ -211,6 +208,31 @@ public class Images {
 		glasses = new Sprite[7];
 		for (int i = 0; i < glasses.length; i++) {
 			glasses[i] = new Sprite(ResourceLoader.getLoader().loadImage("images/window/glasses/"+i+".png"));
+		}
+	}
+	
+	
+	
+	private void initDoubleDoor() {
+		doubleDoor = new Sprite[4];
+		for (int i = 0; i < doubleDoor.length; i++){
+			doubleDoor[i] =  new Sprite(ResourceLoader.getLoader().loadImage("images/window/doubledoor/"+i+".png"));
+		}
+	}
+	
+	private void initSemicircular() {
+		semicircular = new Sprite[8];
+		for (int i = 0; i < semicircular.length; i++){
+			semicircular[i] = new Sprite(ResourceLoader.getLoader().
+					loadImage("images/window/semicircular/bigwindow/"+ i+".png"));
+		}
+	}
+	
+	private void initDoor() {
+		door = new Sprite[12];
+		for (int i = 0; i < door.length; i++) {
+			door[i] = new Sprite(ResourceLoader.getLoader().
+					loadImage("images/window/semicircular/door/"+ i+".png"));
 		}
 	}
 	
@@ -227,6 +249,14 @@ public class Images {
 	public Animation getRalphDemolition(){
 		return ralphDemolition;
 	}
+	
+	public Animation getRalphMove() {
+		return ralphMove;
+	}
+	
+	
+	
+	
 	
 	
 	// FELIX'S ANIMATION
@@ -258,6 +288,11 @@ public class Images {
 	public Animation getFelixFalling(){
 		return felixFalling;
 	}
+	
+	
+	
+	
+	
 	
 	// OBJECTS
 	public Sprite getFlowerPot() {
@@ -302,20 +337,34 @@ public class Images {
 		return building;
 	}
 	
+
+	public Sprite getLife() {
+		return life;
+	}
+
+	
+	public Sprite getMenu(){
+		return menu;
+	}
 	
 	// WINDOWS & PARTS
 	public Sprite getGlass(int i){
 		return glasses[i];
 	}
 
-
-	public Sprite getLife() {
-		return life;
+	
+	public Sprite[] getDoubleDoor(){
+		return doubleDoor;
+	}
+	
+	
+	public Sprite[] getSemicircular(){
+		return semicircular;
 	}
 
 
-	public Animation getRalphMove() {
-		return ralphMove;
+	public Sprite[] getDoor(){
+		return door;
 	}
 
 

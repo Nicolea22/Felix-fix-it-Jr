@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import principal.Game;
 import principal.entities.Entity;
 import principal.entities.creatures.Creature;
 import principal.graphics.Sprite;
@@ -20,8 +21,7 @@ public class DoubleDoor extends Window{
 	public DoubleDoor(float x, float y) {
 		super(x, y);
 		
-		img = new Sprite[4];
-		loadImages();
+		img = Game.animations.getDoubleDoor();
 		
 		width = img[0].getImage().getWidth(null);
 		height = img[0].getImage().getHeight(null);
@@ -29,12 +29,6 @@ public class DoubleDoor extends Window{
 		doors = Random.value(0, 3);
 	}
 	
-	
-	private void loadImages(){
-		for (int i = 0; i < 4; i++) {
-			img[i] =  new Sprite(ResourceLoader.getLoader().loadImage("images/window/doubledoor/"+i+".png"));
-		}
-	}
 
 	
 	@Override

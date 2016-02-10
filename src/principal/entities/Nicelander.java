@@ -32,7 +32,7 @@ public class Nicelander extends Entity  {
 	
 	@Override
 	public void tick(ArrayList<Entity> objects, long beforeTime) {
-		if (beforeTime - actionsDelay > 2200) {
+		if (beforeTime - actionsDelay > 1150) {
 			if (leaveCake) {
 				cake = new Cake((int)getX(), (int)getY());
 				leaveCake = false;

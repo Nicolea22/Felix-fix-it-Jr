@@ -14,7 +14,7 @@ public class BirdMoving extends State{
 	
 	
 	private BirdMoving() {
-		animUpdate = 300;
+		animUpdate = 700;
 	}
 	
 	public static BirdMoving getMoving(){

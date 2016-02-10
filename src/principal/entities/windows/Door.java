@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import principal.Game;
 import principal.entities.Entity;
 import principal.entities.creatures.Creature;
 import principal.graphics.Sprite;
@@ -18,20 +19,11 @@ public class Door extends Window{
 	public Door(float x, float y) {
 		super(x, y);
 		
-		loadImages();
+		images = Game.animations.getDoor();
 		initWindows();
 		
 		width = images[0].getWidth() - 20;
 		height = images[0].getHeight() - 41;
-	}
-	
-	
-	private void loadImages() {
-		images = new Sprite[12];
-		for (int i = 0; i < images.length; i++) {
-			images[i] = new Sprite(ResourceLoader.getLoader().
-					loadImage("images/window/semicircular/door/"+ i+".png"));
-		}
 	}
 	
 	

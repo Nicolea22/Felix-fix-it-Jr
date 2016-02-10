@@ -77,6 +77,8 @@ public class Felix extends Creature {
 		
 		width = 20;
 		height = 50;
+		
+		Handler.add(this);
 	}	
 
 	

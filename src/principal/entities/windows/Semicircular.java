@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import principal.Game;
 import principal.entities.Entity;
 import principal.entities.creatures.Creature;
 import principal.graphics.Sprite;
@@ -21,21 +22,14 @@ public class Semicircular extends Window{
 	public Semicircular(float x, float y) {
 		super(x, y);
 		
-		loadImages();
+		images = Game.animations.getSemicircular();
+		
 		initState();
 		
 		width = images[0].getImage().getWidth(null);
 		height = images[0].getImage().getHeight(null);
 	}
 	
-	
-	private void loadImages() {
-		images = new Sprite[8];
-		for (int i = 0; i < images.length; i++){
-			images[i] = new Sprite(ResourceLoader.getLoader().
-					loadImage("images/window/semicircular/bigwindow/"+ i+".png"));
-		}
-	}
 	
 	
 	private void initState() {

@@ -49,7 +49,7 @@ public class GameManager implements GameState {
 
 		HUD.getHud().setFelix(felix);
 
-		ralph = new Ralph(300 ,227);
+		ralph = new Ralph(300 ,240);
 	
 		bush = Game.animations.getBush();
 		
@@ -115,7 +115,7 @@ public class GameManager implements GameState {
 	public void resetGameManager() {
 		b.resetBuilding();
 		Level.getLevel().resetGame();
-		ralph.reset(300 ,227);
+		ralph.reset(300 ,240);
 		felix.resetAll(Constant.WIDTH/2 , Constant.HEIGHT - 100);
 		HUD.getHud().setFelix(felix);
 		DrawingSurface.resetSurface();
@@ -126,7 +126,7 @@ public class GameManager implements GameState {
 	
 	public void nextLevel(){
 		b.resetBuilding();
-		ralph.reset(300 ,227);
+		ralph.reset(300 ,240);
 		felix.reset(Constant.WIDTH/2 , Constant.HEIGHT -100);
 		ralph.setVelocity(Level.getLevel().getRalphVel());
 		DrawingSurface.resetSurface();

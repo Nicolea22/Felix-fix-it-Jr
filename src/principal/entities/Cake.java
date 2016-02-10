@@ -23,7 +23,7 @@ public class Cake extends Entity{
 	public void draw(Graphics2D g, long time) {
 		state.update();
 		g.drawImage(state.getImage(0), (int)getX(), (int)getY(), null);
-		g.draw(getBounds());
+//		g.draw(getBounds());
 	}
 
 	@Override

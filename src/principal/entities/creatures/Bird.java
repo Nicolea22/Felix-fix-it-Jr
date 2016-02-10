@@ -29,6 +29,8 @@ public class Bird extends Creature{
 		side();
 		
 		state = BirdMoving.getMoving();
+		
+		Handler.add(this);
 	}
 	
 	private void side(){
@@ -55,7 +57,7 @@ public class Bird extends Creature{
 		state.update();
 
 		g.drawImage(state.getImage(directionX), (int)getX(), (int)getY(), null);
-		g.draw(getBounds());
+//		g.draw(getBounds());
 
 	}
 
