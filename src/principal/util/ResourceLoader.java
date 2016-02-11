@@ -11,8 +11,6 @@ import javax.imageio.ImageIO;
 // como por ejemplo sonidos que tambien habria un metodo para subir sonidos en esta clase.
 
 public class ResourceLoader {
-
-	private int i = 0;
 	
 	private ResourceLoader(){}
 	
@@ -20,8 +18,8 @@ public class ResourceLoader {
 	private Image image;
 		
 	public Image loadImage(String path){
-		i++;
-		System.out.println(i);
+//		i++;
+//		System.out.println(i);
 		URL imgUrl = getClass().getClassLoader().getResource(path);
 		
 		if (imgUrl == null){

@@ -24,6 +24,7 @@ public class GameStatus implements GameState{
 		states[2] = new PauseMenu();
 		states[3] = new ScoreMenu();
 		states[4] = new GameRules();
+		states[5] = new Win();
 	}
 
 	

@@ -25,7 +25,7 @@ public class Felix extends Creature {
 	
 	/*
 	 * Diferentes estados:
-	 * 		Normal.getNormal() 	
+	 * 		Normal.getNormal() 	 
 	 * 		Moving.getMoving()
 	 * 		Fixing.getFixing()
 	 * 		Jumping.getJumping()
@@ -33,7 +33,7 @@ public class Felix extends Creature {
 	 */
 	
 	private final float JUMP_SPEED = -10f;
-	private final float MAX_JUMP = -80;// la velocidad de salto es negativa y la gravedad positiva
+	private final float MAX_JUMP = -80;//   la velocidad de salto es negativa y la gravedad positiva
 	
 	private final float VEL = 3f;
 	
@@ -179,33 +179,37 @@ public class Felix extends Creature {
 				w.getFixed();
 			}
 			
-			if (getBotBounds().intersects(w.getBotBounds())) {
+			if (getBotBounds().intersects(w.getBotBounds()) && !w.hasFlowerPot()) {
 				onGround = true;
+				onObstacle = false;
 			}
 			
 			doubleDoorsCollision(w);
 			obstacleCollision(w);
-		}
+		}  
 	}
 	
 	
 	 private void obstacleCollision(Window w) {
-		 
-//		  if(getTopBounds().intersects(w.getTopBounds()) && w.hasRoof()){
-//			  setY(w.getY());
-//		  }
-//		  
-//		  if(getBotBounds().intersects(w.getTopBounds()) && w.hasRoof()){
-//			  setY(w.getY()- 32);
-//		  }
-//		  
+		 		 
+		  if(getTopBounds().intersects(w.getTopBounds()) && w.hasRoof()){
+			  setY(w.getY() +2);
+		  }
+		  
+		  if(getBotBounds().intersects(w.getTopBounds()) && w.hasRoof()){
+			  onGround = true;
+			  onObstacle = true;
+		  }
+		  
 //		  if(getTopBounds().intersects(w.getBotBounds()) && w.hasFlowerPot()){
-//			  setY(w.getY()+ 32);
+//			  setY(w.getY() + 77);
 //		  }
-//		  
-//		  if(getBotBounds().intersects(w.getBotBounds()) && w.hasFlowerPot()){
-//			  setY(w.getY());
-//		  }
+		  
+		  if(getBotBounds().intersects(w.getBotBounds()) && w.hasFlowerPot()){
+			  
+			  onGround = true;
+			  onObstacle = true;
+		  }
 	}
 	
 
@@ -302,12 +306,12 @@ public class Felix extends Creature {
 		
 		
 		if (getLeftBounds().intersects(b.getLeftBounds())){
-			setX(Building.getBuilding().getX() + 6);
+			setX(Building.getBuilding().getX() + 9);
 		}
 		
 		
 		if (getRightBounds().intersects(b.getRightBounds())){
-			setX(b.getX() + 278);
+			setX(b.getX() + 279);
 		}
 		
 		
@@ -410,7 +414,6 @@ public class Felix extends Creature {
 		
 		g.setColor(Color.RED);
 //		g.draw(getBounds());
-		
 		g.setColor(Color.GREEN);
 //		g.draw(getBotBounds());
 //		g.draw(getLeftBounds());

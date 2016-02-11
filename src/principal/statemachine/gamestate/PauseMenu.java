@@ -9,9 +9,11 @@ import java.awt.RenderingHints;
 import principal.Constant;
 import principal.Game;
 import principal.HUD;
+import principal.Level;
 import principal.Score;
 import principal.entities.Building;
 import principal.graphics.DrawingSurface;
+import principal.input.KeyBoard;
 import principal.input.MouseInput;
 import principal.statemachine.GameState;
 import principal.statemachine.GameStatus;
@@ -40,6 +42,7 @@ public class PauseMenu implements GameState{
 	public void tick(long time) {
 		if (MouseInput.leftClick){
 			if (menuButton.contains(MouseInput.getPointer())){
+				GameManager.setChoose(false);
 				GameStatus.changeState(0);
 			}else
 				if (resumeButton.contains(MouseInput.getPointer())){
@@ -52,6 +55,7 @@ public class PauseMenu implements GameState{
 							Game.quitGame();
 						}
 		}
+		
 	}
 
 	

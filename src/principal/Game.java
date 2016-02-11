@@ -79,8 +79,8 @@ public class Game {
 				fps = framesAmount;
 				tps = ticksAmount;
 			
-				System.out.println("fps  "+ fps);
-				System.out.println("tps  "+ tps);
+//				System.out.println("fps  "+ fps);
+//				System.out.println("tps  "+ tps);
 
 				framesAmount = 0;
 				ticksAmount = 0;

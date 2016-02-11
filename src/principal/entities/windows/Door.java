@@ -20,6 +20,7 @@ public class Door extends Window{
 		super(x, y);
 		
 		images = Game.animations.getDoor();
+		strokesRequired = Random.value(0, 16);
 		initWindows();
 		
 		width = images[0].getWidth() - 20;
@@ -28,8 +29,21 @@ public class Door extends Window{
 	
 	
 	private void initWindows() {
-//		strokesRequired = Random.value(0, 16);
-		strokesRequired = 1;
+		if (strokesRequired > 12){
+			state = 4;
+		}else
+			if (strokesRequired <= 12 && strokesRequired > 8){
+				state = 3;
+			}else
+				if (strokesRequired <= 8 && strokesRequired > 4){
+					state = 2;
+				}else
+					if (strokesRequired <= 4 && strokesRequired > 0){
+						state = 1;
+					}else
+						if (strokesRequired == 0){
+							state = 0;
+						}
 	}
 	
 	
@@ -38,14 +52,16 @@ public class Door extends Window{
 		g.drawImage(images[state].getImage(), (int)getX(), (int)getY(), null);
 //		g.draw(getBounds());
 	}
-
+	
+//	state = 11;
+//	state = 6;
+//	state = 4;
 	
 	@Override
 	public void tick(ArrayList<Entity> objects, long beforeTime) {	
-		if (strokesRequired >= 12) state = 11;
-		if (strokesRequired < 8 && strokesRequired >= 4) state = 6;
-		if (strokesRequired < 4 && strokesRequired >= 1) state = 4;
-		if (strokesRequired <= 0) state = 0;
+		System.out.println(strokesRequired);
+		initWindows();
+		
 	}
 	
 

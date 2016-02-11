@@ -2,7 +2,6 @@ package principal.statemachine.sectorstates;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
 import principal.Constant;
 import principal.Score;
 import principal.entities.windows.*;
@@ -26,7 +25,7 @@ public class FirstSector extends Sector {
 		for (int y = 0; y < ROW; y++) {
 			for (int x = 0; x < COL; x++) {			
 				if ((posX != 381 && posY != 488) || (posX != 381 && posY != 417) || posY == 340) {
-					windows[i] = new TwoPanels(posX, posY);
+					windows[i] = new TwoPanels(posX, posY, false);
 				}
 				
 				if (posY == 488 && posX == 381) {

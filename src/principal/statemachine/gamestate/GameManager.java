@@ -32,6 +32,10 @@ public class GameManager implements GameState {
 
 	private Sprite bush;
 	
+	private long timing;
+	
+	private static boolean chooseLevel;
+	
 	private Cloud cloud;
 	private Cloud cloud1;
 		
@@ -49,6 +53,8 @@ public class GameManager implements GameState {
 
 		HUD.getHud().setFelix(felix);
 
+		chooseLevel = false;
+		
 		ralph = new Ralph(300 ,240);
 	
 		bush = Game.animations.getBush();
@@ -63,11 +69,18 @@ public class GameManager implements GameState {
 	
 	@Override
 	public void tick(long time) {	
-//		System.out.println(Level.getLevel().getActualLevel());
+		
+		if (b.canChangeLevel()) {
+			Win.setTiming(time);
+			GameStatus.changeState(5);	
+		}
+		
+		
 		if (b.canChangeLevel()){
 			nextLevel();
-
 		}
+		
+		
 		
 		if (felix.getLife() == 0) {
 			Score.getScore().saveScore();
@@ -78,15 +91,12 @@ public class GameManager implements GameState {
 		
 		handler.tick(time);
 		
+
+		
 		if (KeyBoard.pause){
 			GameStatus.changeState(2);	
 		}
 		
-		
-		if (KeyBoard.hitBox) {
-			showHitBox = !showHitBox;
-		}
-
 	}
 
 	
@@ -109,17 +119,18 @@ public class GameManager implements GameState {
 	public static int getLevel(){
 		return Level.getLevel().getActualLevel();
 	}
-
 	
 	
 	public void resetGameManager() {
 		b.resetBuilding();
-		Level.getLevel().resetGame();
+		if (!chooseLevel){
+			Level.getLevel().resetGame();
+		}
+		
 		ralph.reset(300 ,240);
 		felix.resetAll(Constant.WIDTH/2 , Constant.HEIGHT - 100);
 		HUD.getHud().setFelix(felix);
 		DrawingSurface.resetSurface();
-		HUD.getHud().reset();
 		Handler.removeAll();
 	}
 	
@@ -127,11 +138,18 @@ public class GameManager implements GameState {
 	public void nextLevel(){
 		b.resetBuilding();
 		ralph.reset(300 ,240);
-		felix.reset(Constant.WIDTH/2 , Constant.HEIGHT -100);
-		ralph.setVelocity(Level.getLevel().getRalphVel());
+		felix.resetAll(Constant.WIDTH/2 , Constant.HEIGHT -100);
 		DrawingSurface.resetSurface();
 		Level.getLevel().levelUp();
+		ralph.setVelocity(Level.getLevel().getRalphVel());
+		ralph.setBrickTime(Level.getLevel().getRalphTime());
+		HUD.getHud().reset();
 		Handler.removeAll();
+	}
+	
+	
+	public static void setChoose(boolean choose){
+		chooseLevel = choose;
 	}
 	
 }

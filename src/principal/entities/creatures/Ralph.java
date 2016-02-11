@@ -25,6 +25,8 @@ public class Ralph extends Creature {
 	
 	private long time = System.currentTimeMillis();
 	
+	private long brickTime;
+	
 	private boolean prevGM;
 	
 	public Ralph(float x, float y) {
@@ -34,6 +36,8 @@ public class Ralph extends Creature {
 
 		vel = Level.getLevel().getRalphVel();
 
+		brickTime = Level.getLevel().getRalphTime();
+		
 		setDx(vel);
 		prevGM = false;
 		
@@ -58,8 +62,6 @@ public class Ralph extends Creature {
 
 	@Override
 	public void tick(ArrayList<Entity> ent, long elapsedTime) {
-
-//		System.out.println("Ralph: " + vel);
 
 		if (elapsedTime - time > 1500  || Building.getBuilding().isChangingSector()){
 			if (Building.getBuilding().getGM()) {
@@ -100,7 +102,7 @@ public class Ralph extends Creature {
 		
 		
 		
-		if (elapsedTime - time > 3000) {
+		if (elapsedTime - time > brickTime) {
 			
 			time = System.currentTimeMillis();
 			state = Demolishing.getDemolishing();
@@ -163,10 +165,14 @@ public class Ralph extends Creature {
 		prevGM = false;
 		setXY(x,y);
 		vel = Level.getLevel().getRalphVel();
+		brickTime = Level.getLevel().getRalphTime();
+		
 	}
 	
 	
-	
+	public void setBrickTime(long time){
+		brickTime = time;
+	}
 	
 	
 }

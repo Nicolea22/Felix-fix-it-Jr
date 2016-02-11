@@ -19,13 +19,13 @@ public class Move extends State{
 	
 	private Move(){
 		animation = Game.animations.getRalphMove();
-		animUpdate = 200;
+		animUpdate = 300;
 	}
 	
-	public static Move getMove(){
+	public static Move getMove(){ 
 		return move;
 	}
-	
+	 
 	@Override
 	public Image getImage(int dir) {
 		return animation.getActualFrame();

@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import principal.Constant;
 import principal.Handler;
 import principal.Level;
+import principal.entities.Building;
 import principal.entities.Entity;
 import principal.entities.ID;
 import principal.graphics.Animation;
 import principal.statemachine.characterstates.State;
 import principal.statemachine.characterstates.bird.BirdMoving;
 import principal.statemachine.gamestate.GameManager;
+import principal.util.Random;
 
 public class Bird extends Creature{
 
@@ -73,16 +75,17 @@ public class Bird extends Creature{
 			directionX = 1;
 		}else{
 			setDx(-vel);
-			if (getX() < 0 - 20) side = !side;
+			if (getX() < 0 - 20) {
+				side = !side;
+				setY(Random.value(Building.getBuilding().getBotBounds().y, Building.getBuilding().getTopBounds().y));
+			}
 			directionX = -1;
 		}
 		
 	}
 
 	
-	public void setVelocity(float vel) {
-		
-	}
+	public void setVelocity(float vel) {}
 	
 	@Override
 	public Rectangle getBounds() {

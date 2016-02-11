@@ -20,7 +20,7 @@ public class KeyBoard extends KeyAdapter{
 
 	
 
-	public KeyBoard(){
+	public KeyBoard() {
 		keys = new boolean[keysAmount];
 	}
 	

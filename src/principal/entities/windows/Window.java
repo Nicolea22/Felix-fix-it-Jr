@@ -3,13 +3,14 @@ package principal.entities.windows;
 import principal.Handler;
 import principal.entities.Entity;
 import principal.entities.Nicelander;
-import principal.util.Random;
 
 public abstract class Window extends Entity{
 
 	protected int strokesRequired;
+	
 	protected boolean hasFlowerPot;
 	protected boolean hasRoof;
+	
 	protected Nicelander nicelander;
 	
 	public Window(float x, float y) {

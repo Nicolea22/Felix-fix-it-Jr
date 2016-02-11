@@ -11,19 +11,27 @@ public class MouseInput extends MouseAdapter{
 	
 	public static boolean leftClick;
 	
-	@Override
-	public void mouseReleased(MouseEvent e) {
+	
+	public MouseInput() {
 		leftClick = false;
 	}
 	
+
+	public void tick() {
+		if (leftClick) {		
+			leftClick = !leftClick;
+		}
+	}
 	
-	@Override
-	public void mousePressed(MouseEvent e) {		
+	public void mouseClicked(MouseEvent e) {
+		
 		x = e.getX();
 		y = e.getY();
 		
-		leftClick = e.getButton() == MouseEvent.BUTTON1;
+		leftClick = true;
+		
 	}
+	
 
 	
 	public static Point getPointer(){

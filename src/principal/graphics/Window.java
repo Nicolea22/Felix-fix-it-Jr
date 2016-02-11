@@ -2,7 +2,10 @@ package principal.graphics;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import principal.Constant;
 import principal.Game;
 
@@ -17,6 +20,7 @@ public class Window extends JFrame{
 		this.title = title;
 		init(ds);
 	}
+	
 
 	private void init(final DrawingSurface ds) {
 		// Agrega el canvas y lo centra con la pantalla

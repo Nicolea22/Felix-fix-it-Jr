@@ -50,12 +50,21 @@ public class Images {
 		"images/felix/falling/1.png",
 	};
 	
+	private String[] felixWinPaths = {
+		"images/felix/win/0.png",
+		"images/felix/win/1.png",
+		"images/felix/win/2.png",
+		"images/felix/win/3.png",
+		"images/felix/win/4.png",
+		"images/felix/win/5.png"
+	};
+	
+	
 	// RALPH'S ANIMATIONS
 	private String[] ralphDemolishing = {
 		"images/ralph/Demolishing/0.png",	
 		"images/ralph/Demolishing/1.png",
-		"images/ralph/Demolishing/2.png",
-		"images/ralph/Demolishing/3.png",
+
 	};
 	
 	
@@ -119,6 +128,8 @@ public class Images {
 	
 	private Animation felixFalling;
 	
+	private Animation felixWin;
+	
 	// OBJECTS
 	private final Sprite flowerPot;
 	private final Sprite roof;
@@ -133,7 +144,8 @@ public class Images {
 	private final Sprite cloud;
 	private final Sprite building;
 	private final Sprite menu;
-	
+	private final Sprite config;
+	private final Sprite buildingRoof;
 	
 	// WINDOWS & PARTS
 	private Sprite[] glasses; 
@@ -164,6 +176,8 @@ public class Images {
 		
 		felixFalling = new Animation(felixFallingPaths);
 		
+		felixWin = new Animation(felixWinPaths);
+		
 		// OBJECTS
 		flowerPot =  new Sprite(ResourceLoader.getLoader().
 				loadImage("images/window/obstacles/flowerpot.png"));
@@ -180,6 +194,10 @@ public class Images {
 		bush = new Sprite(ResourceLoader.getLoader().
 				loadImage("images/bush.png"));
 		
+		buildingRoof = new Sprite(ResourceLoader.getLoader().
+				loadImage("images/sprites_sin_fondo.png"));
+		
+		
 		cloud = new Sprite(ResourceLoader.getLoader().
 				loadImage("images/entities/cloud/0.png"));
 		
@@ -195,6 +213,8 @@ public class Images {
 		cake = new Animation(cakePaths);
 		
 		menu = new Sprite (ResourceLoader.getLoader().loadImage("images/initial_menu.png"));
+		
+		config = new Sprite(ResourceLoader.getLoader().loadImage("images/config.png"));
 
 		// WINDOWS & PARTS
 		initGlasses();
@@ -221,7 +241,7 @@ public class Images {
 	}
 	
 	private void initSemicircular() {
-		semicircular = new Sprite[8];
+		semicircular = new Sprite[5];
 		for (int i = 0; i < semicircular.length; i++){
 			semicircular[i] = new Sprite(ResourceLoader.getLoader().
 					loadImage("images/window/semicircular/bigwindow/"+ i+".png"));
@@ -229,7 +249,7 @@ public class Images {
 	}
 	
 	private void initDoor() {
-		door = new Sprite[12];
+		door = new Sprite[5];
 		for (int i = 0; i < door.length; i++) {
 			door[i] = new Sprite(ResourceLoader.getLoader().
 					loadImage("images/window/semicircular/door/"+ i+".png"));
@@ -295,9 +315,15 @@ public class Images {
 	
 	
 	// OBJECTS
+	public Sprite getBuildingRoof() {
+		return buildingRoof;
+	}
+	
+	
 	public Sprite getFlowerPot() {
 		return flowerPot;
 	}
+	
 	
 	public Sprite getRoof() {
 		return roof;
@@ -313,10 +339,12 @@ public class Images {
 		return birdRight;
 	}
 
+	
 	public Animation getNicelander() {
 		return nicelander;
 	}
 
+	
 	public Animation getCake() {
 		return cake;
 	}
@@ -325,13 +353,16 @@ public class Images {
 		return twoPanels;
 	}
 	
+	
 	public Sprite getBush() {
 		return bush;
 	}
 	
+	
 	public Sprite getCloud(){
 		return cloud;
 	}
+	
 	
 	public Sprite getBuilding() {
 		return building;
@@ -345,6 +376,10 @@ public class Images {
 	
 	public Sprite getMenu(){
 		return menu;
+	}
+	
+	public Sprite getConfig(){
+		return config;
 	}
 	
 	// WINDOWS & PARTS
@@ -369,6 +404,9 @@ public class Images {
 
 
 
+	public Animation getFelixWin(){
+		return felixWin;
+	}
 	
 	
 	

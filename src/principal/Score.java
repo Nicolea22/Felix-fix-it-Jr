@@ -131,19 +131,24 @@ public class Score {
 	
 	
 	public void saveScore(){
-		asking=true;
+		asking = true;
 		// botonera
 		frame = new JFrame();
 		JPanel newPanel = new JPanel();
-		JLabel label = new JLabel("Enter username:");
+		
+		JLabel label = new JLabel("Enter use rname:");
+		label.setForeground(Color.WHITE);
+		
 		userName = new JTextField(20);
 		 
-		JButton btn = new JButton("Aceptar");
+		JButton btn = new JButton("Accept");
 		newPanel.add(label, BorderLayout.NORTH);
 		newPanel.add(userName, BorderLayout.CENTER);
 		newPanel.setVisible(true);
 		
 		newPanel.add(btn,BorderLayout.SOUTH);
+		newPanel.setBackground(Color.BLACK);
+
 		
 		frame.add(newPanel, BorderLayout.CENTER);
 		frame.setVisible(true);

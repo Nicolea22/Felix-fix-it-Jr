@@ -10,12 +10,13 @@ import principal.statemachine.gamestate.GameManager;
 
 public class Cake extends Entity{
 
-	
+	private long cakeTime;
 	
 	public Cake(float x, float y) {
 		super(x, y);
 		id = ID.Cake;
 		Handler.add(this);
+		cakeTime = System.currentTimeMillis();
 		state = CakeAnimation.getCake();
 	}
 
@@ -28,7 +29,9 @@ public class Cake extends Entity{
 
 	@Override
 	public void tick(ArrayList<Entity> objects, long beforeTime) {
-		
+		if (beforeTime - cakeTime > 5000){
+			Handler.remove(this);
+		}
 	}
 
 	@Override

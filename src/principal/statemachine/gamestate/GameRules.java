@@ -34,19 +34,22 @@ public class GameRules implements GameState{
 		g.setColor(Color.white);
 		g.setFont(font);	
 		
-		String rules = "Las reglas son muy faciles, para ganar hay que reparar el edificio";
-		g.drawString(rules,100,100);
+		String rules = "Para ganar tenes que arreglar el edificio completo";
+		g.drawString(rules,100, 150);
 		
-		rules = "Muevete con las flechas y con espacio arregla las ventanas. Pausa el juego con ESC.";
+		rules = "Movete con las flechas y con el espacio arreglas las ventanas. Pausa el juego con ESC.";
 		g.drawString(rules,100,200);
 		
-		rules = "Recuerda esquivar todos los ladrillos y aves que cruces en tu camino.";
+		rules = "Esquiva todos los ladrillos y aves que cruces en tu camino.";
+		g.drawString(rules,100,250);
+		
+		rules = "Los nicelander te ofrecen pasteles ¡cuidado no los golpees con el martillo!.";
 		g.drawString(rules,100,300);
 		
-		rules = "Buena suerte invocador y recuerda ARREGLA TODO!";
-		g.drawString(rules,100,400);
+		rules = "También podes elegir el nivel en el que quieras empezar a jugar.";
+		g.drawString(rules,100,350);
 		
-		g.drawString("Back",backButton.x+19,backButton.y+30);
+		g.drawString("Back",backButton.x + 19, backButton.y+ 30);
 		g.draw(backButton);
 		
 	}

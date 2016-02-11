@@ -14,10 +14,13 @@ import principal.util.ResourceLoader;
 
 public class DoubleDoor extends Window{
 
+	protected boolean hasFlowerPot;
+	protected boolean hasRoof;
+	
 	private Sprite[] img;
 	private int doors;
 	
-	
+
 	public DoubleDoor(float x, float y) {
 		super(x, y);
 		
@@ -27,14 +30,19 @@ public class DoubleDoor extends Window{
 		height = img[0].getImage().getHeight(null);
 		
 		doors = Random.value(0, 3);
-	}
-	
 
+	}
+
+
+	
 	
 	@Override
 	public void draw(Graphics2D g, long time) {
 		g.drawImage(img[doors].getImage() ,(int)getX() ,(int)getY(), null);
 		g.setColor(Color.GREEN);
+		
+
+		
 //		g.draw(getBounds());
 //		g.draw(getTopBounds());
 //		g.draw(getBotBounds());
@@ -49,7 +57,7 @@ public class DoubleDoor extends Window{
 	
 	@Override
 	public Rectangle getTopBounds() {
-		return new Rectangle ((int)getX(),(int)getY(), 32, 6);
+		return new Rectangle ((int)getX(),(int)getY() - 10, 36, 6);
 	}
 
 	@Override

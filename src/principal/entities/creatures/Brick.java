@@ -50,8 +50,7 @@ public class Brick extends Creature {
 
 	@Override
 	public void tick(ArrayList<Entity> creat, long BeforeTime) {
-		
-
+				
 		Building b = Building.getBuilding();
 		
 		setY(getY() + vel);

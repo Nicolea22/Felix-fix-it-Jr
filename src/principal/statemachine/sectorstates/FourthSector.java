@@ -34,11 +34,11 @@ public class FourthSector extends Sector{
 		int i = 0;
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 5; x++) {
-				if (Random.boolValue(5) && doubleDoorCounter < MAX_DOUBLE_DOOR){
-					windows[i] = new DoubleDoor(posX, posY);
-					doubleDoorCounter++;
-				}else
-					windows[i] = new TwoPanels(posX, posY);
+				if (obsCounter < MAX_OBSTACLES)
+					setWithObstacles(posX, posY, i);
+				else{
+					setWithoutObstacles(posX, posY, i);
+					}
 				posX += 49;
 				i++;
 			}
@@ -46,6 +46,35 @@ public class FourthSector extends Sector{
 			posY -= 74; 
 		}
 	}
+	
+	
+	
+	private void setWithObstacles(int posX, int posY, int i) {
+		if (Random.boolValue(5) && doubleDoorCounter < MAX_DOUBLE_DOOR) {
+			boolean hasObstacle = Random.boolValue(6);
+			if (hasObstacle) 
+				obsCounter++;
+			windows[i] = new DoubleDoor(posX, posY);
+			doubleDoorCounter++;
+		}else{
+			boolean hasObstacle = Random.boolValue(5);
+			if (hasObstacle) 
+				obsCounter++;
+			windows[i] = new TwoPanels(posX, posY, hasObstacle);
+		}
+	}
+
+	private void setWithoutObstacles(int posX, int posY, int i) {
+		if (Random.boolValue(5) && doubleDoorCounter < MAX_DOUBLE_DOOR) {
+			windows[i] = new DoubleDoor(posX, posY);
+			doubleDoorCounter++;
+		}else{
+			windows[i] = new TwoPanels(posX, posY,false);
+		}
+	}
+	
+	
+	
 	
 	
 	private void countBrokenWindows(){

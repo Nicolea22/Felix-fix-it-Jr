@@ -16,39 +16,43 @@ public class Semicircular extends Window{
 	private Sprite[] images;
 	private int state;
 	
-	private int strokes;
-	
-	
 	public Semicircular(float x, float y) {
 		super(x, y);
 		
 		images = Game.animations.getSemicircular();
 		
-		initState();
+		strokesRequired = Random.value(0, 16);
+		initWindow();
+		
 		
 		width = images[0].getImage().getWidth(null);
 		height = images[0].getImage().getHeight(null);
 	}
 	
 	
-	
-	private void initState() {
-//		strokesRequired = Random.value(0, 16);
-		strokesRequired = 1;
-		if (strokesRequired >= 12) state = 4;
-		if (strokesRequired < 12 && strokesRequired >= 8) state = 3;
-		if (strokesRequired < 8 && strokesRequired >= 4) state = 2;
-		if (strokesRequired < 4 && strokesRequired >= 1) state = 1;
-		if (strokesRequired <= 0) state = 0;
+	private void initWindow() {
+		if (strokesRequired > 12){
+			state = 4;
+		}else
+			if (strokesRequired <= 12 && strokesRequired > 8){
+				state = 3;
+			}else
+				if (strokesRequired <= 8 && strokesRequired > 4){
+					state = 2;
+				}else
+					if (strokesRequired <= 4 && strokesRequired > 0){
+						state = 1;
+					}else
+						if (strokesRequired == 0){
+							state = 0;
+						}
 	}
+	
 	
 	
 	@Override
 	public void tick(ArrayList<Entity> objects, long beforeTime) {	
-		if (strokes >= 4 && state > 0) {
-			state--;
-			strokes = 0;
-		}
+		initWindow();
 	}
 	
 	
@@ -94,7 +98,6 @@ public class Semicircular extends Window{
 		if (isBroken()){
 			strokesRequired--;
 		}
-		strokes++;
 	}
 	
 	

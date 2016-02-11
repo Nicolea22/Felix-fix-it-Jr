@@ -22,16 +22,18 @@ public class TwoPanels extends Window{
 	private int topGlassState;
 	private int botGlassState;
 	
+	private Sprite roof;
+	private Sprite flowerPot;
 	
-	
-	public TwoPanels(float x, float y){
+	public TwoPanels(float x, float y, boolean hasObstacle){
 		super(x,y);
 		window = Game.animations.getTwoPanels();
 		
 
 		strokesRequired = Random.value(0, 4);
 //		strokesRequired = 1;
-
+		
+		initObstacle(hasObstacle);
 		
 		width = 38;
 		height = 60;
@@ -41,7 +43,21 @@ public class TwoPanels extends Window{
 		
 		topGlassState = 1;
 		botGlassState = 1;
+		
+		roof = Game.animations.getRoof();
+		flowerPot = Game.animations.getFlowerPot();
 	}
+	
+	
+	private void initObstacle(boolean hasObstacle){
+		if (hasObstacle) {
+			if (Random.boolValue(3)) {
+				hasFlowerPot = true;
+			}else
+				hasRoof = true;
+		}
+	}
+	
 
 	
 	@Override
@@ -58,9 +74,18 @@ public class TwoPanels extends Window{
 				(int)getX() + botGlass.getDispX(botGlassState), 
 				(int)getY() + botGlass.getDispY(botGlassState) + BOT_DISP_Y, null);
 		
+		if (hasFlowerPot){
+			g.drawImage(flowerPot.getImage(), (int)getX() + 5, (int)getY() + 43, null);
+		}
+		
+		if (hasRoof){
+			g.drawImage(roof.getImage(), (int)getX() - 1, (int)getY() - 11, null);
+		}
+		
 		g.setColor(Color.GREEN);
 //		g.draw(getBounds());
 //		g.draw(getBotBounds());
+//		g.draw(getTopBounds());
 	}
 
 	
@@ -97,7 +122,7 @@ public class TwoPanels extends Window{
 	
 	@Override
 	public Rectangle getTopBounds() {
-		return new Rectangle ((int)getX(),(int)getY(), 32, 6);
+		return new Rectangle ((int)getX(),(int)getY() - 10, 36, 6);
 	}
 
 	
@@ -115,7 +140,7 @@ public class TwoPanels extends Window{
 	
 	@Override
 	public Rectangle getBotBounds() {
-		return new Rectangle((int)getX() ,(int)getY() + 49 ,40 ,5 );
+		return new Rectangle((int)getX() ,(int)getY() + 52 ,40 , 5);
 	}
 	
 	public String getName(){

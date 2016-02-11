@@ -1,14 +1,22 @@
 package principal.statemachine.init;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import principal.Constant;
 import principal.Game;
-import principal.HUD;
+import principal.Level;
 import principal.Score;
 import principal.entities.Building;
 import principal.entities.creatures.Cloud;
@@ -27,6 +35,7 @@ public class PrincipalMenu implements GameState{
 	public Rectangle playButton = new Rectangle(Constant.WIDTH/2 - 100/2 - 20 , 270, 100, 50);
 	public Rectangle scoreButton = new Rectangle(Constant.WIDTH/2 - 100/2  - 20, 320,100, 50);
 	public Rectangle helpButton = new Rectangle(Constant.WIDTH/2 - 100/2 - 20, 370, 100, 50);
+	public Rectangle configButton = new Rectangle(Constant.WIDTH - 50, 0, 45, 45);
 	public Rectangle quitButton = new Rectangle(Constant.WIDTH/2 - 100/2 - 20, 420, 100, 50);
 		
 	private boolean drawString;
@@ -37,20 +46,41 @@ public class PrincipalMenu implements GameState{
 	private Font font;
 	private Font font2;
 	private Sprite menu;
+	
+	private String[] levels;
+	
 	private boolean barspacePushed;
+	
 	private Cloud cloud;
 	private Cloud cloud1;
 	
-	public PrincipalMenu(){
+	private Sprite config;
+	
+	public PrincipalMenu() {
+		
 		font = new Font("arial",Font.ROMAN_BASELINE, 25);
 		font2 = new Font("arial", Font.ITALIC, 12);
+		
 		menu = Game.animations.getMenu();
+		
 		barspacePushed = false;
+		
 		building = Building.getBuilding();
-		building.setXY(Constant.WIDTH - 200, 300);
+		config = Game.animations.getConfig();
+		
 		cloud = new Cloud(Constant.WIDTH/2, 300);
 		cloud1 = new Cloud(0, 150);
+		
+		levels = new String[10];
 	}
+	
+	
+	private void initLevels() {
+		for (int i = 0; i < levels.length; i++){
+			levels[i] = "Level " + (i+1);
+		}
+	}
+	
 	
 	@Override
 	public void tick(long beforeTime) {
@@ -68,15 +98,53 @@ public class PrincipalMenu implements GameState{
 						if (helpButton.contains(MouseInput.getPointer())){
 							GameStatus.changeState(4);
 						}else
-							if (quitButton.contains(MouseInput.getPointer())) {
-								Game.quitGame();
-							}								
+							if (configButton.contains(MouseInput.getPointer())){
+									drawFrame();
+							}else
+								if (quitButton.contains(MouseInput.getPointer())) {
+									Game.quitGame();
+								}		
 			}										
 		}
 	}
 	
 
+	private void drawFrame() {
+		
+		final JFrame frame = new JFrame();
+		JPanel panel = new JPanel();
+		JButton button = new JButton("Choose");
+		initLevels();
+		final JComboBox combo = new JComboBox(levels);
+		
+		frame.setSize(300, 90);
+		frame.setVisible(true);
+		
+		panel.setBackground(Color.BLACK);
+		panel.add(button, BorderLayout.EAST);
+		panel.add(combo, BorderLayout.SOUTH);
+		
+		frame.add(panel);
+		
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Level.getLevel().chooseLevel((String)combo.getSelectedItem());
+				GameManager.setChoose(true);
+				frame.setVisible(false);
+			}
+			
+		});
+		
+	}
 	
+	
+	
+
+
+
 	private void restart() {
 		GameManager.getGameManager().resetGameManager();
 		GameStatus.changeState(1);	
@@ -89,13 +157,13 @@ public class PrincipalMenu implements GameState{
 		
 		clean(g);
 		
-		cloud.draw(g, beforeTime);
-		cloud1.draw(g, beforeTime);
 		// Anti aliasing
 		g.setRenderingHint(
 		        RenderingHints.KEY_TEXT_ANTIALIASING,
 		        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-				
+		
+		cloud.draw(g, beforeTime);
+		cloud1.draw(g, beforeTime);		
 		
 		building.draw(g, beforeTime);
 
@@ -108,6 +176,8 @@ public class PrincipalMenu implements GameState{
 		g.drawImage(menu.getImage(), Constant.WIDTH/2 - menu.getWidth()/2 + 13,
 				Constant.HEIGHT/2 - menu.getHeight()/2 - 100,null);
 		if (barspacePushed){
+			
+			g.drawImage(config.getImage(), Constant.WIDTH - 50, 0, null);
 			
 			g.setColor(Color.BLACK);
 			g.fillRect(Constant.WIDTH/2 - 100/2 - 18, 270, 75, 40);
@@ -141,6 +211,7 @@ public class PrincipalMenu implements GameState{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
 	}
+	
 	
 	private void drawPressBar(Graphics2D g) {
 		counter++;

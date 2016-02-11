@@ -21,6 +21,7 @@ public class DrawingSurface extends Canvas {
 	private static final long serialVersionUID = -4338850574868182269L;
 	
 	private KeyBoard inputKeys; 
+	private MouseInput mouse;
 	private static Camera cam;
 	private static boolean prevGM = false;
 	private static int floor;
@@ -28,8 +29,9 @@ public class DrawingSurface extends Canvas {
 	public DrawingSurface() {
 		cam = new Camera(0, 0);
 		inputKeys = new KeyBoard();
+		mouse = new MouseInput();
 		addKeyListener(inputKeys);
-		addMouseListener(new MouseInput());
+		addMouseListener(mouse);
 		setFocusable(true);
 		setIgnoreRepaint(true);
 		requestFocus();
@@ -44,8 +46,11 @@ public class DrawingSurface extends Canvas {
 	public void tick() {
 		
 		inputKeys.tick();
+		mouse.tick();
+		if (GameStatus.actualState instanceof GameManager){
+			HUD.getHud().tick();
+		}
 		
-		HUD.getHud().tick();
 		
 		if (GameStatus.actualState instanceof GameManager){	
 			if (Building.getBuilding().getGM()) {
