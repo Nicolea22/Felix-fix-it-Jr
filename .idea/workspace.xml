@@ -2,64 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c29ce7fb-44e7-4531-bffe-874e80158dba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Fix it, Felix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/Camera.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/Camera.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/Constant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/HUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/HUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/Handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/Images.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/Images.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/TestGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/TestGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/Building.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/Building.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/ID.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/ID.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/creatures/Bird.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/creatures/Bird.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/creatures/Brick.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/creatures/Brick.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/creatures/Cloud.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/creatures/Cloud.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/creatures/Creature.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/creatures/Creature.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/creatures/Felix.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/creatures/Felix.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/creatures/Ralph.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/creatures/Ralph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/windows/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/windows/Door.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/windows/DoubleDoor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/windows/DoubleDoor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/windows/Semicircular.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/windows/Semicircular.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/windows/TwoPanels.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/windows/TwoPanels.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/windows/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/windows/Window.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/windows/parts/Glass.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/windows/parts/Glass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/entities/windows/parts/GlassAndDisplacement.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/entities/windows/parts/GlassAndDisplacement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/graphics/Animation.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/graphics/Animation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/graphics/DrawingSurface.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/graphics/DrawingSurface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/graphics/Sprite.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/graphics/Sprite.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/graphics/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/graphics/Window.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/input/KeyBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/input/KeyBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/input/KeyInputs.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/input/KeyInputs.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/physics/Displacement.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/physics/Displacement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/physics/Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/physics/Position.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/GameState.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/GameState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/GameStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/GameStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/felixstates/Falling.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/felixstates/Falling.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/felixstates/Fixing.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/felixstates/Fixing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/felixstates/Moving.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/felixstates/Moving.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/felixstates/Normal.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/felixstates/Normal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/ralphstates/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/characterstates/ralphstates/Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/gamestate/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/gamestate/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/gamestate/PauseMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/gamestate/PauseMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/gamestate/ScoreMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/gamestate/ScoreMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/init/PrincipalMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/init/PrincipalMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/sectorstates/FirstSector.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/sectorstates/FirstSector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/sectorstates/SecondSector.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/sectorstates/SecondSector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/sectorstates/Sector.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/sectorstates/Sector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/statemachine/sectorstates/ThirdSector.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/statemachine/sectorstates/ThirdSector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/util/DrawDebug.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/util/DrawDebug.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/util/Random.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/util/Random.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/util/ResourceLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/util/ResourceLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/principal/util/Timer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/principal/util/Timer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/principal/Images.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/principal/Images.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/principal/entities/windows/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/principal/entities/windows/Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/principal/statemachine/gamestate/Win.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/principal/statemachine/gamestate/Win.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -77,13 +20,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/principal/Constant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="107">
+              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -107,6 +55,8 @@
         <option value="$PROJECT_DIR$/src/principal/entities/windows/Door.java" />
         <option value="$PROJECT_DIR$/src/principal/TestGame.java" />
         <option value="$PROJECT_DIR$/src/principal/statemachine/gamestate/Win.java" />
+        <option value="$PROJECT_DIR$/src/principal/Constant.java" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
   </component>
@@ -236,17 +186,19 @@
       <workItem from="1553999514984" duration="4160000" />
       <workItem from="1554061512569" duration="1673000" />
       <workItem from="1554063404982" duration="11000" />
-      <workItem from="1554073300149" duration="3853000" />
+      <workItem from="1554073300149" duration="4496000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9697000" />
+    <option name="totallyTimeSpent" value="10340000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49878934" visible="true" weight="0.26177174" />
+      <window_info id="Repositories" visible="true" weight="0.32960895" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49878934" weight="0.26177174" />
       <window_info id="Structure" order="1" sideWeight="0.50121063" side_tool="true" weight="0.26177174" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -265,7 +217,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.49674267" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32843137" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32736155" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -446,12 +398,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/principal/entities/windows/Window.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/principal/Constant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="107">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
