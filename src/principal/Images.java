@@ -62,15 +62,15 @@ public class Images {
 	
 	// RALPH'S ANIMATIONS
 	private String[] ralphDemolishing = {
-		"images/ralph/Demolishing/0.png",	
-		"images/ralph/Demolishing/1.png",
+		"images/ralph/demolishing/0.png",
+		"images/ralph/demolishing/1.png",
 
 	};
 	
 	
 	private String[] ralphClimbingPath = {
-		"images/ralph/Climbing/0.png",
-		"images/ralph/Climbing/1.png",
+		"images/ralph/climbing/0.png",
+		"images/ralph/climbing/1.png",
 	};
 
 	
@@ -79,7 +79,7 @@ public class Images {
 		"images/ralph/Moving/1.png",
 	};
 	
-	// OBJECTS PATHS
+	// IMAGES PATHS
 	private final String[] birdLeftPaths = {
 		"images/entities/bird/birdLeft/0.png",
 		"images/entities/bird/birdLeft/1.png"
@@ -106,9 +106,7 @@ public class Images {
 		"images/entities/cake/0.png",
 		"images/entities/cake/1.png"
 	};
-	
 
-	
 	
 	//	Ralph Animations
 	private Animation ralphClimbing;
@@ -204,7 +202,7 @@ public class Images {
 		building = new Sprite(ResourceLoader.getLoader().loadImage("images/building/0.png"));
 		
 		brick = new Animation(brickPaths);
-		
+
 		birdLeft = new Animation(birdLeftPaths);
 		birdRight = new Animation(birdRightPaths);
 		

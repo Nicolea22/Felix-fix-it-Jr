@@ -27,7 +27,7 @@ public class Win implements GameState{
 	private Cloud[] clouds;
 	
 	public Win(){
-		font = new Font("Bold", Font.BOLD, 70);
+		font = new Font("Bold", Font.BOLD, 50);
 		buildingRoof = Game.animations.getBuildingRoof();
 		clouds = new Cloud[3];
 		initClouds();
@@ -41,11 +41,9 @@ public class Win implements GameState{
 	
 	@Override
 	public void draw(Graphics2D g, long time) {
-		
-		for (int i = 0; i < clouds.length; i++){
-			clouds[i].draw(g, time);
-		}
-		
+
+		drawClouds(g, time);
+
 		// Anti aliasing
 		g.setRenderingHint(
 				RenderingHints.KEY_TEXT_ANTIALIASING,
@@ -59,7 +57,13 @@ public class Win implements GameState{
 		
 		g.setColor(Color.WHITE);
 		g.setFont(font);
-		g.drawString("Level " + (Level.getLevel().getActualLevel()- 1) + " Completed", 90, 200);
+		g.drawString("  Level " + (Level.getLevel().getActualLevel()- 1) + " Completed", 90, 200);
+	}
+
+	private void drawClouds(Graphics2D g, long time) {
+		for (int i = 0; i < clouds.length; i++){
+			clouds[i].draw(g, time);
+		}
 	}
 
 	@Override
