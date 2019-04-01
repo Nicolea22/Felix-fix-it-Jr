@@ -1,5 +1,7 @@
 package principal;
 
+// Constants of the game
+
 public class Constant {
 
 	public final static int WIDTH = 800;
