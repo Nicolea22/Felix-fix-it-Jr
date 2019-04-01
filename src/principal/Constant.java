@@ -1,6 +1,7 @@
 package principal;
 
 // Constants of the game
+// commentary
 
 public class Constant {
 
